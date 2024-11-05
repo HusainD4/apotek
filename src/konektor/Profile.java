@@ -1,4 +1,4 @@
-package apoteker;
+package konektor;
 
 public class Profile {
     private int ID;

@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package apoteker;
+package editor_manage;
+import konektor.connect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -204,7 +205,7 @@ public class TambahUser extends javax.swing.JDialog {
             P.setString(4, level);
             P.executeUpdate();
             
-            Admin_ku.viewData(""); 
+            manage_table.manage_user.viewData(""); 
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
             txtFullname.requestFocus();
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package apoteker;
+package konektor;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 import java.sql.Connection;

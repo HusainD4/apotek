@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package apoteker;
+package manage_table;
 
-import fundamental.HalamanUser;
+import konektor.Profile;
+import apoteker.admin_page;
+import konektor.connect;
 import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -14,10 +16,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
 
+
 /**
  *
  * @author HUSAIN
  */
+
+
+
 public class manage_produk extends javax.swing.JDialog {
 
     /**
@@ -62,7 +68,7 @@ public class manage_produk extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 102, 102));
-        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setMinimumSize(new java.awt.Dimension(100, 100));
         setUndecorated(true);
 
         bawah.setBackground(new java.awt.Color(0, 153, 153));
@@ -268,6 +274,9 @@ public class manage_produk extends javax.swing.JDialog {
                     }
                 });
                 dialog.setVisible(true);
+                admin_page P = new admin_page(); 
+                P.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH); // Maximize the window
+                P.setVisible(true);
             }
         });
     }

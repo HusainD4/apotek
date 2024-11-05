@@ -4,6 +4,8 @@
  */
 package apoteker;
 
+import konektor.connect;
+import konektor.Profile;
 import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.sql.Connection;

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package apoteker;
+import konektor.Profile;
 import javax.swing.JFrame;
 
 /**
