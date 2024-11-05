@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import manage_table.manage_user;
@@ -991,13 +992,15 @@ public class admin_page extends javax.swing.JFrame {
     }//GEN-LAST:event_exit_btnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(true);
-        new manage_table.manage_user().setVisible(true);
+        manage_table.manage_user mu = new manage_table.manage_user();
+        mu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        mu.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        this.setVisible(true);
-        new manage_table.manage_produk().setVisible(true);
+        manage_table.manage_produk mp = new manage_table.manage_produk();
+        mp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mp.setVisible(true); 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

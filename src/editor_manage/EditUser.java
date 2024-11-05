@@ -4,10 +4,12 @@
  */
 package editor_manage;
 
-import konektor.connect;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -15,6 +17,13 @@ import javax.swing.JOptionPane;
  */
 public class EditUser extends javax.swing.JDialog {
 
+    
+    
+    private int ID;
+    private String FULLNAME;
+    private String USERNAME;
+    private String PASSWORD;
+    private String LEVEL;
     /**
      * Creates new form TambahUser
      */
@@ -49,6 +58,11 @@ public class EditUser extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         panel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -198,7 +212,7 @@ public class EditUser extends javax.swing.JDialog {
                 + "VALUES "
                 + "(?,?,?,?)";
         try {
-            Connection K = connect.Go();
+            Connection K = konektor.connect.Go();
             PreparedStatement P = K.prepareStatement(Q);
             P.setString(1, FULLNAME);
             P.setString(2, USERNAME);
@@ -214,6 +228,15 @@ public class EditUser extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_btn_saveActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txtFullname.setText(getFullname()); 
+        txtUsername.setText(getUsername()); 
+        txtPassword.setText(getPassword()); 
+        
+        String L = getLevel().substring(0, 1).toUpperCase() + getLevel().substring(1);
+        ComboLevel.setSelectedItem(L); 
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -275,14 +298,6 @@ public class EditUser extends javax.swing.JDialog {
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
-
-public class Profile {
-    private int ID;
-    private String FULLNAME;
-    private String USERNAME;
-    private String PASSWORD;
-    private String LEVEL;
-
     public int getId() {
         return ID;
     }
@@ -322,7 +337,5 @@ public class Profile {
     public void setLevel(String LEVEL) {
         this.LEVEL = LEVEL;
     }
-    
-    
-}
+
 }

@@ -4,6 +4,7 @@
  */
 package manage_table;
 
+import editor_manage.EditUser;
 import konektor.Profile;
 import apoteker.admin_page;
 import konektor.connect;
@@ -15,7 +16,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
-import editor_manage.EditUser;
 
 
 
@@ -71,6 +71,7 @@ public class manage_user extends javax.swing.JFrame {
         btn_HapusUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         atas_transaksi.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -278,6 +279,8 @@ public class manage_user extends javax.swing.JFrame {
             EU.setPassword(PASSWORD); 
             EU.setLevel(LEVEL); 
             EU.setVisible(true); 
+            
+
             
         }else {
             JOptionPane.showMessageDialog(this, "Anda belum memilih data");
