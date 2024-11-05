@@ -24,7 +24,7 @@ public class manage_produk extends javax.swing.JDialog {
      * Creates new form manage_user
      */
     Profile p;
-    static DefaultTableModel m;
+    static DefaultTableModel prd;
     
     
     public manage_produk(java.awt.Frame parent, boolean modal) {
@@ -57,7 +57,7 @@ public class manage_produk extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         tengah = new java.awt.Panel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtb_produk = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -185,18 +185,18 @@ public class manage_produk extends javax.swing.JDialog {
 
         tengah.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtb_produk.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jtb_produk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NO", "ID", "NAMA LENGKAP", "USERNAME", "PASSWORD", "LEVEL"
+                "NO", "ID", "kode_produk", "nama_produk", "kategori", "harga_jual", "harga_beli", "stok"
             }
         ));
-        jTable1.setMinimumSize(new java.awt.Dimension(1650, 1080));
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
+        jtb_produk.setMinimumSize(new java.awt.Dimension(1650, 1080));
+        jtb_produk.setRowHeight(30);
+        jScrollPane1.setViewportView(jtb_produk);
 
         tengah.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -283,32 +283,34 @@ public class manage_produk extends javax.swing.JDialog {
     private javax.swing.JButton btn_tambah;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtb_produk;
     private java.awt.Panel tengah;
     // End of variables declaration//GEN-END:variables
 
     public static void viewData(String where) {
         try {
             //kode kita
-            for (int i = m.getRowCount()-1; i >=0; i--) {
-                m.removeRow(i);
+            for (int i = prd.getRowCount()-1; i >=0; i--) {
+                prd.removeRow(i);
             }
 
             Connection K = connect.Go();
             Statement S = K.createStatement();
-            String Q = "SELECT * FROM user" + where;
+            String Q = "SELECT * FROM produk" + where;
 //            System.out.println(Q);
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
                 int id = R.getInt("id");
-                String fullname = R.getString("fullname");
-                String username = R.getString("username");
-                String password = R.getString("password");
-                String level = R.getString("level");
+                String kode_produk = R.getString("kode_produk");
+                String nama_produk = R.getString("nama_produk");
+                String kategori = R.getString("kategori");
+                String harga_jual = R.getString("harga_jual");
+                String harga_beli    = R.getString("harga_beli");
+                String stok = R.getString("stok");
 
-                Object[] D = {no, id, fullname, username, password, level};
-                m.addRow(D);
+                Object[] D = {no, id, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
+                prd.addRow(D);
 
                 no++;
             }
@@ -319,15 +321,15 @@ public class manage_produk extends javax.swing.JDialog {
     
     
     private void settingTable() {
-        m = (DefaultTableModel) jTable1.getModel();        
-        jTable1.getColumnModel().getColumn(0).setMinWidth(50);
-        jTable1.getColumnModel().getColumn(0).setMaxWidth(70);
+        prd = (DefaultTableModel) jtb_produk.getModel();        
+        jtb_produk.getColumnModel().getColumn(0).setMinWidth(50);
+        jtb_produk.getColumnModel().getColumn(0).setMaxWidth(70);
 
-        jTable1.getColumnModel().getColumn(1).setMinWidth(0);
-        jTable1.getColumnModel().getColumn(1).setMaxWidth(0);
+        jtb_produk.getColumnModel().getColumn(1).setMinWidth(0);
+        jtb_produk.getColumnModel().getColumn(1).setMaxWidth(0);
 
-        jTable1.getColumnModel().getColumn(2).setMinWidth(350);
-        jTable1.getColumnModel().getColumn(2).setMaxWidth(500);
+        jtb_produk.getColumnModel().getColumn(2).setMinWidth(350);
+        jtb_produk.getColumnModel().getColumn(2).setMaxWidth(500);
     }
 
 }

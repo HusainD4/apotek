@@ -296,7 +296,7 @@ public class manage_user extends javax.swing.JDialog {
 
             Connection K = connect.Go();
             Statement S = K.createStatement();
-            String Q = "SELECT * FROM user" + where;
+            String Q = "SELECT * FROM user " + where;
 //            System.out.println(Q);
             ResultSet R = S.executeQuery(Q);
             int no = 1;

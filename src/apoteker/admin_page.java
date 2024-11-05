@@ -986,12 +986,13 @@ public class admin_page extends javax.swing.JFrame {
     }//GEN-LAST:event_exit_btnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        manage_produk Q = new manage_produk(this, true);
-        Q.setVisible(true);
+        manage_user T = new manage_user(this,true);
+        T.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        manage_produk Q = new manage_produk(this, true);
+        Q.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
