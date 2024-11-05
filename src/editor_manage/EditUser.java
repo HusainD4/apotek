@@ -202,17 +202,17 @@ public class EditUser extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_cencelActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        String fullName = txtFullname.getText();
-        String username = txtUsername.getText();
-        String password = new String(txtPassword.getPassword());
-        String level = ComboLevel.getSelectedItem().toString();
+        String FULLNAME = txtFullname.getText();
+        String USERNAME = txtUsername.getText();
+        String PASSWORD = new String(txtPassword.getPassword());
+        String LEVEL = ComboLevel.getSelectedItem().toString();
         
         String Q = "UPDATE user "
-                + "set fullname=?,"
-                + "username=?,"
-                + "password=?,"
-                + "level=? "
-                + "WHERE id=?";
+                + "set FULLNAME=?,"
+                + "USERNAME=?,"
+                + "PASSWORD=?,"
+                + "LEVEL=? "
+                + "WHERE ID=?";
         try {
             Connection K = konektor.connect.Go();
             PreparedStatement P = K.prepareStatement(Q);

@@ -307,11 +307,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="MUAT ULANG"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_MuatUlangActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_kembali">
           <Properties>
             <Property name="text" type="java.lang.String" value="KEMBALI"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_kembaliActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_HapusUser">
           <Properties>

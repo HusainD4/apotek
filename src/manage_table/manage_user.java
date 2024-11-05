@@ -211,8 +211,18 @@ public class manage_user extends javax.swing.JFrame {
         });
 
         btn_MuatUlang.setText("MUAT ULANG");
+        btn_MuatUlang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MuatUlangActionPerformed(evt);
+            }
+        });
 
         btn_kembali.setText("KEMBALI");
+        btn_kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_kembaliActionPerformed(evt);
+            }
+        });
 
         btn_HapusUser.setText("HAPUS USER");
         btn_HapusUser.addActionListener(new java.awt.event.ActionListener() {
@@ -293,12 +303,46 @@ public class manage_user extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_TambahUserActionPerformed
 
     private void btn_HapusUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HapusUserActionPerformed
-        // TODO add your handling code here:
+        int n = tbl_user.getSelectedRow();
+        if(n != -1){
+            int id = Integer.parseInt(tbl_user.getValueAt(n, 1).toString());
+            String FULLNAME = tbl_user.getValueAt(n, 2).toString();
+            
+            
+            int opsi = JOptionPane.showConfirmDialog(this, 
+                    "Apakah Anda yakin ingin menghapus data "+FULLNAME+"?", 
+                    "Hapus Data", 
+                    JOptionPane.YES_NO_OPTION);
+            if(opsi == 0){
+                String Q = "DELETE FROM user "
+                        + "WHERE ID="+id;
+                
+                try {
+                    Connection K = konektor.connect.Go();
+                    Statement S = K.createStatement();
+                    S.executeUpdate(Q);
+                    viewData(""); 
+                    JOptionPane.showMessageDialog(this, "Data "+FULLNAME+" telah terhapus");
+                } catch (SQLException e) {
+                }
+            }
+            
+        }else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
+        }
     }//GEN-LAST:event_btn_HapusUserActionPerformed
 
     private void label_kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_kembaliMouseClicked
         dispose();
     }//GEN-LAST:event_label_kembaliMouseClicked
+
+    private void btn_MuatUlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MuatUlangActionPerformed
+        viewData("");
+    }//GEN-LAST:event_btn_MuatUlangActionPerformed
+
+    private void btn_kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kembaliActionPerformed
+        dispose();
+    }//GEN-LAST:event_btn_kembaliActionPerformed
 
     /**
      * @param args the command line arguments
