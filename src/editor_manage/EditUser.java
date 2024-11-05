@@ -202,15 +202,17 @@ public class EditUser extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_cencelActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        String FULLNAME = txtFullname.getText();
-        String USERNAME = txtUsername.getText();
-        String PASSWORD = new String(txtPassword.getPassword());
-        String LEVEL = ComboLevel.getSelectedItem().toString();
+        String fullName = txtFullname.getText();
+        String username = txtUsername.getText();
+        String password = new String(txtPassword.getPassword());
+        String level = ComboLevel.getSelectedItem().toString();
         
-        String Q = "INSERT INTO user "
-                + "(FULLNAME,USERNAME,PASSWORD,LEVEL) "
-                + "VALUES "
-                + "(?,?,?,?)";
+        String Q = "UPDATE user "
+                + "set fullname=?,"
+                + "username=?,"
+                + "password=?,"
+                + "level=? "
+                + "WHERE id=?";
         try {
             Connection K = konektor.connect.Go();
             PreparedStatement P = K.prepareStatement(Q);
@@ -218,12 +220,13 @@ public class EditUser extends javax.swing.JDialog {
             P.setString(2, USERNAME);
             P.setString(3, PASSWORD);
             P.setString(4, LEVEL);
+            P.setInt(5, getId());
             P.executeUpdate();
             
-            manage_table.manage_user.viewData("");
+            manage_table.manage_user.viewData(""); 
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
             txtFullname.requestFocus();
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             //
         }
         
