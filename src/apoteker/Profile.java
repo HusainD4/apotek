@@ -1,50 +1,50 @@
 package apoteker;
 
 public class Profile {
-    private int id;
-    private String fullname;
-    private String username;
-    private String password;
-    private String level;
+    private int ID;
+    private String FULLNAME;
+    private String USERNAME;
+    private String PASSWORD;
+    private String LEVEL;
 
     public int getId() {
-        return id;
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int ID) {
+        this.ID = ID;
     }
 
     public String getFullname() {
-        return fullname;
+        return FULLNAME;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullname(String FULLNAME) {
+        this.FULLNAME = FULLNAME;
     }
 
     public String getUsername() {
-        return username;
+        return USERNAME;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String USERNAME) {
+        this.USERNAME = USERNAME;
     }
 
     public String getPassword() {
-        return password;
+        return PASSWORD;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
     }
 
     public String getLevel() {
-        return level;
+        return LEVEL;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setLevel(String LEVEL) {
+        this.LEVEL = LEVEL;
     }
     
     

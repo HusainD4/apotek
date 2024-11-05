@@ -90,17 +90,27 @@ public class login_page extends javax.swing.JFrame {
 
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         username.setText("husain");
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
         jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 179, 206, 34));
 
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password.setText("123");
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
         jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 219, 206, 34));
 
         btn_login.setBackground(new java.awt.Color(0, 153, 0));
         btn_login.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         btn_login.setForeground(new java.awt.Color(255, 255, 255));
         btn_login.setText("LOGIN");
-        btn_login.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        btn_login.setBorder(null);
         btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_loginActionPerformed(evt);
@@ -134,6 +144,7 @@ public class login_page extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exitMouseClicked
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+        
         String user = username.getText();
         String pass = new String(password.getText());
         
@@ -148,24 +159,24 @@ public class login_page extends javax.swing.JFrame {
             int count = 0;
             Profile P = new Profile();
             while (R.next()) {                 
-                P.setId(R.getInt("id")); 
-                P.setFullname(R.getString("fullname")); 
-                P.setUsername(R.getString("username")); 
-                P.setPassword(R.getString("password")); 
-                P.setLevel(R.getString("level")); 
+                P.setId(R.getInt("ID")); 
+                P.setFullname(R.getString("FULLNAME")); 
+                P.setUsername(R.getString("USERNAME")); 
+                P.setPassword(R.getString("PASSWORD")); 
+                P.setLevel(R.getString("LEVEL")); 
                 count++;
             }
             
             if(count > 0){
                 JOptionPane.showMessageDialog(this, "Sukses Login");
                 switch (P.getLevel()) {
-                    case "admin" ->                         {
+                    case "ADMIN" ->                         {
                             admin_page O = new admin_page(P);
                             O.setExtendedState(Frame.MAXIMIZED_BOTH);
                             this.setVisible(false);
                             O.setVisible(true);
                         }
-                    case "kasir" ->                         {
+                    case "KASIR" ->                         {   
                             kasir_page O = new kasir_page(P);
                             O.setExtendedState(Frame.MAXIMIZED_BOTH);
                             this.setVisible(false);
@@ -188,7 +199,17 @@ public class login_page extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException e) {
             System.err.println(e.getMessage());
         }
+        
     }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        password.requestFocus();
+    }//GEN-LAST:event_passwordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,7 +245,7 @@ public class login_page extends javax.swing.JFrame {
             }
         });
     }
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_exit;
     private javax.swing.JButton btn_login;

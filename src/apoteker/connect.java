@@ -10,7 +10,7 @@ public class connect {
         try {
             MysqlDataSource m = new MysqlDataSource();
             m.setServerName("localhost"); 
-            m.setDatabaseName("database_apoteker"); 
+            m.setDatabaseName("db_apoteker_project"); 
             m.setUser("root"); 
             m.setPassword(""); 
             m.setPortNumber(3306); 

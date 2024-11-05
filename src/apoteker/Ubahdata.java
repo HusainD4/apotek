@@ -161,24 +161,24 @@ public class Ubahdata extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBatalActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        String fullName = txtFullname.getText();
-        String username = txtUsername.getText();
-        String password = new String(txtPassword.getPassword());
-        String level = jComboBox1.getSelectedItem().toString();
+        String FULLNAME = txtFullname.getText();
+        String USERNAME = txtUsername.getText();
+        String PASSWORD = new String(txtPassword.getPassword());
+        String LEVEL = jComboBox1.getSelectedItem().toString();
         
-        String Q = "UPDATE users "
-                + "set fullname=?,"
-                + "username=?,"
-                + "password=?,"
-                + "level=? "
+        String Q = "UPDATE user "
+                + "set FULLNAME=?,"
+                + "USERNAME=?,"
+                + "PASSOWRD=?,"
+                + "LEVEL=? "
                 + "WHERE id=?";
         try {
             Connection K = connect.Go();
             PreparedStatement P = K.prepareStatement(Q);
-            P.setString(1, fullName);
-            P.setString(2, username);
-            P.setString(3, password);
-            P.setString(4, level);
+            P.setString(1, FULLNAME);
+            P.setString(2, USERNAME);
+            P.setString(3, PASSWORD);
+            P.setString(4, LEVEL);
             P.setInt(5, getIdUser());
             P.executeUpdate();
             
