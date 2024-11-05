@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package manage_table;
 
@@ -21,26 +21,21 @@ import javax.swing.JFrame;
  *
  * @author HUSAIN
  */
-
-
-
-public class manage_produk extends javax.swing.JDialog {
+public class manage_produk extends javax.swing.JFrame {
 
     /**
-     * Creates new form manage_user
+     * Creates new form manage_produk
      */
     Profile p;
     static DefaultTableModel prd;
     
     
-    public manage_produk(java.awt.Frame parent, boolean modal) {
-        
-        super(parent, modal);
+ public manage_produk() {
         initComponents();
-        
         settingTable();        
         viewData("");
     }
+
 
 
     /**
@@ -52,188 +47,232 @@ public class manage_produk extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bawah = new java.awt.Panel();
-        btn_tambah = new javax.swing.JButton();
-        btn_edit = new javax.swing.JButton();
-        btn_hapus = new javax.swing.JButton();
-        btn_reload = new javax.swing.JButton();
-        btn_exit = new javax.swing.JLabel();
-        btn_reload1 = new javax.swing.JButton();
-        atas = new java.awt.Panel();
-        jLabel6 = new javax.swing.JLabel();
-        tengah = new java.awt.Panel();
+        atas_transaksi = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        pencarian = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        label_kembali = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        tengah_transaksi = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtb_produk = new javax.swing.JTable();
+        tbl_produk = new javax.swing.JTable();
+        bawah_transaksi = new javax.swing.JPanel();
+        btn_TambahProduk = new javax.swing.JButton();
+        btn_EditProduk = new javax.swing.JButton();
+        btn_MuatUlang = new javax.swing.JButton();
+        btn_kembali = new javax.swing.JButton();
+        btn_HapusProduk = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(0, 102, 102));
-        setMinimumSize(new java.awt.Dimension(100, 100));
-        setUndecorated(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        bawah.setBackground(new java.awt.Color(0, 153, 153));
+        atas_transaksi.setBackground(new java.awt.Color(0, 102, 102));
 
-        btn_tambah.setBackground(new java.awt.Color(102, 255, 102));
-        btn_tambah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_tambah.setText("TAMBAH");
-        btn_tambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tambahActionPerformed(evt);
-            }
-        });
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_transaction_30px_3.png"))); // NOI18N
+        jLabel1.setText(" MANAGE PRODUK");
 
-        btn_edit.setBackground(new java.awt.Color(255, 255, 0));
-        btn_edit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_edit.setText("EDIT");
-        btn_edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_hapus.setBackground(new java.awt.Color(255, 0, 0));
-        btn_hapus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_hapus.setText("HAPUS");
-        btn_hapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_hapusActionPerformed(evt);
-            }
-        });
+        pencarian.setFont(new java.awt.Font("Rockwell Nova Light", 0, 14)); // NOI18N
+        pencarian.setForeground(new java.awt.Color(0, 102, 102));
+        pencarian.setText("Pencarian");
+        pencarian.setBorder(null);
+        pencarian.setSelectionColor(new java.awt.Color(0, 153, 153));
 
-        btn_reload.setBackground(new java.awt.Color(255, 153, 102));
-        btn_reload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_reload.setText("MUAT ULANG");
-        btn_reload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_reloadActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pencarian, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pencarian, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
 
-        btn_exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_cancel_30px.png"))); // NOI18N
-        btn_exit.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_search_20px_1.png"))); // NOI18N
+
+        label_kembali.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        label_kembali.setForeground(new java.awt.Color(255, 255, 255));
+        label_kembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_left_2_20px.png"))); // NOI18N
+        label_kembali.setText("KEMBALI");
+        label_kembali.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_exitMouseClicked(evt);
+                label_kembaliMouseClicked(evt);
             }
         });
 
-        btn_reload1.setBackground(new java.awt.Color(102, 255, 204));
-        btn_reload1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_reload1.setText("KEMBALI");
-        btn_reload1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_reload1ActionPerformed(evt);
-            }
-        });
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout bawahLayout = new javax.swing.GroupLayout(bawah);
-        bawah.setLayout(bawahLayout);
-        bawahLayout.setHorizontalGroup(
-            bawahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bawahLayout.createSequentialGroup()
+        javax.swing.GroupLayout atas_transaksiLayout = new javax.swing.GroupLayout(atas_transaksi);
+        atas_transaksi.setLayout(atas_transaksiLayout);
+        atas_transaksiLayout.setHorizontalGroup(
+            atas_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atas_transaksiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(atas_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+                    .addGroup(atas_transaksiLayout.createSequentialGroup()
+                        .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_reload1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bawahLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_exit)
-                .addGap(14, 14, 14))
-        );
-        bawahLayout.setVerticalGroup(
-            bawahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bawahLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bawahLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_reload, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_reload1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btn_exit)
-                .addContainerGap(9, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(bawah, java.awt.BorderLayout.PAGE_END);
-
-        atas.setBackground(new java.awt.Color(0, 153, 153));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("MANAGEMANT PRODUK");
-
-        javax.swing.GroupLayout atasLayout = new javax.swing.GroupLayout(atas);
-        atas.setLayout(atasLayout);
-        atasLayout.setHorizontalGroup(
-            atasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(atasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jSeparator1)
         );
-        atasLayout.setVerticalGroup(
-            atasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(atasLayout.createSequentialGroup()
+        atas_transaksiLayout.setVerticalGroup(
+            atas_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(atas_transaksiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(atas_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        getContentPane().add(atas, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(atas_transaksi, java.awt.BorderLayout.PAGE_START);
 
-        tengah.setLayout(new java.awt.BorderLayout());
+        tengah_transaksi.setBackground(new java.awt.Color(0, 102, 102));
 
-        jtb_produk.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jtb_produk.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_produk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NO", "ID", "kode_produk", "nama_produk", "kategori", "harga_jual", "harga_beli", "stok"
+                "No", "kode_produk", "nama_produk", "kategori", "harga_jual", "harga_beli", "stok"
             }
         ));
-        jtb_produk.setMinimumSize(new java.awt.Dimension(1650, 1080));
-        jtb_produk.setRowHeight(30);
-        jScrollPane1.setViewportView(jtb_produk);
+        jScrollPane1.setViewportView(tbl_produk);
 
-        tengah.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout tengah_transaksiLayout = new javax.swing.GroupLayout(tengah_transaksi);
+        tengah_transaksi.setLayout(tengah_transaksiLayout);
+        tengah_transaksiLayout.setHorizontalGroup(
+            tengah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tengah_transaksiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        tengah_transaksiLayout.setVerticalGroup(
+            tengah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tengah_transaksiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-        getContentPane().add(tengah, java.awt.BorderLayout.CENTER);
+        getContentPane().add(tengah_transaksi, java.awt.BorderLayout.CENTER);
+
+        bawah_transaksi.setBackground(new java.awt.Color(0, 102, 102));
+
+        btn_TambahProduk.setBackground(new java.awt.Color(204, 255, 204));
+        btn_TambahProduk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_TambahProduk.setText("TAMBAH PRODUK");
+        btn_TambahProduk.setBorderPainted(false);
+        btn_TambahProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TambahProdukActionPerformed(evt);
+            }
+        });
+
+        btn_EditProduk.setBackground(new java.awt.Color(102, 204, 255));
+        btn_EditProduk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_EditProduk.setText("EDIT PRODUK");
+        btn_EditProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EditProdukActionPerformed(evt);
+            }
+        });
+
+        btn_MuatUlang.setBackground(new java.awt.Color(255, 255, 51));
+        btn_MuatUlang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_MuatUlang.setText("MUAT ULANG");
+
+        btn_kembali.setBackground(new java.awt.Color(255, 204, 153));
+        btn_kembali.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_kembali.setText("KEMBALI");
+
+        btn_HapusProduk.setBackground(new java.awt.Color(255, 153, 153));
+        btn_HapusProduk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_HapusProduk.setText("HAPUS PRODUK");
+        btn_HapusProduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_HapusProdukActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bawah_transaksiLayout = new javax.swing.GroupLayout(bawah_transaksi);
+        bawah_transaksi.setLayout(bawah_transaksiLayout);
+        bawah_transaksiLayout.setHorizontalGroup(
+            bawah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bawah_transaksiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bawah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bawah_transaksiLayout.createSequentialGroup()
+                        .addComponent(btn_MuatUlang, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bawah_transaksiLayout.createSequentialGroup()
+                        .addComponent(btn_TambahProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_EditProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_HapusProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(389, Short.MAX_VALUE))
+        );
+        bawah_transaksiLayout.setVerticalGroup(
+            bawah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bawah_transaksiLayout.createSequentialGroup()
+                .addGroup(bawah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bawah_transaksiLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(btn_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bawah_transaksiLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(bawah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_TambahProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_EditProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_HapusProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_MuatUlang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(bawah_transaksi, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahActionPerformed
-
-    }//GEN-LAST:event_btn_tambahActionPerformed
-
-    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-
-    }//GEN-LAST:event_btn_editActionPerformed
-
-    private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
-
-    }//GEN-LAST:event_btn_hapusActionPerformed
-
-    private void btn_reloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reloadActionPerformed
-
-    }//GEN-LAST:event_btn_reloadActionPerformed
-
-    private void btn_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseClicked
-        dispose();
-    }//GEN-LAST:event_btn_exitMouseClicked
-
-    private void btn_reload1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reload1ActionPerformed
+    private void btn_EditProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditProdukActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_reload1ActionPerformed
+    }//GEN-LAST:event_btn_EditProdukActionPerformed
+
+    private void btn_TambahProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TambahProdukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_TambahProdukActionPerformed
+
+    private void btn_HapusProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HapusProdukActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_HapusProdukActionPerformed
+
+    private void label_kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_kembaliMouseClicked
+        dispose();
+    }//GEN-LAST:event_label_kembaliMouseClicked
 
     /**
      * @param args the command line arguments
@@ -261,42 +300,35 @@ public class manage_produk extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(manage_produk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                manage_produk dialog = new manage_produk(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-                admin_page P = new admin_page(); 
-                P.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH); // Maximize the window
-                P.setVisible(true);
-            }
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            manage_produk MP = new manage_produk();
+            MP.setExtendedState(Frame.MAXIMIZED_BOTH);
+            //L.setAlwaysOnTop(true); 
+            MP.setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Panel atas;
-    private java.awt.Panel bawah;
-    private javax.swing.JButton btn_edit;
-    private javax.swing.JLabel btn_exit;
-    private javax.swing.JButton btn_hapus;
-    private javax.swing.JButton btn_reload;
-    private javax.swing.JButton btn_reload1;
-    private javax.swing.JButton btn_tambah;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel atas_transaksi;
+    private javax.swing.JPanel bawah_transaksi;
+    private javax.swing.JButton btn_EditProduk;
+    private javax.swing.JButton btn_HapusProduk;
+    private javax.swing.JButton btn_MuatUlang;
+    private javax.swing.JButton btn_TambahProduk;
+    private javax.swing.JButton btn_kembali;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtb_produk;
-    private java.awt.Panel tengah;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel label_kembali;
+    private javax.swing.JTextField pencarian;
+    private javax.swing.JTable tbl_produk;
+    private javax.swing.JPanel tengah_transaksi;
     // End of variables declaration//GEN-END:variables
-
-    public static void viewData(String where) {
+public static void viewData(String where) {
         try {
             //kode kita
             for (int i = prd.getRowCount()-1; i >=0; i--) {
@@ -330,15 +362,16 @@ public class manage_produk extends javax.swing.JDialog {
     
     
     private void settingTable() {
-        prd = (DefaultTableModel) jtb_produk.getModel();        
-        jtb_produk.getColumnModel().getColumn(0).setMinWidth(50);
-        jtb_produk.getColumnModel().getColumn(0).setMaxWidth(70);
+        prd = (DefaultTableModel) tbl_produk.getModel();        
+        tbl_produk.getColumnModel().getColumn(0).setMinWidth(50);
+        tbl_produk.getColumnModel().getColumn(0).setMaxWidth(70);
 
-        jtb_produk.getColumnModel().getColumn(1).setMinWidth(0);
-        jtb_produk.getColumnModel().getColumn(1).setMaxWidth(0);
+        tbl_produk.getColumnModel().getColumn(1).setMinWidth(0);
+        tbl_produk.getColumnModel().getColumn(1).setMaxWidth(0);
 
-        jtb_produk.getColumnModel().getColumn(2).setMinWidth(350);
-        jtb_produk.getColumnModel().getColumn(2).setMaxWidth(500);
+        tbl_produk.getColumnModel().getColumn(2).setMinWidth(350);
+        tbl_produk.getColumnModel().getColumn(2).setMaxWidth(500);
     }
+
 
 }

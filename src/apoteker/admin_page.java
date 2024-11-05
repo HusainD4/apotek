@@ -6,8 +6,7 @@ package apoteker;
 
 import konektor.connect;
 import konektor.Profile;
-import manage_table.manage_user;
-import manage_table.manage_produk;
+
 import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -15,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import manage_table.manage_user;
+
 /**
  *
  * @author HUSAIN
@@ -24,7 +25,7 @@ public class admin_page extends javax.swing.JFrame {
 
     Profile p;
     static DefaultTableModel MU,PR;
-
+    
     /**
      * Creates new form AdminPage
      */
@@ -990,13 +991,13 @@ public class admin_page extends javax.swing.JFrame {
     }//GEN-LAST:event_exit_btnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        manage_user T = new manage_user(this,true);
-        T.setVisible(true);
+        this.setVisible(true);
+        new manage_table.manage_user().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        manage_produk Q = new manage_produk(this, true);
-        Q.setVisible(true);
+        this.setVisible(true);
+        new manage_table.manage_produk().setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package editor_manage;
+
 import konektor.connect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,12 +13,12 @@ import javax.swing.JOptionPane;
  *
  * @author HUSAIN
  */
-public class TambahUser extends javax.swing.JDialog {
+public class EditUser extends javax.swing.JDialog {
 
     /**
      * Creates new form TambahUser
      */
-    public TambahUser(java.awt.Frame parent, boolean modal) {
+    public EditUser(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -54,7 +55,7 @@ public class TambahUser extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TAMBAH DATA USER");
+        jLabel1.setText("EDIT DATA USER");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,22 +188,22 @@ public class TambahUser extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_cencelActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        String fullName = txtFullname.getText();
-        String username = txtUsername.getText();
-        String password = new String(txtPassword.getPassword());
-        String level = ComboLevel.getSelectedItem().toString();
+        String FULLNAME = txtFullname.getText();
+        String USERNAME = txtUsername.getText();
+        String PASSWORD = new String(txtPassword.getPassword());
+        String LEVEL = ComboLevel.getSelectedItem().toString();
         
         String Q = "INSERT INTO user "
-                + "(fullname,username,password,level) "
+                + "(FULLNAME,USERNAME,PASSWORD,LEVEL) "
                 + "VALUES "
                 + "(?,?,?,?)";
         try {
             Connection K = connect.Go();
             PreparedStatement P = K.prepareStatement(Q);
-            P.setString(1, fullName);
-            P.setString(2, username);
-            P.setString(3, password);
-            P.setString(4, level);
+            P.setString(1, FULLNAME);
+            P.setString(2, USERNAME);
+            P.setString(3, PASSWORD);
+            P.setString(4, LEVEL);
             P.executeUpdate();
             
             manage_table.manage_user.viewData("");
@@ -231,20 +232,21 @@ public class TambahUser extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TambahUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TambahUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TambahUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TambahUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TambahUser dialog = new TambahUser(new javax.swing.JFrame(), true);
+                EditUser dialog = new EditUser(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -272,4 +274,55 @@ public class TambahUser extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+
+public class Profile {
+    private int ID;
+    private String FULLNAME;
+    private String USERNAME;
+    private String PASSWORD;
+    private String LEVEL;
+
+    public int getId() {
+        return ID;
+    }
+
+    public void setId(int ID) {
+        this.ID = ID;
+    }
+
+    public String getFullname() {
+        return FULLNAME;
+    }
+
+    public void setFullname(String FULLNAME) {
+        this.FULLNAME = FULLNAME;
+    }
+
+    public String getUsername() {
+        return USERNAME;
+    }
+
+    public void setUsername(String USERNAME) {
+        this.USERNAME = USERNAME;
+    }
+
+    public String getPassword() {
+        return PASSWORD;
+    }
+
+    public void setPassword(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
+    }
+
+    public String getLevel() {
+        return LEVEL;
+    }
+
+    public void setLevel(String LEVEL) {
+        this.LEVEL = LEVEL;
+    }
+    
+    
+}
 }
