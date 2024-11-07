@@ -19,6 +19,11 @@ public class login_page extends javax.swing.JFrame {
     public login_page() {
         initComponents();
     }
+    
+    void bersih(){
+        username.setText("Username");
+        password.setText("Password");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -91,7 +96,15 @@ public class login_page extends javax.swing.JFrame {
         jPanel1.add(pembatas, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 163, 206, 10));
 
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        username.setText("husain");
+        username.setText("Username");
+        username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usernameFocusLost(evt);
+            }
+        });
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameActionPerformed(evt);
@@ -100,7 +113,15 @@ public class login_page extends javax.swing.JFrame {
         jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 179, 206, 34));
 
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        password.setText("123");
+        password.setText("Password");
+        password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordFocusLost(evt);
+            }
+        });
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordActionPerformed(evt);
@@ -212,6 +233,34 @@ public class login_page extends javax.swing.JFrame {
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         password.requestFocus();
     }//GEN-LAST:event_passwordActionPerformed
+
+    private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
+        String Uname = username.getText();
+        if (Uname.equals("Username")){
+            username.setText("");
+        }
+    }//GEN-LAST:event_usernameFocusGained
+
+    private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
+        String Passw = password.getText();
+        if (Passw.equals("Password")){
+            password.setText("");
+        }
+    }//GEN-LAST:event_passwordFocusGained
+
+    private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
+        String Uname = username.getText();
+        if (Uname.equals("")||(Uname.equals("Username"))){
+            username.setText("Username");
+        }
+    }//GEN-LAST:event_usernameFocusLost
+
+    private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
+        String Passw = password.getText();
+        if (Passw.equals("")||(Passw.equals("Password"))){
+            password.setText("Password");
+        }
+    }//GEN-LAST:event_passwordFocusLost
 
     /**
      * @param args the command line arguments

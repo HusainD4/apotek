@@ -88,6 +88,11 @@ public class manage_user extends javax.swing.JFrame {
         pencarian.setText("Pencarian");
         pencarian.setBorder(null);
         pencarian.setSelectionColor(new java.awt.Color(0, 153, 153));
+        pencarian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pencarianKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -344,6 +349,15 @@ public class manage_user extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btn_kembaliActionPerformed
 
+    private void pencarianKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianKeyReleased
+        String key = pencarian.getText();
+        String where = "WHERE "
+                + "FULLNAME LIKE '%" + key + "%' OR "
+                + "USERNAME LIKE '%" + key + "%' OR "
+                + "PASSWORD LIKE '%" + key + "%' OR "
+                + "LEVEL LIKE '%" + key + "%'";
+        viewData(where);    }//GEN-LAST:event_pencarianKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -418,8 +432,8 @@ public class manage_user extends javax.swing.JFrame {
                 String password = R.getString("password");
                 String level = R.getString("level");
 
-                Object[] D = {no, id, fullname, username, password, level};
-                m.addRow(D);
+                Object[] U = {no, id, fullname, username, password, level};
+                m.addRow(U);
 
                 no++;
             }

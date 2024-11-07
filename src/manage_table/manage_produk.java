@@ -32,8 +32,8 @@ public class manage_produk extends javax.swing.JFrame {
     
  public manage_produk() {
         initComponents();
-        settingTable();        
-        viewData("");
+        settingTableProduk();        
+        viewProduk("");
     }
 
 
@@ -65,6 +65,7 @@ public class manage_produk extends javax.swing.JFrame {
         btn_HapusProduk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         atas_transaksi.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -154,9 +155,17 @@ public class manage_produk extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "kode_produk", "nama_produk", "kategori", "harga_jual", "harga_beli", "stok"
+                "No", "ID", "kode_produk", "nama_produk", "kategori", "harga_jual", "harga_beli", "stok"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbl_produk);
 
         javax.swing.GroupLayout tengah_transaksiLayout = new javax.swing.GroupLayout(tengah_transaksi);
@@ -202,10 +211,20 @@ public class manage_produk extends javax.swing.JFrame {
         btn_MuatUlang.setBackground(new java.awt.Color(255, 255, 51));
         btn_MuatUlang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_MuatUlang.setText("MUAT ULANG");
+        btn_MuatUlang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MuatUlangActionPerformed(evt);
+            }
+        });
 
         btn_kembali.setBackground(new java.awt.Color(255, 204, 153));
         btn_kembali.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_kembali.setText("KEMBALI");
+        btn_kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_kembaliActionPerformed(evt);
+            }
+        });
 
         btn_HapusProduk.setBackground(new java.awt.Color(255, 153, 153));
         btn_HapusProduk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -263,7 +282,8 @@ public class manage_produk extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_EditProdukActionPerformed
 
     private void btn_TambahProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TambahProdukActionPerformed
-        // TODO add your handling code here:
+        editor_manage.TambahProduk TP = new editor_manage.TambahProduk(this, true);
+        TP.setVisible(true);
     }//GEN-LAST:event_btn_TambahProdukActionPerformed
 
     private void btn_HapusProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HapusProdukActionPerformed
@@ -273,6 +293,14 @@ public class manage_produk extends javax.swing.JFrame {
     private void label_kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_kembaliMouseClicked
         dispose();
     }//GEN-LAST:event_label_kembaliMouseClicked
+
+    private void btn_kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kembaliActionPerformed
+        dispose();
+    }//GEN-LAST:event_btn_kembaliActionPerformed
+
+    private void btn_MuatUlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MuatUlangActionPerformed
+        viewProduk("");
+    }//GEN-LAST:event_btn_MuatUlangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,7 +356,7 @@ public class manage_produk extends javax.swing.JFrame {
     private javax.swing.JTable tbl_produk;
     private javax.swing.JPanel tengah_transaksi;
     // End of variables declaration//GEN-END:variables
-public static void viewData(String where) {
+public static void viewProduk(String where) {
         try {
             //kode kita
             for (int i = prd.getRowCount()-1; i >=0; i--) {
@@ -342,7 +370,7 @@ public static void viewData(String where) {
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
-                int id = R.getInt("id");
+                int ID = R.getInt("ID");
                 String kode_produk = R.getString("kode_produk");
                 String nama_produk = R.getString("nama_produk");
                 String kategori = R.getString("kategori");
@@ -350,8 +378,8 @@ public static void viewData(String where) {
                 String harga_beli    = R.getString("harga_beli");
                 String stok = R.getString("stok");
 
-                Object[] D = {no, id, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
-                prd.addRow(D);
+                Object[] P = {no, ID, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
+                prd.addRow(P);
 
                 no++;
             }
@@ -361,7 +389,7 @@ public static void viewData(String where) {
     }
     
     
-    private void settingTable() {
+    private void settingTableProduk() {
         prd = (DefaultTableModel) tbl_produk.getModel();        
         tbl_produk.getColumnModel().getColumn(0).setMinWidth(50);
         tbl_produk.getColumnModel().getColumn(0).setMaxWidth(70);
