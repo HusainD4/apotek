@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package editor_manage;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,6 +15,13 @@ package editor_manage;
  */
 public class EditProduk extends javax.swing.JDialog {
 
+    private int ID;
+    private int kode_produk;  
+    private String nama_produk;
+    private String kategori;
+    private double harga_jual;
+    private double harga_beli;
+    private int stok;  
     /**
      * Creates new form EditProduk
      */
@@ -31,17 +43,21 @@ public class EditProduk extends javax.swing.JDialog {
         panel1 = new java.awt.Panel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
-        txtFullname = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        ComboLevel = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
         btn_cencel = new javax.swing.JButton();
         btn_save = new javax.swing.JButton();
-        txtPassword = new javax.swing.JPasswordField();
+        txtKodeProduk = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtNamaProduk = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtKategori = new javax.swing.JTextField();
+        txtHargaJual = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtHargaBeli = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtStok = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,31 +68,7 @@ public class EditProduk extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("EDIT DATA USER");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText(" Fullname");
-
-        txtFullname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFullnameActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText(" Username");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText(" Password");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText(" Level");
-
-        ComboLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir", "Owner" }));
+        jLabel1.setText("EDIT DATA PRODUK");
 
         btn_cencel.setBackground(new java.awt.Color(255, 51, 51));
         btn_cencel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -101,34 +93,76 @@ public class EditProduk extends javax.swing.JDialog {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("KODE PRODUK");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("NAMA PRODUK");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("KATEGORI");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("HARGA JUAL");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("HARGA BELI");
+
+        txtHargaBeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHargaBeliActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("STOCK");
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addGap(0, 227, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_save, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_cencel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPassword)
-                            .addComponent(txtUsername)
-                            .addComponent(txtFullname)
-                            .addComponent(ComboLevel, 0, 260, Short.MAX_VALUE))))
+                        .addComponent(txtKodeProduk))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNamaProduk, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtKategori, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtHargaJual, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtHargaBeli, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtStok, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,21 +173,29 @@ public class EditProduk extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtFullname, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                    .addComponent(txtKodeProduk, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                    .addComponent(txtNamaProduk, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                    .addComponent(txtKategori, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ComboLevel, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(txtHargaJual, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtHargaBeli, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtStok, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -193,44 +235,58 @@ public class EditProduk extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFullnameActionPerformed
-
     private void btn_cencelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cencelActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btn_cencelActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        String FULLNAME = txtFullname.getText();
-        String USERNAME = txtUsername.getText();
-        String PASSWORD = new String(txtPassword.getPassword());
-        String LEVEL = ComboLevel.getSelectedItem().toString();
+        String kode_produk = txtKodeProduk.getText();   
+        String nama_produk = txtNamaProduk.getText();
+        String kategori = txtKategori.getText();
+        double harga_jual = Double.parseDouble(txtHargaJual.getText());
+        double harga_beli = Double.parseDouble(txtHargaBeli.getText());
+        int stok = Integer.parseInt(txtStok.getText());
 
-        String Q = "UPDATE user "
-        + "set FULLNAME=?,"
-        + "USERNAME=?,"
-        + "PASSWORD=?,"
-        + "LEVEL=? "
-        + "WHERE ID=?";
+        String Q = "UPDATE produk SET "
+            + "kode_produk=?, "
+            + "nama_produk=?, "
+            + "kategori=?, "
+            + "harga_jual=?, "
+            + "harga_beli=?, "
+            + "stok=? "
+            + "WHERE ID=?";
         try {
-            Connection K = konektor.connect.Go();
-            PreparedStatement P = K.prepareStatement(Q);
-            P.setString(1, FULLNAME);
-            P.setString(2, USERNAME);
-            P.setString(3, PASSWORD);
-            P.setString(4, LEVEL);
-            P.setInt(5, getId());
+            Connection K = konektor.connect.Go(); // Connect to the database
+            PreparedStatement P = K.prepareStatement(Q); // Prepare the SQL query
+    
+            // Set the parameters for the SQL query
+            P.setString(1, kode_produk); // kode_produk is a String
+            P.setString(2, nama_produk);
+            P.setString(3, kategori);
+            P.setDouble(4, harga_jual);
+            P.setDouble(5, harga_beli);
+            P.setInt(6, stok);
+            P.setInt(7, getId()); // Assuming getId() returns the ID of the product
+
+            // Execute the update statement
             P.executeUpdate();
 
-            manage_table.manage_user.viewData("");
+            // Refresh the data table view if necessary
+            manage_table.manage_produk.viewdataProduk("");
+    
+            // Show a success message
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-            txtFullname.requestFocus();
-        } catch (HeadlessException | SQLException e) {
-            //
-        }
+            txtKodeProduk.requestFocus(); // Set focus back to the kode_produk input field
 
+        } catch (HeadlessException | SQLException e) {
+            // Handle exceptions (display error message or log error)
+            JOptionPane.showMessageDialog(this, "Error saat menyimpan data: " + e.getMessage());
+        }
     }//GEN-LAST:event_btn_saveActionPerformed
+
+    private void txtHargaBeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaBeliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHargaBeliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,20 +331,81 @@ public class EditProduk extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComboLevel;
     private javax.swing.JButton btn_cencel;
     private javax.swing.JButton btn_save;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private java.awt.Panel panel1;
-    private javax.swing.JTextField txtFullname;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txtHargaBeli;
+    private javax.swing.JTextField txtHargaJual;
+    private javax.swing.JTextField txtKategori;
+    private javax.swing.JTextField txtKodeProduk;
+    private javax.swing.JTextField txtNamaProduk;
+    private javax.swing.JTextField txtStok;
     // End of variables declaration//GEN-END:variables
+
+    public int getId() {
+        return ID;
+    }
+
+    public void setId(int ID) {
+        this.ID = ID;
+    }
+
+    public int getKodeProduk() {
+        return kode_produk;
+    }
+
+    public void setKodeProduk(int kode_produk) {
+        this.kode_produk = kode_produk;
+    }
+
+    public String getNamaProduk() {
+        return nama_produk;
+    }
+
+    public void setNamaProduk(String nama_produk) {
+        this.nama_produk = nama_produk;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+
+    public double getHargaJual() {
+        return harga_jual;
+    }
+    
+    public void setHargaJual(double harga_jual){
+        this.harga_jual = harga_jual;
+    }
+    
+    public double getHargaBeli(){
+        return harga_beli;
+    }
+    
+    public void setHargaBeli(double harga_beli){
+        this.harga_beli = harga_beli;
+        
+    }
+
+    public int getStok(){
+        return stok;
+    }
+    
+    public void set(int setStok) {
+        this.stok = stok;
+    }
 }

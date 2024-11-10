@@ -5,7 +5,7 @@
 package manage_table;
 
 import editor_manage.EditUser;
-import konektor.Profile;
+//import konektor.Profile;
 import apoteker.admin_page;
 import konektor.connect;
 import java.awt.Frame;
@@ -31,8 +31,8 @@ public class manage_user extends javax.swing.JFrame {
     /**
      * Creates new form manage_user
      */
-    Profile p;
-    static DefaultTableModel m;
+    konektor.Profile p;
+    static DefaultTableModel u;
     
     
  public manage_user() {
@@ -303,7 +303,7 @@ public class manage_user extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_EditUserActionPerformed
 
     private void btn_TambahUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TambahUserActionPerformed
-        editor_manage.TambahUser TU = new editor_manage.TambahUser(this, true);
+        editor_manage.FormTambahUser TU = new editor_manage.FormTambahUser(this, true);
         TU.setVisible(true);
     }//GEN-LAST:event_btn_TambahUserActionPerformed
 
@@ -415,8 +415,8 @@ public class manage_user extends javax.swing.JFrame {
     public static void viewData(String where) {
         try {
             //kode kita
-            for (int i = m.getRowCount()-1; i >=0; i--) {
-                m.removeRow(i);
+            for (int i = u.getRowCount()-1; i >=0; i--) {
+                u.removeRow(i);
             }
 
             Connection K = connect.Go();
@@ -426,14 +426,14 @@ public class manage_user extends javax.swing.JFrame {
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
-                int id = R.getInt("id");
+                int ID = R.getInt("ID");
                 String fullname = R.getString("fullname");
                 String username = R.getString("username");
                 String password = R.getString("password");
                 String level = R.getString("level");
 
-                Object[] U = {no, id, fullname, username, password, level};
-                m.addRow(U);
+                Object[] U = {no, ID, fullname, username, password, level};
+                u.addRow(U);
 
                 no++;
             }
@@ -444,7 +444,7 @@ public class manage_user extends javax.swing.JFrame {
     
     
     private void settingTable() {
-        m = (DefaultTableModel) tbl_user.getModel();        
+        u = (DefaultTableModel) tbl_user.getModel();        
         tbl_user.getColumnModel().getColumn(0).setMinWidth(50);
         tbl_user.getColumnModel().getColumn(0).setMaxWidth(70);
 

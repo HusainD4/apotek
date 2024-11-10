@@ -223,6 +223,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="manage_produk_tbl_produk"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

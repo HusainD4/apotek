@@ -110,14 +110,14 @@
                       <Component id="jLabel5" max="32767" attributes="0"/>
                       <Component id="ComboLevel" pref="37" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="86" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="14" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_cencel" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="btn_save" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
