@@ -81,6 +81,24 @@ public class manage_produk extends javax.swing.JFrame {
         pencarian.setText("Pencarian");
         pencarian.setBorder(null);
         pencarian.setSelectionColor(new java.awt.Color(0, 153, 153));
+        pencarian.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pencarianFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pencarianFocusLost(evt);
+            }
+        });
+        pencarian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pencarianActionPerformed(evt);
+            }
+        });
+        pencarian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pencarianKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -313,7 +331,33 @@ if (n != -1) {
     }//GEN-LAST:event_btn_TambahProdukActionPerformed
 
     private void btn_HapusProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HapusProdukActionPerformed
-
+        int n = tbl_produk.getSelectedRow();
+        if(n != -1){
+            int id = Integer.parseInt(tbl_produk.getValueAt(n, 1).toString());
+            String nama_produk = tbl_produk.getValueAt(n, 2).toString();
+            
+            
+            int opsi = JOptionPane.showConfirmDialog(this, 
+                    "Apakah Anda yakin ingin menghapus data produk "+nama_produk+"?", 
+                    "Hapus Data", 
+                    JOptionPane.YES_NO_OPTION);
+            if(opsi == 0){
+                String Q = "DELETE FROM produk "
+                        + "WHERE ID="+id;
+                
+                try {
+                    Connection K = konektor.connect.Go();
+                    Statement S = K.createStatement();
+                    S.executeUpdate(Q);
+                    viewdataProduk(""); 
+                    JOptionPane.showMessageDialog(this, "Data "+nama_produk+" telah terhapus");
+                } catch (SQLException e) {
+                }
+            }
+            
+        }else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
+        }
     }//GEN-LAST:event_btn_HapusProdukActionPerformed
 
     private void label_kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_kembaliMouseClicked
@@ -327,6 +371,35 @@ if (n != -1) {
     private void btn_MuatUlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MuatUlangActionPerformed
         viewdataProduk("");
     }//GEN-LAST:event_btn_MuatUlangActionPerformed
+
+    private void pencarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pencarianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pencarianActionPerformed
+
+    private void pencarianKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianKeyTyped
+        String key = pencarian.getText();
+        String where = "WHERE "
+            + "kode_produk LIKE '%" + key + "%' OR "
+            + "nama_produk LIKE '%" + key + "%' OR "
+            + "kategori LIKE '%" + key + "%' OR "
+            + "harga_jual LIKE '%" + key + "%' OR "
+            + "harga_beli LIKE '%" + key + "%' OR "
+            + "stok LIKE '%" + key + "%'";
+    }//GEN-LAST:event_pencarianKeyTyped
+
+    private void pencarianFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianFocusGained
+        String Cari = pencarian.getText();
+        if (Cari.equals("Pencarian")){
+            pencarian.setText("");
+        }
+    }//GEN-LAST:event_pencarianFocusGained
+
+    private void pencarianFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianFocusLost
+        String Cari = pencarian.getText();
+        if (Cari.equals("")||(Cari.equals("Pencarian"))){
+//            Cari.setText("Pencarian");
+        }
+    }//GEN-LAST:event_pencarianFocusLost
 
     /**
      * @param args the command line arguments

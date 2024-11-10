@@ -91,27 +91,27 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel7" min="-2" pref="114" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtNamaProduk" pref="283" max="32767" attributes="0"/>
+                              <Component id="txtNamaProduk" pref="414" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel8" min="-2" pref="114" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtKategori" pref="283" max="32767" attributes="0"/>
+                              <Component id="txtKategori" pref="414" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel9" min="-2" pref="114" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtHargaJual" pref="283" max="32767" attributes="0"/>
+                              <Component id="txtHargaJual" pref="414" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel10" min="-2" pref="114" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtHargaBeli" pref="283" max="32767" attributes="0"/>
+                              <Component id="txtHargaBeli" pref="414" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel11" min="-2" pref="114" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtStok" pref="283" max="32767" attributes="0"/>
+                              <Component id="txtStok" pref="414" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
