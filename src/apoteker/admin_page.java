@@ -840,8 +840,18 @@ public class admin_page extends javax.swing.JFrame {
         });
 
         jButton8.setText("PREVIEW");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("PREVIEW");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1036,7 +1046,8 @@ public class admin_page extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField12ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        PreviewTabelPage.UserView UV = new PreviewTabelPage.UserView(this,true);
+        UV.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void exit_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit_btnMouseClicked
@@ -1059,6 +1070,16 @@ public class admin_page extends javax.swing.JFrame {
         mp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mp.setVisible(true); 
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        PreviewTabelPage.ProdukView PV = new PreviewTabelPage.ProdukView(this,true);
+        PV.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        PreviewTabelPage.TransaksiView TV = new PreviewTabelPage.TransaksiView(this,true);
+        TV.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
