@@ -168,11 +168,11 @@ public class login_page extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         
-        String user = username.getText();
+      String user = username.getText();
         String pass = new String(password.getText());
         
         try {
-
+  
             Connection K = connect.Go();
             String Q = "SELECT * FROM `user` WHERE username=? AND password=?;";
             PreparedStatement S = K.prepareStatement(Q);

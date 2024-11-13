@@ -170,6 +170,7 @@ public class manage_produk extends javax.swing.JFrame {
 
         tengah_transaksi.setBackground(new java.awt.Color(0, 102, 102));
 
+        tbl_produk.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_produk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -186,6 +187,9 @@ public class manage_produk extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_produk.setGridColor(new java.awt.Color(255, 204, 51));
+        tbl_produk.setRowHeight(40);
+        tbl_produk.setSelectionBackground(new java.awt.Color(0, 204, 204));
         jScrollPane1.setViewportView(tbl_produk);
 
         javax.swing.GroupLayout tengah_transaksiLayout = new javax.swing.GroupLayout(tengah_transaksi);
@@ -345,7 +349,7 @@ if (n != -1) {
                     "Hapus Data", 
                     JOptionPane.YES_NO_OPTION);
             if(opsi == 0){
-                String Q = "DELETE FROM produk "
+                String Q = "DELETE FROM products "
                         + "WHERE ID_produk="+id_produk;
                 
                 try {
@@ -382,7 +386,7 @@ if (n != -1) {
     private void pencarianProdukKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyTyped
 
         String key = pencarianProduk.getText();
-        String query = "SELECT * FROM produk WHERE "
+        String query = "SELECT * FROM products WHERE "
             + "kode_produk LIKE ? OR "
             + "nama_produk LIKE ? OR "
             + "kategori LIKE ? OR "
@@ -474,7 +478,7 @@ public static void viewdataProduk(String where) {
 
             Connection K = konektor.connect.Go();
             Statement S = K.createStatement();
-            String Q = "SELECT * FROM produk " + where;
+            String Q = "SELECT * FROM products " + where;
 //            System.out.println(Q);
             ResultSet R = S.executeQuery(Q);
             int no = 1;

@@ -4,11 +4,22 @@
  */
 package PreviewTabelPage;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import konektor.Profile;
+import konektor.connect;
+import java.sql.*;
+
 /**
  *
  * @author HUSAIN
  */
 public class UserView extends javax.swing.JDialog {
+    Profile p;
+    static DefaultTableModel us;
 
     /**
      * Creates new form UserView
@@ -16,8 +27,14 @@ public class UserView extends javax.swing.JDialog {
     public UserView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        settingTable();
+        viewData("");
     }
-
+    public UserView(Profile p){
+        initComponents();
+        settingTable();
+        viewData("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +50,7 @@ public class UserView extends javax.swing.JDialog {
         tbl_user = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -79,6 +97,7 @@ public class UserView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tbl_user.setRowHeight(40);
         jScrollPane1.setViewportView(tbl_user);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -138,4 +157,52 @@ public class UserView extends javax.swing.JDialog {
     private javax.swing.JLabel label_kembali;
     private javax.swing.JTable tbl_user;
     // End of variables declaration//GEN-END:variables
+    public static void viewData(String where) {
+        try {
+            //kode kita
+            for (int i = us.getRowCount()-1; i >=0; i--) {
+                us.removeRow(i);
+            }
+
+            Connection K = konektor.connect.Go();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM user " + where;
+//            System.out.println(Q);
+            ResultSet R = S.executeQuery(Q);
+            int no = 1;
+            while (R.next()) {
+                int ID = R.getInt("ID");
+                String fullname = R.getString("fullname");
+                String username = R.getString("username");
+                String password = R.getString("password");
+                String level = R.getString("level");
+
+                Object[] U = {no, ID, fullname, username, password, level};
+                us.addRow(U);
+
+                no++;
+            }
+            R.close();
+            S.close();
+            K.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        private void settingTable() {
+        us = (DefaultTableModel) tbl_user.getModel();        
+        tbl_user.getColumnModel().getColumn(0).setMinWidth(50);
+        tbl_user.getColumnModel().getColumn(0).setMaxWidth(70);
+
+        tbl_user.getColumnModel().getColumn(1).setMinWidth(0);
+        tbl_user.getColumnModel().getColumn(1).setMaxWidth(0);
+
+        tbl_user.getColumnModel().getColumn(2).setMinWidth(350);
+        tbl_user.getColumnModel().getColumn(2).setMaxWidth(500);
+    }
+
+
+
+
 }

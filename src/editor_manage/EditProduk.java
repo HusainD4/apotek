@@ -238,6 +238,7 @@ public class EditProduk extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cencelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cencelActionPerformed
@@ -252,7 +253,7 @@ public class EditProduk extends javax.swing.JDialog {
         double harga_beli = Double.parseDouble(txtHargaBeli.getText());
         int stok = Integer.parseInt(txtStok.getText());
 
-        String Q = "UPDATE produk SET "
+        String Q = "UPDATE products SET "
             + "kode_produk=?, "
             + "nama_produk=?, "
             + "kategori=?, "

@@ -4,11 +4,23 @@
  */
 package PreviewTabelPage;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import konektor.ProfileProduk;
+import konektor.connect;
+import java.sql.*;
+
+
 /**
  *
  * @author HUSAIN
  */
 public class ProdukView extends javax.swing.JDialog {
+    ProfileProduk pp;
+    static DefaultTableModel prd;
 
     /**
      * Creates new form ProdukView
@@ -16,6 +28,13 @@ public class ProdukView extends javax.swing.JDialog {
     public ProdukView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        settingTableProduk();
+        viewdataProduk("");
+    }
+    public ProdukView(ProfileProduk pp){
+        initComponents();
+        settingTableProduk();
+        viewdataProduk("");
     }
 
     /**
@@ -33,6 +52,7 @@ public class ProdukView extends javax.swing.JDialog {
         tbl_produk = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -52,7 +72,7 @@ public class ProdukView extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 883, Short.MAX_VALUE))
+                .addGap(0, 368, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,6 +99,8 @@ public class ProdukView extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tbl_produk.setRowHeight(40);
+        tbl_produk.setSelectionBackground(new java.awt.Color(0, 255, 204));
         jScrollPane1.setViewportView(tbl_produk);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -138,4 +160,60 @@ public class ProdukView extends javax.swing.JDialog {
     private javax.swing.JLabel label_kembali;
     private javax.swing.JTable tbl_produk;
     // End of variables declaration//GEN-END:variables
+
+public static void viewdataProduk(String where) {
+        try {
+
+            for (int i = prd.getRowCount()-1; i >=0; i--) {
+                prd.removeRow(i);
+            }
+
+            Connection K = konektor.connect.Go();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM products " + where;
+//            System.out.println(Q);
+            ResultSet R = S.executeQuery(Q);
+            int no = 1;
+            while (R.next()) {
+                int ID = R.getInt("ID_produk");
+                String kode_produk = R.getString("kode_produk");
+                String nama_produk = R.getString("nama_produk");
+                String kategori = R.getString("kategori");
+                String harga_jual = R.getString("harga_jual");
+                String harga_beli = R.getString("harga_beli");
+                String stok = R.getString("stok");
+
+                Object[] P = {no, ID, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
+                prd.addRow(P);
+
+                no++;
+            }
+        } catch (SQLException e) {
+
+        }
+    }
+    
+    
+    private void settingTableProduk() {
+        prd = (DefaultTableModel) tbl_produk.getModel();        
+        tbl_produk.getColumnModel().getColumn(0).setMinWidth(50);
+        tbl_produk.getColumnModel().getColumn(0).setMaxWidth(70);
+
+        tbl_produk.getColumnModel().getColumn(1).setMinWidth(0);
+        tbl_produk.getColumnModel().getColumn(1).setMaxWidth(0);
+
+        tbl_produk.getColumnModel().getColumn(2).setMinWidth(350);
+        tbl_produk.getColumnModel().getColumn(2).setMaxWidth(500);
+        
+        tbl_produk.getColumnModel().getColumn(3).setMinWidth(350);
+        tbl_produk.getColumnModel().getColumn(3).setMaxWidth(500);
+        
+        tbl_produk.getColumnModel().getColumn(4).setMinWidth(350);
+        tbl_produk.getColumnModel().getColumn(4).setMaxWidth(500);
+        
+        tbl_produk.getColumnModel().getColumn(5).setMinWidth(350);
+        tbl_produk.getColumnModel().getColumn(5).setMaxWidth(500);
+    }
+
+
 }

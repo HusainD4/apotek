@@ -247,6 +247,7 @@ public class FormTambahProduk extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -256,7 +257,7 @@ public class FormTambahProduk extends javax.swing.JDialog {
         double harga_jual = Double.parseDouble(txtHargaJual.getText());
         double harga_beli = Double.parseDouble(txtHargaBeli.getText());
         int stok = Integer.parseInt(txtStok.getText());
-                String Q = "INSERT INTO produk ("
+                String Q = "INSERT INTO products ("
         + "kode_produk,"
         + "nama_produk,"
         + "kategori,"

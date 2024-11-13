@@ -166,6 +166,7 @@ public class manage_user extends javax.swing.JFrame {
 
         tengah_transaksi.setBackground(new java.awt.Color(0, 102, 102));
 
+        tbl_user.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_user.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -182,6 +183,11 @@ public class manage_user extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_user.setAlignmentY(10.0F);
+        tbl_user.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbl_user.setGridColor(new java.awt.Color(255, 204, 51));
+        tbl_user.setRowHeight(40);
+        tbl_user.setSelectionBackground(new java.awt.Color(0, 102, 102));
         jScrollPane1.setViewportView(tbl_user);
 
         javax.swing.GroupLayout tengah_transaksiLayout = new javax.swing.GroupLayout(tengah_transaksi);
@@ -205,6 +211,7 @@ public class manage_user extends javax.swing.JFrame {
 
         bawah_transaksi.setBackground(new java.awt.Color(0, 102, 102));
 
+        btn_TambahUser.setBackground(new java.awt.Color(102, 255, 153));
         btn_TambahUser.setText("TAMBAH USER");
         btn_TambahUser.setBorderPainted(false);
         btn_TambahUser.addActionListener(new java.awt.event.ActionListener() {
@@ -213,6 +220,7 @@ public class manage_user extends javax.swing.JFrame {
             }
         });
 
+        btn_EditUser.setBackground(new java.awt.Color(102, 204, 255));
         btn_EditUser.setText("EDIT USER");
         btn_EditUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +228,7 @@ public class manage_user extends javax.swing.JFrame {
             }
         });
 
+        btn_MuatUlang.setBackground(new java.awt.Color(255, 204, 0));
         btn_MuatUlang.setText("MUAT ULANG");
         btn_MuatUlang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +236,7 @@ public class manage_user extends javax.swing.JFrame {
             }
         });
 
+        btn_kembali.setBackground(new java.awt.Color(255, 204, 153));
         btn_kembali.setText("KEMBALI");
         btn_kembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,6 +244,7 @@ public class manage_user extends javax.swing.JFrame {
             }
         });
 
+        btn_HapusUser.setBackground(new java.awt.Color(255, 102, 102));
         btn_HapusUser.setText("HAPUS USER");
         btn_HapusUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
