@@ -95,7 +95,12 @@ public class EditUser extends javax.swing.JDialog {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText(" Level");
 
-        ComboLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Kasir", "Owner" }));
+        ComboLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "KASIR", "OWNER", "PELANGGAN" }));
+        ComboLevel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboLevelActionPerformed(evt);
+            }
+        });
 
         btn_cencel.setBackground(new java.awt.Color(255, 51, 51));
         btn_cencel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -243,6 +248,10 @@ public class EditUser extends javax.swing.JDialog {
         String L = getLevel().substring(0, 1).toUpperCase() + getLevel().substring(1);
         ComboLevel.setSelectedItem(L); 
     }//GEN-LAST:event_formWindowOpened
+
+    private void ComboLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboLevelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboLevelActionPerformed
 
     /**
      * @param args the command line arguments

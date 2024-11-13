@@ -49,6 +49,7 @@ public class admin_page extends javax.swing.JFrame {
         settingTable();   
         viewData("");
         viewProduk("");
+          
     }
     
 
@@ -730,11 +731,11 @@ public class admin_page extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "FULLNAME", "USERNAME", "PASSWORD", "LEVEL"
+                "NO", "ID", "FULLNAME", "USERNAME", "PASSWORD", "LEVEL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -791,11 +792,11 @@ public class admin_page extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "kode_produk", "nama_produk", "kategori", "harga_jual", "harga_beli", "stok"
+                "NO", "id_produk", "KODE PRODUK", "NAMA PRODUK", "KATEGORI", "HARGA BELI", "HARGA JUAL", "STOK"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -889,7 +890,7 @@ public class admin_page extends javax.swing.JFrame {
         exit_btn.setBackground(new java.awt.Color(255, 0, 0));
         exit_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         exit_btn.setForeground(new java.awt.Color(255, 255, 255));
-        exit_btn.setText("EXIT ->");
+        exit_btn.setText("LOG OUT ->");
         exit_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exit_btnMouseClicked(evt);
@@ -1222,7 +1223,7 @@ public static void viewProduk(String where) {
         ResultSet R = S.executeQuery(Q);
         int no = 1;
         while (R.next()) {
-            int ID = R.getInt("ID");
+            int ID_produk = R.getInt("ID_produk");
             String kode_produk = R.getString("kode_produk");
             String nama_produk = R.getString("nama_produk");
             String kategori = R.getString("kategori");
@@ -1231,7 +1232,7 @@ public static void viewProduk(String where) {
             int stok = R.getInt("stok");
             
 
-            Object[] D = {ID, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
+            Object[] D = {no, ID_produk, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
             PR.addRow(D);
 
             no++;
@@ -1251,7 +1252,7 @@ private void settingTable() {
 
     jtb_user.getColumnModel().getColumn(1).setMinWidth(0);
     jtb_user.getColumnModel().getColumn(1).setMaxWidth(0);
-
+    
     jtb_user.getColumnModel().getColumn(2).setMinWidth(350);
     jtb_user.getColumnModel().getColumn(2).setMaxWidth(500);
 

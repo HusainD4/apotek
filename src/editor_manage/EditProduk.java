@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class EditProduk extends javax.swing.JDialog {
 
-    private int ID;
+    private int ID_produk;
     private int kode_produk;  
     private String nama_produk;
     private String kategori;
@@ -60,6 +60,11 @@ public class EditProduk extends javax.swing.JDialog {
         txtStok = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -240,7 +245,7 @@ public class EditProduk extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_cencelActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        String kode_produk = txtKodeProduk.getText();   
+        int kode_produk = Integer.parseInt(txtKodeProduk.getText());   
         String nama_produk = txtNamaProduk.getText();
         String kategori = txtKategori.getText();
         double harga_jual = Double.parseDouble(txtHargaJual.getText());
@@ -254,13 +259,13 @@ public class EditProduk extends javax.swing.JDialog {
             + "harga_jual=?, "
             + "harga_beli=?, "
             + "stok=? "
-            + "WHERE ID=?";
+            + "WHERE ID_produk=?";
         try {
             Connection K = konektor.connect.Go(); // Connect to the database
             PreparedStatement P = K.prepareStatement(Q); // Prepare the SQL query
     
             // Set the parameters for the SQL query
-            P.setString(1, kode_produk); // kode_produk is a String
+            P.setInt(1, kode_produk); // kode_produk is a String
             P.setString(2, nama_produk);
             P.setString(3, kategori);
             P.setDouble(4, harga_jual);
@@ -287,6 +292,16 @@ public class EditProduk extends javax.swing.JDialog {
     private void txtHargaBeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaBeliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHargaBeliActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txtKodeProduk.setText(String.valueOf(getKodeProduk()));
+        txtNamaProduk.setText(getNamaProduk()); 
+        txtKategori.setText(getKategori());
+        txtHargaBeli.setText(String.valueOf(getHargaBeli()));
+        txtHargaJual.setText(String.valueOf(getHargaJual()));
+        txtStok.setText(String.valueOf(getStok()));
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -353,11 +368,11 @@ public class EditProduk extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public int getId() {
-        return ID;
+        return ID_produk;
     }
 
     public void setId(int ID) {
-        this.ID = ID;
+        this.ID_produk = ID_produk;
     }
 
     public int getKodeProduk() {

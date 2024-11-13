@@ -49,7 +49,7 @@ public class manage_produk extends javax.swing.JFrame {
         atas_transaksi = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        pencarian = new javax.swing.JTextField();
+        pencarianProduk = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         label_kembali = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -76,27 +76,30 @@ public class manage_produk extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        pencarian.setFont(new java.awt.Font("Rockwell Nova Light", 0, 14)); // NOI18N
-        pencarian.setForeground(new java.awt.Color(0, 102, 102));
-        pencarian.setText("Pencarian");
-        pencarian.setBorder(null);
-        pencarian.setSelectionColor(new java.awt.Color(0, 153, 153));
-        pencarian.addFocusListener(new java.awt.event.FocusAdapter() {
+        pencarianProduk.setFont(new java.awt.Font("Rockwell Nova Light", 0, 14)); // NOI18N
+        pencarianProduk.setForeground(new java.awt.Color(0, 102, 102));
+        pencarianProduk.setText("Pencarian");
+        pencarianProduk.setBorder(null);
+        pencarianProduk.setSelectionColor(new java.awt.Color(0, 153, 153));
+        pencarianProduk.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                pencarianFocusGained(evt);
+                pencarianProdukFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                pencarianFocusLost(evt);
+                pencarianProdukFocusLost(evt);
             }
         });
-        pencarian.addActionListener(new java.awt.event.ActionListener() {
+        pencarianProduk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pencarianActionPerformed(evt);
+                pencarianProdukActionPerformed(evt);
             }
         });
-        pencarian.addKeyListener(new java.awt.event.KeyAdapter() {
+        pencarianProduk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pencarianProdukKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                pencarianKeyTyped(evt);
+                pencarianProdukKeyTyped(evt);
             }
         });
 
@@ -106,12 +109,12 @@ public class manage_produk extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pencarian, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(pencarianProduk, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pencarian, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(pencarianProduk, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -333,7 +336,7 @@ if (n != -1) {
     private void btn_HapusProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HapusProdukActionPerformed
         int n = tbl_produk.getSelectedRow();
         if(n != -1){
-            int id = Integer.parseInt(tbl_produk.getValueAt(n, 1).toString());
+            int id_produk = Integer.parseInt(tbl_produk.getValueAt(n, 1).toString());
             String nama_produk = tbl_produk.getValueAt(n, 2).toString();
             
             
@@ -343,7 +346,7 @@ if (n != -1) {
                     JOptionPane.YES_NO_OPTION);
             if(opsi == 0){
                 String Q = "DELETE FROM produk "
-                        + "WHERE ID="+id;
+                        + "WHERE ID_produk="+id_produk;
                 
                 try {
                     Connection K = konektor.connect.Go();
@@ -372,34 +375,41 @@ if (n != -1) {
         viewdataProduk("");
     }//GEN-LAST:event_btn_MuatUlangActionPerformed
 
-    private void pencarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pencarianActionPerformed
+    private void pencarianProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pencarianProdukActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pencarianActionPerformed
+    }//GEN-LAST:event_pencarianProdukActionPerformed
 
-    private void pencarianKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianKeyTyped
-        String key = pencarian.getText();
-        String where = "WHERE "
-            + "kode_produk LIKE '%" + key + "%' OR "
-            + "nama_produk LIKE '%" + key + "%' OR "
-            + "kategori LIKE '%" + key + "%' OR "
-            + "harga_jual LIKE '%" + key + "%' OR "
-            + "harga_beli LIKE '%" + key + "%' OR "
-            + "stok LIKE '%" + key + "%'";
-    }//GEN-LAST:event_pencarianKeyTyped
+    private void pencarianProdukKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyTyped
 
-    private void pencarianFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianFocusGained
-        String Cari = pencarian.getText();
+        String key = pencarianProduk.getText();
+        String query = "SELECT * FROM produk WHERE "
+            + "kode_produk LIKE ? OR "
+            + "nama_produk LIKE ? OR "
+            + "kategori LIKE ? OR "
+            + "harga_jual LIKE ? OR "
+            + "harga_beli LIKE ? OR "
+            + "stok LIKE ?";
+    
+    }//GEN-LAST:event_pencarianProdukKeyTyped
+
+    private void pencarianProdukFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianProdukFocusGained
+        String Cari = pencarianProduk.getText();
         if (Cari.equals("Pencarian")){
-            pencarian.setText("");
+            pencarianProduk.setText("");
         }
-    }//GEN-LAST:event_pencarianFocusGained
+    }//GEN-LAST:event_pencarianProdukFocusGained
 
-    private void pencarianFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianFocusLost
-        String Cari = pencarian.getText();
-        if (Cari.equals("")||(Cari.equals("Pencarian"))){
-//            Cari.setText("Pencarian");
+    private void pencarianProdukFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianProdukFocusLost
+        String Cari = pencarianProduk.getText(); 
+        if (Cari.equals("") || Cari.equals("Pencarian")) { 
+            pencarianProduk.setText("Pencarian"); 
         }
-    }//GEN-LAST:event_pencarianFocusLost
+
+    }//GEN-LAST:event_pencarianProdukFocusLost
+
+    private void pencarianProdukKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyReleased
+
+    }//GEN-LAST:event_pencarianProdukKeyReleased
 
     /**
      * @param args the command line arguments
@@ -451,7 +461,7 @@ if (n != -1) {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label_kembali;
-    private javax.swing.JTextField pencarian;
+    private javax.swing.JTextField pencarianProduk;
     private javax.swing.JTable tbl_produk;
     private javax.swing.JPanel tengah_transaksi;
     // End of variables declaration//GEN-END:variables
@@ -469,7 +479,7 @@ public static void viewdataProduk(String where) {
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
-                int ID = R.getInt("ID");
+                int ID = R.getInt("ID_produk");
                 String kode_produk = R.getString("kode_produk");
                 String nama_produk = R.getString("nama_produk");
                 String kategori = R.getString("kategori");

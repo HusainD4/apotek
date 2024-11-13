@@ -11,7 +11,7 @@ package konektor;
 public class ProfileProduk {
     
 public class Profile {
-    private int ID;
+    private int ID_produk;
     private int kode_produk;
     private String nama_produk;
     private String kategori;
@@ -20,11 +20,11 @@ public class Profile {
     private int stok;
 
     public int getId() {
-        return ID;
+        return ID_produk;
     }
 
-    public void setId(int ID) {
-        this.ID = ID;
+    public void setId(int ID_produk) {
+        this.ID_produk = ID_produk;
     }
 
     public int getKodeProduk() {

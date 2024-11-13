@@ -56,7 +56,7 @@ public class manage_user extends javax.swing.JFrame {
         atas_transaksi = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        pencarian = new javax.swing.JTextField();
+        pencarianUser = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         label_kembali = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -83,14 +83,19 @@ public class manage_user extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        pencarian.setFont(new java.awt.Font("Rockwell Nova Light", 0, 14)); // NOI18N
-        pencarian.setForeground(new java.awt.Color(0, 102, 102));
-        pencarian.setText("Pencarian");
-        pencarian.setBorder(null);
-        pencarian.setSelectionColor(new java.awt.Color(0, 153, 153));
-        pencarian.addKeyListener(new java.awt.event.KeyAdapter() {
+        pencarianUser.setFont(new java.awt.Font("Rockwell Nova Light", 0, 14)); // NOI18N
+        pencarianUser.setForeground(new java.awt.Color(0, 102, 102));
+        pencarianUser.setText("Pencarian");
+        pencarianUser.setBorder(null);
+        pencarianUser.setSelectionColor(new java.awt.Color(0, 153, 153));
+        pencarianUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pencarianUserActionPerformed(evt);
+            }
+        });
+        pencarianUser.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                pencarianKeyReleased(evt);
+                pencarianUserKeyReleased(evt);
             }
         });
 
@@ -100,12 +105,12 @@ public class manage_user extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pencarian, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(pencarianUser, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pencarian, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(pencarianUser, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -166,7 +171,7 @@ public class manage_user extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "ID", "FULLNAME", "USERNAME", "PASSWORD", "LEVEL"
+                "No", "id_user", "FULLNAME", "USERNAME", "PASSWORD", "LEVEL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -329,6 +334,8 @@ public class manage_user extends javax.swing.JFrame {
                     viewData(""); 
                     JOptionPane.showMessageDialog(this, "Data "+FULLNAME+" telah terhapus");
                 } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(this, "gagal di hapus!!");
+                            
                 }
             }
             
@@ -349,14 +356,18 @@ public class manage_user extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btn_kembaliActionPerformed
 
-    private void pencarianKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianKeyReleased
-        String key = pencarian.getText();
+    private void pencarianUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianUserKeyReleased
+        String key = pencarianUser.getText();
         String where = "WHERE "
                 + "FULLNAME LIKE '%" + key + "%' OR "
                 + "USERNAME LIKE '%" + key + "%' OR "
                 + "PASSWORD LIKE '%" + key + "%' OR "
                 + "LEVEL LIKE '%" + key + "%'";
-        viewData(where);    }//GEN-LAST:event_pencarianKeyReleased
+        viewData(where);    }//GEN-LAST:event_pencarianUserKeyReleased
+
+    private void pencarianUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pencarianUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pencarianUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,7 +419,7 @@ public class manage_user extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label_kembali;
-    private javax.swing.JTextField pencarian;
+    private javax.swing.JTextField pencarianUser;
     private javax.swing.JTable tbl_user;
     private javax.swing.JPanel tengah_transaksi;
     // End of variables declaration//GEN-END:variables
@@ -437,8 +448,11 @@ public class manage_user extends javax.swing.JFrame {
 
                 no++;
             }
+            R.close();
+            S.close();
+            K.close();
         } catch (SQLException e) {
-            //error handling
+            e.printStackTrace();
         }
     }
     

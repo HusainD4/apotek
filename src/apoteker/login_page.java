@@ -188,7 +188,9 @@ public class login_page extends javax.swing.JFrame {
                 P.setPassword(R.getString("PASSWORD")); 
                 P.setLevel(R.getString("LEVEL")); 
                 count++;
+                
             }
+
             
             if(count > 0){
                 JOptionPane.showMessageDialog(this, "Sukses Login");
@@ -198,6 +200,7 @@ public class login_page extends javax.swing.JFrame {
                             O.setExtendedState(Frame.MAXIMIZED_BOTH);
                             this.setVisible(false);
                             O.setVisible(true);
+                            
                         }
                     case "KASIR" ->                         {   
                             kasir_page O = new kasir_page(P);
@@ -218,6 +221,7 @@ public class login_page extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Invalid username/password");
                 username.requestFocus();
             }
+                username.requestFocus();
             
         } catch (HeadlessException | SQLException e) {
             System.err.println(e.getMessage());
