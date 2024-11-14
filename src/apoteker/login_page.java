@@ -4,6 +4,7 @@
  */
 package apoteker;
 
+import home.home_page;
 import konektor.connect;
 import konektor.Profile;
 import java.awt.Frame;
@@ -168,7 +169,7 @@ public class login_page extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         
-      String user = username.getText();
+        String user = username.getText();
         String pass = new String(password.getText());
         
         try {
@@ -208,12 +209,12 @@ public class login_page extends javax.swing.JFrame {
                             this.setVisible(false);
                             O.setVisible(true); 
                         }
-//                    case "owner" ->                         {
-//                            owner O = new owner(P);
-//                            O.setExtendedState(Frame.MAXIMIZED_BOTH);
-//                            this.setVisible(false);
-//                            O.setVisible(true);
-//                        }
+                    case "OWNER" ->                         {
+                            home_page O = new home_page(P);
+                            O.setExtendedState(Frame.MAXIMIZED_BOTH);
+                            this.setVisible(false);
+                            O.setVisible(true);
+                        }
                     default -> {
                     }
                 }
@@ -224,7 +225,7 @@ public class login_page extends javax.swing.JFrame {
                 username.requestFocus();
             
         } catch (HeadlessException | SQLException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
         
     }//GEN-LAST:event_btn_loginActionPerformed
