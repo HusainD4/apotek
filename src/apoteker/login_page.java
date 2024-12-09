@@ -16,12 +16,14 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class login_page extends javax.swing.JFrame {
+
     int xx, xy;
+
     public login_page() {
         initComponents();
     }
-    
-    void bersih(){
+
+    void bersih() {
         username.setText("Username");
         password.setText("Password");
     }
@@ -140,7 +142,7 @@ public class login_page extends javax.swing.JFrame {
                 btn_loginActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 280, 206, 30));
+        jPanel1.add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 270, 206, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
@@ -164,70 +166,11 @@ public class login_page extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void btn_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseClicked
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_btn_exitMouseClicked
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-        
-        String user = username.getText();
-        String pass = new String(password.getText());
-        
-        try {
-  
-            Connection K = connect.Go();
-            String Q = "SELECT * FROM `user` WHERE username=? AND password=?;";
-            PreparedStatement S = K.prepareStatement(Q);
-            S.setString(1, user);
-            S.setString(2, pass);
-            ResultSet R = S.executeQuery();
-            int count = 0;
-            Profile P = new Profile();
-            while (R.next()) {                 
-                P.setId(R.getInt("ID")); 
-                P.setFullname(R.getString("FULLNAME")); 
-                P.setUsername(R.getString("USERNAME")); 
-                P.setPassword(R.getString("PASSWORD")); 
-                P.setLevel(R.getString("LEVEL")); 
-                count++;
-                
-            }
-
-            
-            if(count > 0){
-                JOptionPane.showMessageDialog(this, "Sukses Login");
-                switch (P.getLevel()) {
-                    case "ADMIN" ->                         {
-                            admin_page O = new admin_page(P);
-                            O.setExtendedState(Frame.MAXIMIZED_BOTH);
-                            this.setVisible(false);
-                            O.setVisible(true);
-                            
-                        }
-                    case "KASIR" ->                         {   
-                            kasir_page O = new kasir_page(P);
-                            O.setExtendedState(Frame.MAXIMIZED_BOTH);
-                            this.setVisible(false);
-                            O.setVisible(true); 
-                        }
-                    case "OWNER" ->                         {
-                            home_page O = new home_page(P);
-                            O.setExtendedState(Frame.MAXIMIZED_BOTH);
-                            this.setVisible(false);
-                            O.setVisible(true);
-                        }
-                    default -> {
-                    }
-                }
-            }else{
-                JOptionPane.showMessageDialog(this, "Invalid username/password");
-                username.requestFocus();
-            }
-                username.requestFocus();
-            
-        } catch (HeadlessException | SQLException e) {
-            e.printStackTrace();
-        }
-        
+        LoginNow();
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
@@ -237,32 +180,33 @@ public class login_page extends javax.swing.JFrame {
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         password.requestFocus();
+        LoginNow();
     }//GEN-LAST:event_passwordActionPerformed
 
     private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
         String Uname = username.getText();
-        if (Uname.equals("Username")){
+        if (Uname.equals("Username")) {
             username.setText("");
         }
     }//GEN-LAST:event_usernameFocusGained
 
     private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
         String Passw = password.getText();
-        if (Passw.equals("Password")){
+        if (Passw.equals("Password")) {
             password.setText("");
         }
     }//GEN-LAST:event_passwordFocusGained
 
     private void usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusLost
         String Uname = username.getText();
-        if (Uname.equals("")||(Uname.equals("Username"))){
+        if (Uname.equals("") || (Uname.equals("Username"))) {
             username.setText("Username");
         }
     }//GEN-LAST:event_usernameFocusLost
 
     private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
         String Passw = password.getText();
-        if (Passw.equals("")||(Passw.equals("Password"))){
+        if (Passw.equals("") || (Passw.equals("Password"))) {
             password.setText("Password");
         }
     }//GEN-LAST:event_passwordFocusLost
@@ -301,7 +245,7 @@ public class login_page extends javax.swing.JFrame {
             }
         });
     }
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_exit;
     private javax.swing.JButton btn_login;
@@ -315,4 +259,66 @@ public class login_page extends javax.swing.JFrame {
     private javax.swing.JSeparator pembatas;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
+    private void LoginNow() {
+
+        String user = username.getText();
+        String pass = new String(password.getText());
+
+        try {
+
+            Connection K = connect.Go();
+            String Q = "SELECT * FROM `user` WHERE username=? AND password=?;";
+            PreparedStatement S = K.prepareStatement(Q);
+            S.setString(1, user);
+            S.setString(2, pass);
+            ResultSet R = S.executeQuery();
+            int count = 0;
+            Profile P = new Profile();
+            while (R.next()) {
+                P.setId(R.getInt("ID_AKUN"));
+                P.setFullname(R.getString("FULLNAME"));
+                P.setUsername(R.getString("USERNAME"));
+                P.setPassword(R.getString("PASSWORD"));
+                P.setLevel(R.getString("LEVEL"));
+                count++;
+
+            }
+
+            if (count > 0) {
+
+                switch (P.getLevel()) {
+                    case "ADMIN" -> {
+                        admin_page O = new admin_page(P);
+                        O.setExtendedState(Frame.MAXIMIZED_BOTH);
+                        this.setVisible(false);
+                        O.setVisible(true);
+
+                    }
+                    case "KASIR" -> {
+                        kasir_page O = new kasir_page(P);
+                        O.setExtendedState(Frame.MAXIMIZED_BOTH);
+                        this.setVisible(false);
+                        O.setVisible(true);
+                    }
+                    case "OWNER" -> {
+                        home_page O = new home_page(P);
+                        O.setExtendedState(Frame.MAXIMIZED_BOTH);
+                        this.setVisible(false);
+                        O.setVisible(true);
+                    }
+                    default -> {
+                    }
+                }
+                JOptionPane.showMessageDialog(this, "Sukses Login");
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid username/password");
+                username.requestFocus();
+            }
+            username.requestFocus();
+
+        } catch (HeadlessException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

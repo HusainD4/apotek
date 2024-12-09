@@ -156,14 +156,13 @@
         <Component class="javax.swing.JTable" name="tbl_produk">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="0">
+              <Table columnCount="7" rowCount="0">
                 <Column editable="false" title="No" type="java.lang.Object"/>
                 <Column editable="false" title="ID" type="java.lang.Object"/>
-                <Column editable="false" title="kode_produk" type="java.lang.Object"/>
-                <Column editable="false" title="nama_produk" type="java.lang.Object"/>
+                <Column editable="false" title="kode produk" type="java.lang.Object"/>
+                <Column editable="false" title="nama produk" type="java.lang.Object"/>
                 <Column editable="false" title="kategori" type="java.lang.Object"/>
-                <Column editable="false" title="harga_jual" type="java.lang.Object"/>
-                <Column editable="false" title="harga_beli" type="java.lang.Object"/>
+                <Column editable="false" title="harga satuan" type="java.lang.Object"/>
                 <Column editable="false" title="stok" type="java.lang.Object"/>
               </Table>
             </Property>

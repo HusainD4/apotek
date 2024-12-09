@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package editor_manage;
+
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,12 +17,12 @@ import javax.swing.JOptionPane;
 public class EditProduk extends javax.swing.JDialog {
 
     private int ID_produk;
-    private int kode_produk;  
+    private int kode_produk;
     private String nama_produk;
     private String kategori;
-    private double harga_jual;
-    private double harga_beli;
-    private int stok;  
+    private double harga_satuan;
+    private int stok;
+
     /**
      * Creates new form EditProduk
      */
@@ -52,10 +53,8 @@ public class EditProduk extends javax.swing.JDialog {
         txtNamaProduk = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtKategori = new javax.swing.JTextField();
-        txtHargaJual = new javax.swing.JTextField();
+        txtHargaSatuan = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        txtHargaBeli = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtStok = new javax.swing.JTextField();
 
@@ -112,17 +111,7 @@ public class EditProduk extends javax.swing.JDialog {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("HARGA JUAL");
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("HARGA BELI");
-
-        txtHargaBeli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHargaBeliActionPerformed(evt);
-            }
-        });
+        jLabel9.setText("HARGA SATUAN");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -158,11 +147,7 @@ public class EditProduk extends javax.swing.JDialog {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtHargaJual, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtHargaBeli, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
+                        .addComponent(txtHargaSatuan, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -190,17 +175,13 @@ public class EditProduk extends javax.swing.JDialog {
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtHargaJual, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(txtHargaSatuan, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtHargaBeli, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtStok, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                    .addComponent(txtStok)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -246,62 +227,47 @@ public class EditProduk extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_cencelActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        int kode_produk = Integer.parseInt(txtKodeProduk.getText());   
+        int kode_produk = Integer.parseInt(txtKodeProduk.getText());
         String nama_produk = txtNamaProduk.getText();
         String kategori = txtKategori.getText();
-        double harga_jual = Double.parseDouble(txtHargaJual.getText());
-        double harga_beli = Double.parseDouble(txtHargaBeli.getText());
+        double harga_satuan = Double.parseDouble(txtHargaSatuan.getText());
         int stok = Integer.parseInt(txtStok.getText());
 
-        String Q = "UPDATE products SET "
-            + "kode_produk=?, "
-            + "nama_produk=?, "
-            + "kategori=?, "
-            + "harga_jual=?, "
-            + "harga_beli=?, "
-            + "stok=? "
-            + "WHERE ID_produk=?";
+        String Q = "UPDATE products "
+                + "set kode_produk=?, "
+                + "nama_produk=?, "
+                + "kategori=?, "
+                + "harga_satuan=?, "
+                + "stok=? "
+                + "WHERE ID_produk=?";
         try {
-            Connection K = konektor.connect.Go(); // Connect to the database
-            PreparedStatement P = K.prepareStatement(Q); // Prepare the SQL query
-    
-            // Set the parameters for the SQL query
-            P.setInt(1, kode_produk); // kode_produk is a String
+            Connection K = konektor.connect.Go();
+            PreparedStatement P = K.prepareStatement(Q);
+
+            P.setInt(1, kode_produk);
             P.setString(2, nama_produk);
             P.setString(3, kategori);
-            P.setDouble(4, harga_jual);
-            P.setDouble(5, harga_beli);
-            P.setInt(6, stok);
-            P.setInt(7, getId()); // Assuming getId() returns the ID of the product
-
-            // Execute the update statement
+            P.setDouble(4, harga_satuan);
+            P.setInt(5, stok);
+            P.setInt(6, getId());
             P.executeUpdate();
 
-            // Refresh the data table view if necessary
             manage_table.manage_produk.viewdataProduk("");
-    
-            // Show a success message
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-            txtKodeProduk.requestFocus(); // Set focus back to the kode_produk input field
-
+            txtKodeProduk.requestFocus();
+            dispose();
         } catch (HeadlessException | SQLException e) {
-            // Handle exceptions (display error message or log error)
             JOptionPane.showMessageDialog(this, "Error saat menyimpan data: " + e.getMessage());
         }
     }//GEN-LAST:event_btn_saveActionPerformed
 
-    private void txtHargaBeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaBeliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHargaBeliActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         txtKodeProduk.setText(String.valueOf(getKodeProduk()));
-        txtNamaProduk.setText(getNamaProduk()); 
+        txtNamaProduk.setText(getNamaProduk());
         txtKategori.setText(getKategori());
-        txtHargaBeli.setText(String.valueOf(getHargaBeli()));
-        txtHargaJual.setText(String.valueOf(getHargaJual()));
+        txtHargaSatuan.setText(String.valueOf(getHargaSatuan()));
         txtStok.setText(String.valueOf(getStok()));
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -350,7 +316,6 @@ public class EditProduk extends javax.swing.JDialog {
     private javax.swing.JButton btn_cencel;
     private javax.swing.JButton btn_save;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -360,8 +325,7 @@ public class EditProduk extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private java.awt.Panel panel1;
-    private javax.swing.JTextField txtHargaBeli;
-    private javax.swing.JTextField txtHargaJual;
+    private javax.swing.JTextField txtHargaSatuan;
     private javax.swing.JTextField txtKategori;
     private javax.swing.JTextField txtKodeProduk;
     private javax.swing.JTextField txtNamaProduk;
@@ -372,7 +336,7 @@ public class EditProduk extends javax.swing.JDialog {
         return ID_produk;
     }
 
-    public void setId(int ID) {
+    public void setId(int ID_produk) {
         this.ID_produk = ID_produk;
     }
 
@@ -400,28 +364,19 @@ public class EditProduk extends javax.swing.JDialog {
         this.kategori = kategori;
     }
 
-    public double getHargaJual() {
-        return harga_jual;
-    }
-    
-    public void setHargaJual(double harga_jual){
-        this.harga_jual = harga_jual;
-    }
-    
-    public double getHargaBeli(){
-        return harga_beli;
-    }
-    
-    public void setHargaBeli(double harga_beli){
-        this.harga_beli = harga_beli;
-        
+    public double getHargaSatuan() {
+        return harga_satuan;
     }
 
-    public int getStok(){
+    public void setHargaSatuan(double harga_satuan) {
+        this.harga_satuan = harga_satuan;
+    }
+
+    public int getStok() {
         return stok;
     }
-    
-    public void set(int setStok) {
+
+    public void set(int stok) {
         this.stok = stok;
     }
 }

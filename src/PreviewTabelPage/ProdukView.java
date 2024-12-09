@@ -147,11 +147,11 @@ public class ProdukView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "No", "ID", "kode_produk", "nama_produk", "kategori", "harga_jual", "harga_beli", "stok"
+                "No", "ID", "kode produk", "nama produk", "kategori", "harga satuan", "stok"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -195,25 +195,13 @@ public class ProdukView extends javax.swing.JDialog {
                 + "kode_produk LIKE '%" + key + "%' OR "
                 + "nama_produk LIKE '%" + key + "%' OR "
                 + "kategori LIKE '%" + key + "%' OR "
-                + "harga_jual LIKE '%" + key + "%' OR "
-                + "";
+                + "harga_satuan LIKE '%" + key + "%' OR "
+                + "stok LIKE '%" + key + "%'";
+        viewdataProduk(where);
     }//GEN-LAST:event_pencarianProdukKeyReleased
 
     private void pencarianProdukKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyTyped
 
-        String key = pencarianProduk.getText();
-        String query = "SELECT * FROM products WHERE "
-        + "kode_produk LIKE ? OR "
-        + "nama_produk LIKE ? OR "
-        + "kategori LIKE ? OR "
-        + "harga_jual LIKE ? OR "
-        + "harga_beli LIKE ? OR "
-        + "stok LIKE ?";
-
-        
-        
-        
-        
     }//GEN-LAST:event_pencarianProdukKeyTyped
 
     /**
@@ -282,21 +270,20 @@ public static void viewdataProduk(String where) {
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
-                int ID = R.getInt("ID_produk");
+                int ID_produk = R.getInt("ID_produk");
                 String kode_produk = R.getString("kode_produk");
                 String nama_produk = R.getString("nama_produk");
                 String kategori = R.getString("kategori");
-                String harga_jual = R.getString("harga_jual");
-                String harga_beli = R.getString("harga_beli");
+                String harga_satuan = R.getString("harga_satuan");
                 String stok = R.getString("stok");
 
-                Object[] P = {no, ID, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
+                Object[] P = {no, ID_produk, kode_produk, nama_produk, kategori, harga_satuan, stok};
                 prd.addRow(P);
 
                 no++;
             }
         } catch (SQLException e) {
-
+            e.printStackTrace();
         }
     }
     

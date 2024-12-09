@@ -33,15 +33,13 @@ public class manage_user extends javax.swing.JFrame {
      */
     konektor.Profile p;
     static DefaultTableModel u;
-    
-    
- public manage_user() {
-        initComponents();
-        settingTable();        
-        viewData("");
-        
-    }
 
+    public manage_user() {
+        initComponents();
+        settingTable();
+        viewData("");
+
+    }
 
 
     /**
@@ -88,6 +86,14 @@ public class manage_user extends javax.swing.JFrame {
         pencarianUser.setText("Pencarian");
         pencarianUser.setBorder(null);
         pencarianUser.setSelectionColor(new java.awt.Color(0, 153, 153));
+        pencarianUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pencarianUserFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pencarianUserFocusLost(evt);
+            }
+        });
         pencarianUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pencarianUserActionPerformed(evt);
@@ -298,13 +304,13 @@ public class manage_user extends javax.swing.JFrame {
 
         int n = tbl_user.getSelectedRow();
         if(n != -1){
-            int ID = Integer.parseInt(tbl_user.getValueAt(n, 1).toString());
+            int ID_AKUN = Integer.parseInt(tbl_user.getValueAt(n, 1).toString());
             String FULLNAME = tbl_user.getValueAt(n, 2).toString();
             String USERNAME = tbl_user.getValueAt(n, 3).toString();
             String PASSWORD = tbl_user.getValueAt(n, 4).toString();
             String LEVEL = tbl_user.getValueAt(n, 5).toString();
             editor_manage.EditUser EU = new editor_manage.EditUser(this, true);
-            EU.setId(ID);
+            EU.setId(ID_AKUN);
             EU.setFullname(FULLNAME);
             EU.setUsername(USERNAME);
             EU.setPassword(PASSWORD); 
@@ -336,7 +342,7 @@ public class manage_user extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION);
             if(opsi == 0){
                 String Q = "DELETE FROM user "
-                        + "WHERE ID="+id;
+                        + "WHERE ID_AKUN="+id;
                 
                 try {
                     Connection K = konektor.connect.Go();
@@ -379,6 +385,21 @@ public class manage_user extends javax.swing.JFrame {
     private void pencarianUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pencarianUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pencarianUserActionPerformed
+
+    private void pencarianUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianUserFocusLost
+        String Cari = pencarianUser.getText(); 
+        if (Cari.equals("") || Cari.equals("Pencarian")) { 
+            pencarianUser.setText("Pencarian"); 
+        }
+
+    }//GEN-LAST:event_pencarianUserFocusLost
+
+    private void pencarianUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianUserFocusGained
+        String Cari = pencarianUser.getText();
+        if (Cari.equals("Pencarian")){
+            pencarianUser.setText("");
+        }
+    }//GEN-LAST:event_pencarianUserFocusGained
 
     /**
      * @param args the command line arguments
@@ -436,7 +457,7 @@ public class manage_user extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     public static void viewData(String where) {
         try {
-            //kode kita
+           
             for (int i = u.getRowCount()-1; i >=0; i--) {
                 u.removeRow(i);
             }
@@ -448,7 +469,7 @@ public class manage_user extends javax.swing.JFrame {
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
-                int ID = R.getInt("ID");
+                int ID = R.getInt("ID_AKUN");
                 String fullname = R.getString("fullname");
                 String username = R.getString("username");
                 String password = R.getString("password");

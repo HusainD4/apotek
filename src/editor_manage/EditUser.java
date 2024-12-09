@@ -10,20 +10,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author HUSAIN
  */
 public class EditUser extends javax.swing.JDialog {
 
-    
-    
-    private int ID;
+    private int ID_AKUN;
     private String FULLNAME;
     private String USERNAME;
     private String PASSWORD;
     private String LEVEL;
+
     /**
      * Creates new form TambahUser
      */
@@ -87,6 +85,12 @@ public class EditUser extends javax.swing.JDialog {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText(" Username");
 
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText(" Password");
@@ -122,6 +126,12 @@ public class EditUser extends javax.swing.JDialog {
         btn_save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_saveActionPerformed(evt);
+            }
+        });
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
             }
         });
 
@@ -202,56 +212,37 @@ public class EditUser extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullnameActionPerformed
-        // TODO add your handling code here:
+        txtUsername.requestFocus();
     }//GEN-LAST:event_txtFullnameActionPerformed
 
     private void btn_cencelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cencelActionPerformed
-        this.setVisible(false); 
+        this.setVisible(false);
     }//GEN-LAST:event_btn_cencelActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-         String FULLNAME = txtFullname.getText();
-        String USERNAME = txtUsername.getText();
-        String PASSWORD = new String(txtPassword.getPassword());
-        String LEVEL = ComboLevel.getSelectedItem().toString();
-        
-        String Q = "UPDATE user "
-                + "set FULLNAME=?,"
-                + "USERNAME=?,"
-                + "PASSWORD=?,"
-                + "LEVEL=? "
-                + "WHERE ID=?";
-        try {
-            Connection K = konektor.connect.Go();
-            PreparedStatement P = K.prepareStatement(Q);
-            P.setString(1, FULLNAME);
-            P.setString(2, USERNAME);
-            P.setString(3, PASSWORD);
-            P.setString(4, LEVEL);
-            P.setInt(5, getId());
-            P.executeUpdate();
-            
-            manage_table.manage_user.viewData(""); 
-            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-            txtFullname.requestFocus();
-        } catch (HeadlessException | SQLException e) {
-            //
-        }
-        
+        saveUser();
     }//GEN-LAST:event_btn_saveActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        txtFullname.setText(getFullname()); 
-        txtUsername.setText(getUsername()); 
-        txtPassword.setText(getPassword()); 
-        
+        txtFullname.setText(getFullname());
+        txtUsername.setText(getUsername());
+        txtPassword.setText(getPassword());
+
         String L = getLevel().substring(0, 1).toUpperCase() + getLevel().substring(1);
-        ComboLevel.setSelectedItem(L); 
+        ComboLevel.setSelectedItem(L);
     }//GEN-LAST:event_formWindowOpened
 
     private void ComboLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboLevelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboLevelActionPerformed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        txtPassword.requestFocus();
+    }//GEN-LAST:event_txtUsernameActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        saveUser();
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,11 +305,11 @@ public class EditUser extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public int getId() {
-        return ID;
+        return ID_AKUN;
     }
 
-    public void setId(int ID) {
-        this.ID = ID;
+    public void setId(int ID_AKUN) {
+        this.ID_AKUN = ID_AKUN;
     }
 
     public String getFullname() {
@@ -351,6 +342,37 @@ public class EditUser extends javax.swing.JDialog {
 
     public void setLevel(String LEVEL) {
         this.LEVEL = LEVEL;
+    }
+
+    private void saveUser() {
+        String FULLNAME = txtFullname.getText();
+        String USERNAME = txtUsername.getText();
+        String PASSWORD = new String(txtPassword.getPassword());
+        String LEVEL = ComboLevel.getSelectedItem().toString();
+
+        String Q = "UPDATE user "
+                + "set FULLNAME=?,"
+                + "USERNAME=?,"
+                + "PASSWORD=?,"
+                + "LEVEL=? "
+                + "WHERE ID_AKUN=?";
+        try {
+            Connection K = konektor.connect.Go();
+            PreparedStatement P = K.prepareStatement(Q);
+            P.setString(1, FULLNAME);
+            P.setString(2, USERNAME);
+            P.setString(3, PASSWORD);
+            P.setString(4, LEVEL);
+            P.setInt(5, getId());
+            P.executeUpdate();
+
+            manage_table.manage_user.viewData("");
+            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+            txtFullname.requestFocus();
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error saat menyimpan data: " + e.getMessage());
+        }
+
     }
 
 }

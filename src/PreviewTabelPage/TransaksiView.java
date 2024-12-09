@@ -4,6 +4,21 @@
  */
 package PreviewTabelPage;
 
+import java.awt.Frame;
+
+import konektor.Profile;
+import apoteker.admin_page;
+//import konektor.connect;
+import java.awt.Frame;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JFrame;
+import konektor.ProfileTransaksi;
+
 /**
  *
  * @author HUSAIN
@@ -13,9 +28,15 @@ public class TransaksiView extends javax.swing.JDialog {
     /**
      * Creates new form TransaksiView
      */
+    ProfileTransaksi TR;
+    static DefaultTableModel trs;
+
     public TransaksiView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        initComponents();
+        settingTableTransaksi();
+        viewdataTransaksi("");
     }
 
     /**
@@ -52,7 +73,7 @@ public class TransaksiView extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 898, Short.MAX_VALUE))
+                .addGap(0, 1204, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,15 +86,20 @@ public class TransaksiView extends javax.swing.JDialog {
 
         tbl_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Tanggal Transaksi", "Nama Kasir", "Nama Produk", "Jumlah Produk", "Total Pembelian", "Uang Diterima", "Uang Kembali", "Metode Pembayaran"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbl_transaksi);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -133,4 +159,64 @@ public class TransaksiView extends javax.swing.JDialog {
     private javax.swing.JLabel label_kembali;
     private javax.swing.JTable tbl_transaksi;
     // End of variables declaration//GEN-END:variables
+   public static void viewdataTransaksi(String where) {
+        try {
+
+            for (int i = trs.getRowCount() - 1; i >= 0; i--) {
+                trs.removeRow(i);
+            }
+
+            Connection K = konektor.connect.Go();
+            Statement S = K.createStatement();
+            // Construct SQL query
+
+            String Q = "SELECT * FROM transaksi " + where;
+//            System.out.println(Q);
+            ResultSet R = S.executeQuery(Q);
+            int no = 1;
+            while (R.next()) {
+                int ID_Trans = R.getInt("ID_transaksi");
+                String Tanggal_Transaksi = R.getString("tanggal_transaksi");
+                String Kode_Obat = R.getString("kode_obat");
+                String Jumlah_Produk = R.getString("jumlah_produk");
+                String Harga_Satuan = R.getString("harga_satuan");
+                String Total_harga = R.getString("total_harga");
+                String Uang_Diterima = R.getString("Uang_Diterima");
+                String Uang_Kembali = R.getString("Uang_Kembali");
+                String Nama_Kasir = R.getString("nama_kasir");
+
+                Object[] transs = {no, ID_Trans, Tanggal_Transaksi, Kode_Obat, Jumlah_Produk, Harga_Satuan, Total_harga, Uang_Diterima, Uang_Kembali, Nama_Kasir};
+                trs.addRow(transs);
+                no++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    private void settingTableTransaksi() {
+        trs = (DefaultTableModel) tbl_transaksi.getModel();
+        tbl_transaksi.getColumnModel().getColumn(0).setMinWidth(50);
+        tbl_transaksi.getColumnModel().getColumn(0).setMaxWidth(70);
+
+        tbl_transaksi.getColumnModel().getColumn(1).setMinWidth(0);
+        tbl_transaksi.getColumnModel().getColumn(1).setMaxWidth(0);
+
+        tbl_transaksi.getColumnModel().getColumn(2).setMinWidth(140);
+        tbl_transaksi.getColumnModel().getColumn(2).setMaxWidth(140);
+
+        tbl_transaksi.getColumnModel().getColumn(3).setMinWidth(120);
+        tbl_transaksi.getColumnModel().getColumn(3).setMaxWidth(120);
+
+        tbl_transaksi.getColumnModel().getColumn(4).setMinWidth(120);
+        tbl_transaksi.getColumnModel().getColumn(4).setMaxWidth(120);
+
+        tbl_transaksi.getColumnModel().getColumn(5).setMinWidth(140);
+        tbl_transaksi.getColumnModel().getColumn(5).setMaxWidth(140);
+
+        tbl_transaksi.getColumnModel().getColumn(6).setMinWidth(140);
+        tbl_transaksi.getColumnModel().getColumn(6).setMaxWidth(140);
+    }
+
 }

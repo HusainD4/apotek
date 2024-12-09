@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
@@ -23,32 +23,35 @@ import manage_table.manage_user;
  * @author HUSAIN
  */
 public class admin_page extends javax.swing.JFrame {
-    
+
     Profile p;
-    static DefaultTableModel MU,PR;
-    
+    static DefaultTableModel MU, PR, trs;
+
     /**
      * Creates new form AdminPage
      */
     public admin_page() {
         initComponents();
-        
-        settingTable();        
+
+        settingTable();
         viewData("");
         viewProduk("");
+        viewdataTransaksi("");
     }
+
     public admin_page(Profile P) {
         initComponents();
-        
+
         this.p = P;
         auto_set.setText(p.getFullname().toUpperCase());
         auto_set_jabatan.setText(p.getLevel().toUpperCase());
-        settingTable();   
+        settingTable();
         viewData("");
         viewProduk("");
-          
+        viewdataTransaksi("");
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,11 +135,14 @@ public class admin_page extends javax.swing.JFrame {
         jSeparator12 = new javax.swing.JSeparator();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jtb_transaksis = new javax.swing.JTable();
+        tbl_transaksi = new javax.swing.JTable();
         jSeparator13 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
         exit_btn = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         jTextField3.setText("jTextField3");
 
@@ -738,6 +744,7 @@ public class admin_page extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtb_user.setRowHeight(35);
         jtb_U.setViewportView(jtb_user);
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -790,17 +797,18 @@ public class admin_page extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NO", "id_produk", "KODE PRODUK", "NAMA PRODUK", "KATEGORI", "HARGA BELI", "HARGA JUAL", "STOK"
+                "NO", "id_produk", "KODE PRODUK", "NAMA PRODUK", "KATEGORI", "HARGA SATUAN", "STOK"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jtb_produk.setRowHeight(35);
         PRO.setViewportView(jtb_produk);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -856,18 +864,24 @@ public class admin_page extends javax.swing.JFrame {
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
-        jtb_transaksis.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "ID_Transaksi", "Tanggal_Pembelian", "Kode Obat", "Jumlah Produk", "Harga Satuan", "Total Harga", "Uang Diterima", "Uang Kembali", "Nama Kasir"
             }
-        ));
-        jScrollPane5.setViewportView(jtb_transaksis);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_transaksi.setRowHeight(35);
+        jScrollPane5.setViewportView(tbl_transaksi);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -898,6 +912,11 @@ public class admin_page extends javax.swing.JFrame {
 
         jButton10.setBackground(new java.awt.Color(255, 153, 0));
         jButton10.setText("EDIT");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         exit_btn.setBackground(new java.awt.Color(255, 0, 0));
         exit_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -911,6 +930,30 @@ public class admin_page extends javax.swing.JFrame {
         exit_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exit_btnActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(0, 204, 255));
+        jButton3.setText("MUAT ULANG");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setBackground(new java.awt.Color(0, 204, 255));
+        jButton11.setText("MUAT ULANG");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setBackground(new java.awt.Color(0, 204, 255));
+        jButton12.setText("MUAT ULANG");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
             }
         });
 
@@ -929,16 +972,22 @@ public class admin_page extends javax.swing.JFrame {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(640, Short.MAX_VALUE))
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(877, Short.MAX_VALUE))
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -956,7 +1005,9 @@ public class admin_page extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(234, 234, 234)
-                        .addComponent(jButton2)))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -967,7 +1018,9 @@ public class admin_page extends javax.swing.JFrame {
                         .addComponent(jButton8))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(234, 234, 234)
-                        .addComponent(jButton7)))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton7)
+                            .addComponent(jButton11))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -978,12 +1031,14 @@ public class admin_page extends javax.swing.JFrame {
                         .addComponent(jButton9))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(234, 234, 234)
-                        .addComponent(jButton10)))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton10)
+                            .addComponent(jButton12))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(exit_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1046,7 +1101,7 @@ public class admin_page extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField12ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PreviewTabelPage.UserView UV = new PreviewTabelPage.UserView(this,true);
+        PreviewTabelPage.UserView UV = new PreviewTabelPage.UserView(this, true);
         UV.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         UV.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1062,32 +1117,50 @@ public class admin_page extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         manage_table.manage_user mu = new manage_table.manage_user();
-        mu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        mu.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mu.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         manage_table.manage_produk mp = new manage_table.manage_produk();
         mp.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mp.setVisible(true); 
+        mp.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        PreviewTabelPage.ProdukView PV = new PreviewTabelPage.ProdukView(this,true);
+        PreviewTabelPage.ProdukView PV = new PreviewTabelPage.ProdukView(this, true);
         PV.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         PV.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        PreviewTabelPage.TransaksiView TV = new PreviewTabelPage.TransaksiView(this,true);
+        PreviewTabelPage.TransaksiView TV = new PreviewTabelPage.TransaksiView(this, true);
         TV.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        manage_table.manage_transaksi mp = new manage_table.manage_transaksi();
+        mp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mp.setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        viewData("");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        viewProduk("");
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        viewdataTransaksi("");
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-            /* Set the Nimbus look and feel */
+        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -1109,12 +1182,11 @@ public class admin_page extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(admin_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-  
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                admin_page P = new admin_page(); 
+                admin_page P = new admin_page();
                 P.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH); // Maximize the window
                 P.setVisible(true);
             }
@@ -1133,7 +1205,10 @@ public class admin_page extends javax.swing.JFrame {
     private javax.swing.JLabel image_search1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -1197,93 +1272,149 @@ public class admin_page extends javax.swing.JFrame {
     private javax.swing.JPanel jsearch5;
     private javax.swing.JScrollPane jtb_U;
     private javax.swing.JTable jtb_produk;
-    private javax.swing.JTable jtb_transaksis;
     private javax.swing.JTable jtb_user;
     private javax.swing.JDialog manage_user;
+    private javax.swing.JTable tbl_transaksi;
     private javax.swing.JButton txtCetak;
     // End of variables declaration//GEN-END:variables
 
-  public static void viewData(String where) {
-    try {
-        for (int i = MU.getRowCount() - 1; i >= 0; i--) {
-            MU.removeRow(i);
+    public static void viewData(String where) {
+        try {
+            for (int i = MU.getRowCount() - 1; i >= 0; i--) {
+                MU.removeRow(i);
+            }
+
+            Connection K = connect.Go();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM user " + where;
+            ResultSet R = S.executeQuery(Q);
+            int no = 1;
+            while (R.next()) {
+                int id = R.getInt("ID_AKUN");
+                String fullname = R.getString("fullname");
+                String username = R.getString("username");
+                String password = R.getString("password");
+                String level = R.getString("level");
+
+                Object[] D = {no, id, fullname, username, password, level};
+                MU.addRow(D);
+
+                no++;
+            }
+            R.close();
+            S.close();
+            K.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        Connection K = connect.Go();
-        Statement S = K.createStatement();
-        String Q = "SELECT * FROM user " + where;
-        ResultSet R = S.executeQuery(Q);
-        int no = 1;
-        while (R.next()) {
-            int id = R.getInt("id");
-            String fullname = R.getString("fullname");
-            String username = R.getString("username");
-            String password = R.getString("password");
-            String level = R.getString("level");
-
-            Object[] D = {no, id, fullname, username, password, level};
-            MU.addRow(D);
-
-            no++;
-        }
-        R.close();
-        S.close();
-        K.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-}
 
-public static void viewProduk(String where) {
-    try {
-        for (int i = PR.getRowCount() - 1; i >= 0; i--) {
-            PR.removeRow(i);
+    public static void viewProduk(String where) {
+        try {
+            for (int i = PR.getRowCount() - 1; i >= 0; i--) {
+                PR.removeRow(i);
+            }
+
+            Connection K = connect.Go();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM products " + where;
+            ResultSet R = S.executeQuery(Q);
+            int no = 1;
+            while (R.next()) {
+                int ID_produk = R.getInt("ID_produk");
+                String kode_produk = R.getString("kode_produk");
+                String nama_produk = R.getString("nama_produk");
+                String kategori = R.getString("kategori");
+                String harga_satuan = R.getString("harga_satuan");
+                int stok = R.getInt("stok");
+
+                Object[] D = {no, ID_produk, kode_produk, nama_produk, kategori, harga_satuan, stok};
+                PR.addRow(D);
+
+                no++;
+            }
+            R.close();
+            S.close();
+            K.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        Connection K = connect.Go();
-        Statement S = K.createStatement();
-        String Q = "SELECT * FROM products " + where;
-        ResultSet R = S.executeQuery(Q);
-        int no = 1;
-        while (R.next()) {
-            int ID_produk = R.getInt("ID_produk");
-            String kode_produk = R.getString("kode_produk");
-            String nama_produk = R.getString("nama_produk");
-            String kategori = R.getString("kategori");
-            String harga_jual = R.getString("harga_jual");
-            String harga_beli = R.getString("harga_beli");
-            int stok = R.getInt("stok");
-            
-
-            Object[] D = {no, ID_produk, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
-            PR.addRow(D);
-
-            no++;
-        }
-        R.close();
-        S.close();
-        K.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-}
 
-private void settingTable() {
-    MU = (DefaultTableModel) jtb_user.getModel();
-    jtb_user.getColumnModel().getColumn(0).setMinWidth(50);
-    jtb_user.getColumnModel().getColumn(0).setMaxWidth(70);
+    public static void viewdataTransaksi(String where) {
+        try {
 
-    jtb_user.getColumnModel().getColumn(1).setMinWidth(0);
-    jtb_user.getColumnModel().getColumn(1).setMaxWidth(0);
-    
-    jtb_user.getColumnModel().getColumn(2).setMinWidth(350);
-    jtb_user.getColumnModel().getColumn(2).setMaxWidth(500);
+            for (int i = trs.getRowCount() - 1; i >= 0; i--) {
+                trs.removeRow(i);
+            }
 
-    PR = (DefaultTableModel) jtb_produk.getModel();
-    jtb_produk.getColumnModel().getColumn(0).setMaxWidth(70);
+            Connection K = konektor.connect.Go();
+            Statement S = K.createStatement();
+            // Construct SQL query
 
-    jtb_produk.getColumnModel().getColumn(1).setMinWidth(0);
-    jtb_produk.getColumnModel().getColumn(1).setMaxWidth(0);
-}
+            String Q = "SELECT * FROM transaksi " + where;
+//            System.out.println(Q);
+            ResultSet R = S.executeQuery(Q);
+            int no = 1;
+            while (R.next()) {
+                int ID_Trans = R.getInt("ID_transaksi");
+                String Tanggal_Transaksi = R.getString("tanggal_transaksi");
+                String Kode_Obat = R.getString("kode_obat");
+                String Jumlah_Produk = R.getString("jumlah_produk");
+                String Harga_Satuan = R.getString("harga_satuan");
+                String Total_harga = R.getString("total_harga");
+                String Uang_Diterima = R.getString("Uang_Diterima");
+                String Uang_Kembali = R.getString("Uang_Kembali");
+                String Nama_Kasir = R.getString("nama_kasir");
+
+                Object[] transs = {no, ID_Trans, Tanggal_Transaksi, Kode_Obat, Jumlah_Produk, Harga_Satuan, Total_harga, Uang_Diterima, Uang_Kembali, Nama_Kasir};
+                trs.addRow(transs);
+                no++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    private void settingTable() {
+        MU = (DefaultTableModel) jtb_user.getModel();
+        jtb_user.getColumnModel().getColumn(0).setMinWidth(50);
+        jtb_user.getColumnModel().getColumn(0).setMaxWidth(70);
+
+        jtb_user.getColumnModel().getColumn(1).setMinWidth(0);
+        jtb_user.getColumnModel().getColumn(1).setMaxWidth(0);
+
+        jtb_user.getColumnModel().getColumn(2).setMinWidth(350);
+        jtb_user.getColumnModel().getColumn(2).setMaxWidth(500);
+
+        PR = (DefaultTableModel) jtb_produk.getModel();
+        jtb_produk.getColumnModel().getColumn(0).setMaxWidth(70);
+
+        jtb_produk.getColumnModel().getColumn(1).setMinWidth(0);
+        jtb_produk.getColumnModel().getColumn(1).setMaxWidth(0);
+
+        trs = (DefaultTableModel) tbl_transaksi.getModel();
+        tbl_transaksi.getColumnModel().getColumn(0).setMinWidth(50);
+        tbl_transaksi.getColumnModel().getColumn(0).setMaxWidth(70);
+
+        tbl_transaksi.getColumnModel().getColumn(1).setMinWidth(0);
+        tbl_transaksi.getColumnModel().getColumn(1).setMaxWidth(0);
+
+        tbl_transaksi.getColumnModel().getColumn(2).setMinWidth(140);
+        tbl_transaksi.getColumnModel().getColumn(2).setMaxWidth(140);
+
+        tbl_transaksi.getColumnModel().getColumn(3).setMinWidth(120);
+        tbl_transaksi.getColumnModel().getColumn(3).setMaxWidth(120);
+
+        tbl_transaksi.getColumnModel().getColumn(4).setMinWidth(120);
+        tbl_transaksi.getColumnModel().getColumn(4).setMaxWidth(120);
+
+        tbl_transaksi.getColumnModel().getColumn(5).setMinWidth(140);
+        tbl_transaksi.getColumnModel().getColumn(5).setMaxWidth(140);
+
+        tbl_transaksi.getColumnModel().getColumn(6).setMinWidth(140);
+        tbl_transaksi.getColumnModel().getColumn(6).setMaxWidth(140);
+    }
 
 }

@@ -171,13 +171,13 @@ public class UserView extends javax.swing.JDialog {
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
-                int ID = R.getInt("ID");
+                int ID_AKUN = R.getInt("ID_AKUN");
                 String fullname = R.getString("fullname");
                 String username = R.getString("username");
                 String password = R.getString("password");
                 String level = R.getString("level");
 
-                Object[] U = {no, ID, fullname, username, password, level};
+                Object[] U = {no, ID_AKUN, fullname, username, password, level};
                 us.addRow(U);
 
                 no++;

@@ -1,18 +1,18 @@
 package konektor;
 
 public class Profile {
-    private int ID;
+    private int ID_AKUN;
     private String FULLNAME;
     private String USERNAME;
     private String PASSWORD;
     private String LEVEL;
 
     public int getId() {
-        return ID;
+        return ID_AKUN;
     }
 
-    public void setId(int ID) {
-        this.ID = ID;
+    public void setId(int ID_AKUN) {
+        this.ID_AKUN = ID_AKUN;
     }
 
     public String getFullname() {

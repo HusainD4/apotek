@@ -5,6 +5,7 @@
 package apoteker;
 import java.awt.Toolkit;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +18,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import konektor.connect;
 import static manage_table.manage_produk.viewdataProduk;
+
 
 
 
@@ -80,7 +82,7 @@ public class kasir_page extends javax.swing.JFrame {
         Delete_Product = new javax.swing.JButton();
         txtAdd_product = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
-        txtJumlahPembelian = new javax.swing.JTextField();
+        txtJumlahProdukBeli = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKasir = new javax.swing.JTable();
@@ -89,7 +91,7 @@ public class kasir_page extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         txtUangBayar = new javax.swing.JTextField();
         txtUangKembali = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        txtJumlahSeluruh = new javax.swing.JTextField();
         btnCO = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
@@ -257,7 +259,12 @@ public class kasir_page extends javax.swing.JFrame {
             }
         });
 
-        txtJumlahPembelian.setBorder(javax.swing.BorderFactory.createTitledBorder("JUMLAH PEMBELIAN"));
+        txtJumlahProdukBeli.setBorder(javax.swing.BorderFactory.createTitledBorder("JUMLAH PEMBELIAN"));
+        txtJumlahProdukBeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtJumlahProdukBeliActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -271,7 +278,7 @@ public class kasir_page extends javax.swing.JFrame {
                     .addComponent(jSeparator3)
                     .addComponent(txtAdd_product, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                     .addComponent(Delete_Product, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtJumlahPembelian, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txtJumlahProdukBeli, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -282,7 +289,7 @@ public class kasir_page extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtJumlahPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtJumlahProdukBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(158, 158, 158)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -339,10 +346,10 @@ public class kasir_page extends javax.swing.JFrame {
             }
         });
 
-        jTextField8.setBorder(javax.swing.BorderFactory.createTitledBorder("JUMLAH SELURUH"));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txtJumlahSeluruh.setBorder(javax.swing.BorderFactory.createTitledBorder("JUMLAH SELURUH"));
+        txtJumlahSeluruh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txtJumlahSeluruhActionPerformed(evt);
             }
         });
 
@@ -419,7 +426,7 @@ public class kasir_page extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtUangKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtJumlahSeluruh, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -441,7 +448,7 @@ public class kasir_page extends javax.swing.JFrame {
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                            .addComponent(txtJumlahSeluruh, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                             .addComponent(btnCO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(2, 2, 2)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -507,9 +514,9 @@ public class kasir_page extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUangKembaliActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txtJumlahSeluruhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJumlahSeluruhActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txtJumlahSeluruhActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         PreviewTabelPage.ProdukView PV = new PreviewTabelPage.ProdukView(this,true);
@@ -528,7 +535,7 @@ public class kasir_page extends javax.swing.JFrame {
                     "Hapus Data",
                     JOptionPane.YES_NO_OPTION);
             if (opsi == 0) {
-                String Q = "DELETE FROM products "
+                String Q = "DELETE FROM keranjang "
                         + "WHERE ID_keranjang=" + id_produk;
 
                 try {
@@ -549,63 +556,101 @@ public class kasir_page extends javax.swing.JFrame {
     private void txtAdd_productActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdd_productActionPerformed
         try {
             DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
+
+            // Menambahkan listener untuk update otomatis total harga
             model.addTableModelListener((TableModelEvent e) -> {
-                int row = e.getFirstRow();
-                int column = e.getColumn();
-                if (row >= 0 && column >= 0) {
-                    updateTotalHarga();
-                    UangDiterima();
-                }
+                updateTotalHarga();
+                updateJumlahProduk();
             });
-            
 
             String kode = txtKodeProduct.getText();
-            Connection K = connect.Go();
-            Statement S = K.createStatement();
-            String Q = "SELECT * FROM products WHERE kode_produk='" + kode + "'";
-            ResultSet R = S.executeQuery(Q);
-            while (R.next()) {
-                int id = R.getInt("ID_produk");
-                String nama = R.getString("nama_produk");
-                String harga = R.getString("harga_jual");
+            if (kode.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Kode produk tidak boleh kosong!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-                //pengecekan, apakah produk sudah ada di
-                //keranjang/belum
-                int row = tblKasir.getRowCount();
-                boolean ada = false;
-                int QTY = 0;
-                int baris = 0;
-                if (row > 0) {
-                    for (int i = 0; i < row; i++) {
-                        int id_produk = Integer.parseInt(tblKasir.getValueAt(i, 0).toString());
-                        if (id_produk == id) {
-                            ada = true;
-                            baris = i;
-                            QTY = Integer.parseInt(tblKasir.getValueAt(i, 2).toString()) + 1;
-                            break;
+            Connection K = connect.Go();
+            String Q = "SELECT * FROM products WHERE kode_produk = ?";
+            try (PreparedStatement P = K.prepareStatement(Q)) {
+                P.setString(1, kode);
+                try (ResultSet R = P.executeQuery()) {
+                    if (R.next()) {
+                        int id = R.getInt("ID_produk");
+                        int KodeProduk = R.getInt("kode_produk");
+                        String nama = R.getString("nama_produk");
+                        int harga = R.getInt("harga_jual");
+
+                        // Mengecek apakah produk sudah ada di keranjang
+                        int rowCount = tblKasir.getRowCount();
+                        boolean ada = false;
+                        int baris = -1;
+                        int qty = 1;
+
+                        for (int i = 0; i < rowCount; i++) {
+                            int id_produk = Integer.parseInt(tblKasir.getValueAt(i, 1).toString());
+                            if (id_produk == id) {
+                                ada = true;
+                                baris = i;
+                                qty = Integer.parseInt(tblKasir.getValueAt(i, 4).toString()) + 1; // Kolom qty
+                                break;
+                            }
                         }
-                    }
-                    if (ada) {
-                        tblKasir.setValueAt(QTY, baris, 2);
-                        updateTotalHarga();
+
+                        if (ada) {
+                            tblKasir.setValueAt(qty, baris, 4); // Kolom qty
+                            tblKasir.setValueAt(harga, baris, 5);
+                            tblKasir.setValueAt(harga * qty, baris, 6); // Kolom total
+                        } else {
+                            Object[] data = {
+                                model.getRowCount() + 1, // Nomor
+                                id, // ID produk
+                                KodeProduk, // Kode produk
+                                nama, // Nama produk
+                                qty, // Jumlah produk (Qty)
+                                harga * qty // Total harga
+                            };
+                            model.addRow(data);
+                        }
                     } else {
-                        Object[] data = {id, nama, 1, harga};
-                        model.addRow(data);
+                        JOptionPane.showMessageDialog(this, "Produk tidak ditemukan!", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                } else {
-                    Object[] data = {id, nama, 1, harga};
-                    model.addRow(data);
                 }
             }
 
-            
+            // Update total harga dan jumlah produk
             updateTotalHarga();
-            UangDiterima();
-            
-            
+            updateJumlahProduk();
+
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }        
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Data tidak valid: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+//// Method untuk menghitung total harga dan menampilkannya di txtTotalBeli
+    private void updateTotalHarga() {
+        int rowCount = tblKasir.getRowCount();
+        int totalHarga = 0;
+
+        for (int i = 0; i < rowCount; i++) {
+            totalHarga += Integer.parseInt(tblKasir.getValueAt(i, 5).toString()); // Kolom total
+        }
+
+        txtTotalBeli.setText(String.valueOf(totalHarga));
+    }
+
+// Method untuk menghitung jumlah produk yang dibeli dan menampilkannya di txtJumlahSeluruh
+    private void updateJumlahProduk() {
+        int rowCount = tblKasir.getRowCount();
+        int totalProduk = 0;
+
+        for (int i = 0; i < rowCount; i++) {
+            totalProduk += Integer.parseInt(tblKasir.getValueAt(i, 4).toString()); // Kolom qty
+        }
+
+        txtJumlahSeluruh.setText(String.valueOf(totalProduk));
+        txtJumlahProdukBeli.setText(String.valueOf(totalProduk)); // Mengisi jumlah produk di input field 
     }//GEN-LAST:event_txtAdd_productActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -629,6 +674,10 @@ public class kasir_page extends javax.swing.JFrame {
     private void txtKodeProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodeProductActionPerformed
 
     }//GEN-LAST:event_txtKodeProductActionPerformed
+
+    private void txtJumlahProdukBeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJumlahProdukBeliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtJumlahProdukBeliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -691,13 +740,13 @@ public class kasir_page extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel label_halo;
     private javax.swing.JLabel label_user;
     private javax.swing.JLabel lblDate;
     private javax.swing.JTable tblKasir;
     private javax.swing.JButton txtAdd_product;
-    private javax.swing.JTextField txtJumlahPembelian;
+    private javax.swing.JTextField txtJumlahProdukBeli;
+    private javax.swing.JTextField txtJumlahSeluruh;
     private javax.swing.JTextField txtKodeProduct;
     private javax.swing.JTextField txtTotalBeli;
     private javax.swing.JTextField txtUangBayar;
@@ -727,60 +776,65 @@ public class kasir_page extends javax.swing.JFrame {
 
     
     
-    
-    private void updateTotalHarga() {
-        try {
-            double total = 0;
-            int r = tblKasir.getRowCount();
-            for (int i = 0; i < r; i++) {
-                double QTY = Double.parseDouble(tblKasir.getValueAt(i, 2).toString());
-                double PRC = Double.parseDouble(tblKasir.getValueAt(i, 3).toString());
-                total += (QTY * PRC);
-            }
-            txtTotalBeli.setText("Rp " + (long) total);
-            
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
+//   private void updateTotalHarga() {
+//    try {
+//        double total = 0;
+//        int rowCount = tblKasir.getRowCount();
+//
+//        // Menghitung total harga berdasarkan QTY dan harga satuan
+//        for (int i = 0; i < rowCount; i++) {
+//            double qty = Double.parseDouble(tblKasir.getValueAt(i, 4).toString()); // Kolom qty
+//            double price = Double.parseDouble(tblKasir.getValueAt(i, 3).toString()); // Kolom harga satuan
+//            total += (qty * price);
+//        }
+//
+//        txtTotalBeli.setText("Rp " + String.format("%,d", (long) total)); // Format angka sebagai rupiah
+//
+//    } catch (NumberFormatException e) {
+//        JOptionPane.showMessageDialog(this, "Kesalahan format angka: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//    }
+//}
 
-    private void DelItem() {
-        int b = tblKasir.getSelectedRow();
-        if (b != -1) {
-            DefaultTableModel m = (DefaultTableModel) tblKasir.getModel();
-            m.removeRow(b);
-            
-            
-            updateTotalHarga();
-            UangDiterima();
+private void DelItem() {
+    int selectedRow = tblKasir.getSelectedRow();
+    if (selectedRow != -1) {
+        DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
+        model.removeRow(selectedRow); // Menghapus baris yang dipilih
+
+        // Update total harga dan komponen lainnya setelah penghapusan
+        updateTotalHarga();
+        UangDiterima();
+    } else {
+        JOptionPane.showMessageDialog(this, "Anda belum memilih data untuk dihapus!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+    }
+}
+
+private void UangDiterima() {
+    try {
+        // Ambil total harga
+        String lbl = txtTotalBeli.getText().replace("Rp ", "").replace(",", "").trim(); // Menghapus format "Rp" dan koma
+        long totalHarga = Long.parseLong(lbl);
+
+        // Ambil jumlah uang yang dibayarkan
+        String bayar = txtUangBayar.getText().trim();
+        if (!bayar.isEmpty()) {
+            long uangBayar = Long.parseLong(bayar);
+            long uangKembali = uangBayar - totalHarga;
+
+            txtUangKembali.setText("Rp " + String.format("%,d", uangKembali)); // Format uang kembalian sebagai rupiah
+
+            // Atur tombol checkout
+            btnCO.setEnabled(uangBayar >= totalHarga);
         } else {
-            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
+            txtUangKembali.setText("Rp 0");
+            btnCO.setEnabled(false); // Matikan tombol jika uang bayar kosong
         }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Kesalahan format angka pada input pembayaran: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        txtUangKembali.setText("Rp 0");
+        btnCO.setEnabled(false);
     }
+}
 
-    private void UangDiterima() {
-        int r = tblKasir.getRowCount();
-        if (r > 0) {
-            String lbl = txtTotalBeli.getText(); //Rp 12000
-            String[] arrayHarga = lbl.split(" ");
-            long harga = Long.parseLong(arrayHarga[1]);
-
-            String bayar = txtUangBayar.getText();
-            if (!bayar.isEmpty()) {
-                long uangbayar = Long.parseLong(bayar);
-                long uangkembali = uangbayar - harga;
-                txtUangKembali.setText("Rp "+uangkembali); 
-                
-                if(uangbayar >= harga){
-                    btnCO.setEnabled(true); 
-                }else {
-                    btnCO.setEnabled(false); 
-                }
-            }else{
-                txtUangKembali.setText("Rp "+0);
-                btnCO.setEnabled(false); 
-            }
-        }
-    }
 
 }

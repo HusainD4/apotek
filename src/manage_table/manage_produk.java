@@ -27,15 +27,12 @@ public class manage_produk extends javax.swing.JFrame {
      */
     ProfileProduk PR;
     static DefaultTableModel prd;
-    
-    
+
     public manage_produk() {
         initComponents();
-        settingTableProduk();        
+        settingTableProduk();
         viewdataProduk("");
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,11 +173,11 @@ public class manage_produk extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "ID", "kode_produk", "nama_produk", "kategori", "harga_jual", "harga_beli", "stok"
+                "No", "ID", "kode produk", "nama produk", "kategori", "harga satuan", "stok"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -302,33 +299,31 @@ public class manage_produk extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_EditProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditProdukActionPerformed
-int n = tbl_produk.getSelectedRow();
-if (n != -1) {
-    try {
-        int ID = Integer.parseInt(tbl_produk.getValueAt(n, 1).toString());
-        int kode_produk = Integer.parseInt(tbl_produk.getValueAt(n, 2).toString());
-        String nama_produk = tbl_produk.getValueAt(n, 3).toString();
-        String kategori = tbl_produk.getValueAt(n, 4).toString();
-        double harga_jual = Double.parseDouble(tbl_produk.getValueAt(n, 5).toString());
-        double harga_beli = Double.parseDouble(tbl_produk.getValueAt(n, 6).toString());
-        int stok = Integer.parseInt(tbl_produk.getValueAt(n, 7).toString());
-        
-        editor_manage.EditProduk EP = new editor_manage.EditProduk(this, true);
-        EP.setId(ID);
-        EP.setKodeProduk(kode_produk); 
-        EP.setNamaProduk(nama_produk); 
-        EP.setKategori(kategori); 
-        EP.setHargaJual(harga_jual); 
-        EP.setHargaBeli(harga_beli); 
-        EP.set(stok); 
-        EP.setVisible(true);
+        int n = tbl_produk.getSelectedRow();
+        if (n != 1) {
+            try {
+                int ID_produk = Integer.parseInt(tbl_produk.getValueAt(n, 1).toString());
+                int kode_produk = Integer.parseInt(tbl_produk.getValueAt(n, 2).toString());
+                String nama_produk = tbl_produk.getValueAt(n, 3).toString();
+                String kategori = tbl_produk.getValueAt(n, 4).toString();
+                double harga_satuan = Double.parseDouble(tbl_produk.getValueAt(n, 5).toString());
+                int stok = Integer.parseInt(tbl_produk.getValueAt(n, 6).toString());
 
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Error parsing data: " + e.getMessage());
-    }
-} else {
-    JOptionPane.showMessageDialog(this, "Anda belum memilih data");
-}
+                editor_manage.EditProduk EP = new editor_manage.EditProduk(this, true);
+                EP.setId(ID_produk);
+                EP.setKodeProduk(kode_produk);
+                EP.setNamaProduk(nama_produk);
+                EP.setKategori(kategori);
+                EP.setHargaSatuan(harga_satuan);
+                EP.set(stok);
+                EP.setVisible(true);
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Error parsing data: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
+        }
 
     }//GEN-LAST:event_btn_EditProdukActionPerformed
 
@@ -339,30 +334,29 @@ if (n != -1) {
 
     private void btn_HapusProdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HapusProdukActionPerformed
         int n = tbl_produk.getSelectedRow();
-        if(n != -1){
+        if (n != -1) {
             int id_produk = Integer.parseInt(tbl_produk.getValueAt(n, 1).toString());
             String nama_produk = tbl_produk.getValueAt(n, 2).toString();
-            
-            
-            int opsi = JOptionPane.showConfirmDialog(this, 
-                    "Apakah Anda yakin ingin menghapus data produk "+nama_produk+"?", 
-                    "Hapus Data", 
+
+            int opsi = JOptionPane.showConfirmDialog(this,
+                    "Apakah Anda yakin ingin menghapus data produk " + nama_produk + "?",
+                    "Hapus Data",
                     JOptionPane.YES_NO_OPTION);
-            if(opsi == 0){
+            if (opsi == 0) {
                 String Q = "DELETE FROM products "
-                        + "WHERE ID_produk="+id_produk;
-                
+                        + "WHERE ID_produk=" + id_produk;
+
                 try {
                     Connection K = konektor.connect.Go();
                     Statement S = K.createStatement();
                     S.executeUpdate(Q);
-                    viewdataProduk(""); 
-                    JOptionPane.showMessageDialog(this, "Data "+nama_produk+" telah terhapus");
+                    viewdataProduk("");
+                    JOptionPane.showMessageDialog(this, "Data " + nama_produk + " telah terhapus");
                 } catch (SQLException e) {
                 }
             }
-            
-        }else {
+
+        } else {
             JOptionPane.showMessageDialog(this, "Anda belum memilih data");
         }
     }//GEN-LAST:event_btn_HapusProdukActionPerformed
@@ -384,35 +378,42 @@ if (n != -1) {
     }//GEN-LAST:event_pencarianProdukActionPerformed
 
     private void pencarianProdukKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyTyped
-
-        String key = pencarianProduk.getText();
-        String query = "SELECT * FROM products WHERE "
-            + "kode_produk LIKE ? OR "
-            + "nama_produk LIKE ? OR "
-            + "kategori LIKE ? OR "
-            + "harga_jual LIKE ? OR "
-            + "harga_beli LIKE ? OR "
-            + "stok LIKE ?";
-    
+//
+//        String key = pencarianProduk.getText();
+//        String query = "SELECT * FROM products WHERE "
+//            + "kode_produk LIKE ? OR "
+//            + "nama_produk LIKE ? OR "
+//            + "kategori LIKE ? OR "
+//            + "harga_jual LIKE ? OR "
+//            + "harga_beli LIKE ? OR "
+//            + "stok LIKE ?";
+//    
     }//GEN-LAST:event_pencarianProdukKeyTyped
 
     private void pencarianProdukFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianProdukFocusGained
         String Cari = pencarianProduk.getText();
-        if (Cari.equals("Pencarian")){
+        if (Cari.equals("Pencarian")) {
             pencarianProduk.setText("");
         }
     }//GEN-LAST:event_pencarianProdukFocusGained
 
     private void pencarianProdukFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianProdukFocusLost
-        String Cari = pencarianProduk.getText(); 
-        if (Cari.equals("") || Cari.equals("Pencarian")) { 
-            pencarianProduk.setText("Pencarian"); 
+        String Cari = pencarianProduk.getText();
+        if (Cari.equals("") || Cari.equals("Pencarian")) {
+            pencarianProduk.setText("Pencarian");
         }
 
     }//GEN-LAST:event_pencarianProdukFocusLost
 
     private void pencarianProdukKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyReleased
-
+        String key = pencarianProduk.getText();
+        String where = "WHERE "
+                + "kode_produk LIKE '%" + key + "%' OR "
+                + "nama_produk LIKE '%" + key + "%' OR "
+                + "kategori LIKE '%" + key + "%' OR "
+                + "harga_satuan LIKE '%" + key + "%' OR "
+                + "stok LIKE '%" + key + "%'";
+        viewdataProduk(where);
     }//GEN-LAST:event_pencarianProdukKeyReleased
 
     /**
@@ -472,7 +473,7 @@ if (n != -1) {
 public static void viewdataProduk(String where) {
         try {
 
-            for (int i = prd.getRowCount()-1; i >=0; i--) {
+            for (int i = prd.getRowCount() - 1; i >= 0; i--) {
                 prd.removeRow(i);
             }
 
@@ -483,27 +484,27 @@ public static void viewdataProduk(String where) {
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
-                int ID = R.getInt("ID_produk");
+                int ID_Prd = R.getInt("ID_produk");
                 String kode_produk = R.getString("kode_produk");
                 String nama_produk = R.getString("nama_produk");
                 String kategori = R.getString("kategori");
-                String harga_jual = R.getString("harga_jual");
-                String harga_beli = R.getString("harga_beli");
+                String harga_satuan = R.getString("harga_satuan");
                 String stok = R.getString("stok");
 
-                Object[] P = {no, ID, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
+                Object[] P = {no, ID_Prd, kode_produk, nama_produk, kategori, harga_satuan, stok};
                 prd.addRow(P);
 
                 no++;
             }
+            R.close();
+            S.close();
+            K.close();
         } catch (SQLException e) {
-
         }
     }
-    
-    
+
     private void settingTableProduk() {
-        prd = (DefaultTableModel) tbl_produk.getModel();        
+        prd = (DefaultTableModel) tbl_produk.getModel();
         tbl_produk.getColumnModel().getColumn(0).setMinWidth(50);
         tbl_produk.getColumnModel().getColumn(0).setMaxWidth(70);
 
@@ -512,16 +513,15 @@ public static void viewdataProduk(String where) {
 
         tbl_produk.getColumnModel().getColumn(2).setMinWidth(350);
         tbl_produk.getColumnModel().getColumn(2).setMaxWidth(500);
-        
+
         tbl_produk.getColumnModel().getColumn(3).setMinWidth(350);
         tbl_produk.getColumnModel().getColumn(3).setMaxWidth(500);
-        
+
         tbl_produk.getColumnModel().getColumn(4).setMinWidth(350);
         tbl_produk.getColumnModel().getColumn(4).setMaxWidth(500);
-        
+
         tbl_produk.getColumnModel().getColumn(5).setMinWidth(350);
         tbl_produk.getColumnModel().getColumn(5).setMaxWidth(500);
     }
-
 
 }

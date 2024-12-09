@@ -8,7 +8,7 @@ import java.awt.Frame;
 
 import konektor.Profile;
 import apoteker.admin_page;
-import konektor.connect;
+//import konektor.connect;
 import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
+import konektor.ProfileTransaksi;
 
 /**
  *
@@ -27,8 +28,13 @@ public class manage_transaksi extends javax.swing.JFrame {
     /**
      * Creates new form manage_transaksi
      */
+    ProfileTransaksi TR;
+    static DefaultTableModel trs;
+
     public manage_transaksi() {
         initComponents();
+        settingTableTransaksi();
+        viewdataTransaksi("");
     }
 
     /**
@@ -43,7 +49,7 @@ public class manage_transaksi extends javax.swing.JFrame {
         atas_transaksi = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        pencarian = new javax.swing.JTextField();
+        pencarianTrans = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         label_kembali = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -52,9 +58,9 @@ public class manage_transaksi extends javax.swing.JFrame {
         tbl_transaksi = new javax.swing.JTable();
         bawah_transaksi = new javax.swing.JPanel();
         btn_CetakTransaksi = new javax.swing.JButton();
-        btn_Hapus = new javax.swing.JButton();
         btn_MuatUlang = new javax.swing.JButton();
         btn_kembali = new javax.swing.JButton();
+        btn_Hapus1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -70,11 +76,24 @@ public class manage_transaksi extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        pencarian.setFont(new java.awt.Font("Rockwell Nova Light", 0, 14)); // NOI18N
-        pencarian.setForeground(new java.awt.Color(0, 102, 102));
-        pencarian.setText("Pencarian");
-        pencarian.setBorder(null);
-        pencarian.setSelectionColor(new java.awt.Color(0, 153, 153));
+        pencarianTrans.setFont(new java.awt.Font("Rockwell Nova Light", 0, 14)); // NOI18N
+        pencarianTrans.setForeground(new java.awt.Color(0, 102, 102));
+        pencarianTrans.setText("Pencarian");
+        pencarianTrans.setBorder(null);
+        pencarianTrans.setSelectionColor(new java.awt.Color(0, 153, 153));
+        pencarianTrans.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pencarianTransFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pencarianTransFocusLost(evt);
+            }
+        });
+        pencarianTrans.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pencarianTransKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,12 +101,12 @@ public class manage_transaksi extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pencarian, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(pencarianTrans, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pencarian, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(pencarianTrans, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -113,7 +132,7 @@ public class manage_transaksi extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atas_transaksiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(atas_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
                     .addGroup(atas_transaksiLayout.createSequentialGroup()
                         .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -145,15 +164,21 @@ public class manage_transaksi extends javax.swing.JFrame {
 
         tbl_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "ID_Transaksi", "Tanggal_Pembelian", "Kode Obat", "Jumlah Produk", "Harga Satuan", "Total Harga", "Uang Diterima", "Uang Kembali", "Nama Kasir"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_transaksi.setRowHeight(50);
         jScrollPane1.setViewportView(tbl_transaksi);
 
         javax.swing.GroupLayout tengah_transaksiLayout = new javax.swing.GroupLayout(tengah_transaksi);
@@ -162,14 +187,14 @@ public class manage_transaksi extends javax.swing.JFrame {
             tengah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tengah_transaksiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1152, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tengah_transaksiLayout.setVerticalGroup(
             tengah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tengah_transaksiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -180,16 +205,26 @@ public class manage_transaksi extends javax.swing.JFrame {
         btn_CetakTransaksi.setText("CETAK TRANSAKSI");
         btn_CetakTransaksi.setBorderPainted(false);
 
-        btn_Hapus.setText("HAPUS TRANSAKSI");
-        btn_Hapus.addActionListener(new java.awt.event.ActionListener() {
+        btn_MuatUlang.setText("MUAT ULANG");
+        btn_MuatUlang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_HapusActionPerformed(evt);
+                btn_MuatUlangActionPerformed(evt);
             }
         });
 
-        btn_MuatUlang.setText("MUAT ULANG");
-
         btn_kembali.setText("KEMBALI");
+        btn_kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_kembaliActionPerformed(evt);
+            }
+        });
+
+        btn_Hapus1.setText("VIEW TABEL TRANSAKSI");
+        btn_Hapus1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Hapus1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bawah_transaksiLayout = new javax.swing.GroupLayout(bawah_transaksi);
         bawah_transaksi.setLayout(bawah_transaksiLayout);
@@ -201,13 +236,12 @@ public class manage_transaksi extends javax.swing.JFrame {
                     .addGroup(bawah_transaksiLayout.createSequentialGroup()
                         .addComponent(btn_MuatUlang, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btn_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(bawah_transaksiLayout.createSequentialGroup()
                         .addComponent(btn_CetakTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 490, Short.MAX_VALUE))))
+                        .addComponent(btn_Hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(836, Short.MAX_VALUE))
         );
         bawah_transaksiLayout.setVerticalGroup(
             bawah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +254,7 @@ public class manage_transaksi extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(bawah_transaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_CetakTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_Hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_MuatUlang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -231,13 +265,50 @@ public class manage_transaksi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_HapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HapusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_HapusActionPerformed
-
     private void label_kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_kembaliMouseClicked
         dispose();
     }//GEN-LAST:event_label_kembaliMouseClicked
+
+    private void btn_Hapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Hapus1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_Hapus1ActionPerformed
+
+    private void btn_MuatUlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MuatUlangActionPerformed
+        viewdataTransaksi("");
+    }//GEN-LAST:event_btn_MuatUlangActionPerformed
+
+    private void btn_kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kembaliActionPerformed
+        dispose();
+    }//GEN-LAST:event_btn_kembaliActionPerformed
+
+    private void pencarianTransKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianTransKeyReleased
+        String key = pencarianTrans.getText();
+        String where = "WHERE "
+                + "tanggal_transaksi LIKE '%" + key + "%' OR "
+                + "kode_obat LIKE '%" + key + "%' OR "
+                + "jumlah_produk LIKE '%" + key + "%' OR "
+                + "harga_satuan LIKE '%" + key + "%' OR "
+                + "total_harga LIKE '%" + key + "%' OR "
+                + "Uang_Diterima LIKE '%" + key + "%' OR "
+                + "Uang_Kembali LIKE '%" + key + "%' OR "
+                + "nama_kasir LIKE '%" + key + "%'";
+        viewdataTransaksi(where);
+    }//GEN-LAST:event_pencarianTransKeyReleased
+
+    private void pencarianTransFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianTransFocusLost
+        String Cari = pencarianTrans.getText();
+        if (Cari.equals("") || Cari.equals("Pencarian")) {
+            pencarianTrans.setText("Pencarian");
+        }
+
+    }//GEN-LAST:event_pencarianTransFocusLost
+
+    private void pencarianTransFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianTransFocusGained
+        String Cari = pencarianTrans.getText();
+        if (Cari.equals("Pencarian")) {
+            pencarianTrans.setText("");
+        }
+    }//GEN-LAST:event_pencarianTransFocusGained
 
     /**
      * @param args the command line arguments
@@ -279,7 +350,7 @@ public class manage_transaksi extends javax.swing.JFrame {
     private javax.swing.JPanel atas_transaksi;
     private javax.swing.JPanel bawah_transaksi;
     private javax.swing.JButton btn_CetakTransaksi;
-    private javax.swing.JButton btn_Hapus;
+    private javax.swing.JButton btn_Hapus1;
     private javax.swing.JButton btn_MuatUlang;
     private javax.swing.JButton btn_kembali;
     private javax.swing.JLabel jLabel1;
@@ -288,8 +359,69 @@ public class manage_transaksi extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label_kembali;
-    private javax.swing.JTextField pencarian;
+    private javax.swing.JTextField pencarianTrans;
     private javax.swing.JTable tbl_transaksi;
     private javax.swing.JPanel tengah_transaksi;
     // End of variables declaration//GEN-END:variables
+
+    public static void viewdataTransaksi(String where) {
+        try {
+
+            for (int i = trs.getRowCount() - 1; i >= 0; i--) {
+                trs.removeRow(i);
+            }
+
+            Connection K = konektor.connect.Go();
+            Statement S = K.createStatement();
+            // Construct SQL query
+
+            String Q = "SELECT * FROM transaksi " + where;
+//            System.out.println(Q);
+            ResultSet R = S.executeQuery(Q);
+            int no = 1;
+            while (R.next()) {
+                int ID_Trans = R.getInt("ID_transaksi");
+                String Tanggal_Transaksi = R.getString("tanggal_transaksi");
+                String Kode_Obat = R.getString("kode_obat");
+                String Jumlah_Produk = R.getString("jumlah_produk");
+                String Harga_Satuan = R.getString("harga_satuan");
+                String Total_harga = R.getString("total_harga");
+                String Uang_Diterima = R.getString("Uang_Diterima");
+                String Uang_Kembali = R.getString("Uang_Kembali");
+                String Nama_Kasir = R.getString("nama_kasir");
+
+                Object[] transs = {no, ID_Trans, Tanggal_Transaksi, Kode_Obat, Jumlah_Produk, Harga_Satuan, Total_harga, Uang_Diterima, Uang_Kembali, Nama_Kasir};
+                trs.addRow(transs);
+                no++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    private void settingTableTransaksi() {
+        trs = (DefaultTableModel) tbl_transaksi.getModel();
+        tbl_transaksi.getColumnModel().getColumn(0).setMinWidth(50);
+        tbl_transaksi.getColumnModel().getColumn(0).setMaxWidth(70);
+
+        tbl_transaksi.getColumnModel().getColumn(1).setMinWidth(0);
+        tbl_transaksi.getColumnModel().getColumn(1).setMaxWidth(0);
+
+        tbl_transaksi.getColumnModel().getColumn(2).setMinWidth(140);
+        tbl_transaksi.getColumnModel().getColumn(2).setMaxWidth(140);
+
+        tbl_transaksi.getColumnModel().getColumn(3).setMinWidth(120);
+        tbl_transaksi.getColumnModel().getColumn(3).setMaxWidth(120);
+
+        tbl_transaksi.getColumnModel().getColumn(4).setMinWidth(120);
+        tbl_transaksi.getColumnModel().getColumn(4).setMaxWidth(120);
+
+        tbl_transaksi.getColumnModel().getColumn(5).setMinWidth(140);
+        tbl_transaksi.getColumnModel().getColumn(5).setMaxWidth(140);
+
+        tbl_transaksi.getColumnModel().getColumn(6).setMinWidth(140);
+        tbl_transaksi.getColumnModel().getColumn(6).setMaxWidth(140);
+    }
+
 }

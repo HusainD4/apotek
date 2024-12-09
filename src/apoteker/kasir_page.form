@@ -313,7 +313,7 @@
                           <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtAdd_product" alignment="0" pref="225" max="32767" attributes="0"/>
                           <Component id="Delete_Product" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtJumlahPembelian" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtJumlahProdukBeli" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -327,7 +327,7 @@
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtJumlahPembelian" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="txtJumlahProdukBeli" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
                       <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -390,7 +390,7 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator3">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtJumlahPembelian">
+            <Component class="javax.swing.JTextField" name="txtJumlahProdukBeli">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -398,6 +398,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtJumlahProdukBeliActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -504,7 +507,7 @@
                               <Component id="txtUangKembali" min="-2" pref="256" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jTextField8" min="-2" pref="256" max="-2" attributes="0"/>
+                              <Component id="txtJumlahSeluruh" min="-2" pref="256" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnCO" max="32767" attributes="0"/>
                           </Group>
@@ -532,7 +535,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextField8" pref="63" max="32767" attributes="0"/>
+                                  <Component id="txtJumlahSeluruh" pref="63" max="32767" attributes="0"/>
                                   <Component id="btnCO" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -596,7 +599,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUangKembaliActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField8">
+            <Component class="javax.swing.JTextField" name="txtJumlahSeluruh">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -605,7 +608,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField8ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtJumlahSeluruhActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCO">

@@ -22,6 +22,7 @@ public class FormTambahProduk extends javax.swing.JDialog {
     public FormTambahProduk(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
     }
 
     /**
@@ -40,14 +41,12 @@ public class FormTambahProduk extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtKodeP = new javax.swing.JTextField();
         txtNamaP = new javax.swing.JTextField();
         txtKategori = new javax.swing.JTextField();
-        txtHargaBeli = new javax.swing.JTextField();
-        txtHargaJual = new javax.swing.JTextField();
+        txtHargaSatuan = new javax.swing.JTextField();
         txtStok = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
@@ -78,13 +77,9 @@ public class FormTambahProduk extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("KATEGORI");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("HARGA JUAL");
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("HARGA BELI");
+        jLabel7.setText("HARGA SATUAN");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,15 +96,9 @@ public class FormTambahProduk extends javax.swing.JDialog {
             }
         });
 
-        txtHargaBeli.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtHargaSatuan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtHargaBeliKeyTyped(evt);
-            }
-        });
-
-        txtHargaJual.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtHargaJualKeyTyped(evt);
+                txtHargaSatuanKeyTyped(evt);
             }
         });
 
@@ -153,7 +142,6 @@ public class FormTambahProduk extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,8 +153,7 @@ public class FormTambahProduk extends javax.swing.JDialog {
                             .addComponent(txtKodeP)
                             .addComponent(txtNamaP)
                             .addComponent(txtKategori)
-                            .addComponent(txtHargaBeli)
-                            .addComponent(txtHargaJual)
+                            .addComponent(txtHargaSatuan)
                             .addComponent(txtStok)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 194, Short.MAX_VALUE)
@@ -196,26 +183,22 @@ public class FormTambahProduk extends javax.swing.JDialog {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtHargaBeli, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(txtHargaSatuan, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtHargaJual, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(txtStok))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(55, 55, 55)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(71, 71, 71)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -254,29 +237,30 @@ public class FormTambahProduk extends javax.swing.JDialog {
         int kode_produk = Integer.parseInt(txtKodeP.getText());
         String nama_produk = txtNamaP.getText();
         String kategori = txtKategori.getText();
-        double harga_jual = Double.parseDouble(txtHargaJual.getText());
-        double harga_beli = Double.parseDouble(txtHargaBeli.getText());
+        double harga_satuan = Double.parseDouble(txtHargaSatuan.getText());
         int stok = Integer.parseInt(txtStok.getText());
-                String Q = "INSERT INTO products ("
-        + "kode_produk,"
-        + "nama_produk,"
-        + "kategori,"
-        + "harga_jual,"
-        + "harga_beli,"
-        + "stok)VALUES(?,?,?,?,?,?)";
+        String Q = "INSERT INTO products ("
+                + "kode_produk,"
+                + "nama_produk,"
+                + "kategori,"
+                + "harga_satuan,"
+                + "stok)VALUES(?,?,?,?,?)";
         try {
             Connection K = connect.Go();
+            if (K == null) {
+                JOptionPane.showMessageDialog(this, "Koneksi database gagal!");
+                return;
+            }
+
             PreparedStatement PR = K.prepareStatement(Q);
             PR.setInt(1, kode_produk);
             PR.setString(2, nama_produk);
             PR.setString(3, kategori);
-            PR.setDouble(4, harga_jual);
-            PR.setDouble(5, harga_beli);
-            PR.setInt(6, stok);
+            PR.setDouble(4, harga_satuan);
+            PR.setInt(5, stok);
             PR.executeUpdate();
 
             manage_table.manage_produk.viewdataProduk("");
-
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
             txtNamaP.requestFocus();
         } catch (Exception e) {
@@ -294,13 +278,9 @@ public class FormTambahProduk extends javax.swing.JDialog {
         HanyaAngka(evt);
     }//GEN-LAST:event_txtKodePKeyTyped
 
-    private void txtHargaBeliKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHargaBeliKeyTyped
+    private void txtHargaSatuanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHargaSatuanKeyTyped
         HanyaAngka(evt);
-    }//GEN-LAST:event_txtHargaBeliKeyTyped
-
-    private void txtHargaJualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHargaJualKeyTyped
-        HanyaAngka(evt);
-    }//GEN-LAST:event_txtHargaJualKeyTyped
+    }//GEN-LAST:event_txtHargaSatuanKeyTyped
 
     private void txtStokKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStokKeyTyped
         HanyaAngka(evt);
@@ -359,15 +339,13 @@ public class FormTambahProduk extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField txtHargaBeli;
-    private javax.swing.JTextField txtHargaJual;
+    private javax.swing.JTextField txtHargaSatuan;
     private javax.swing.JTextField txtKategori;
     private javax.swing.JTextField txtKodeP;
     private javax.swing.JTextField txtNamaP;
@@ -375,8 +353,10 @@ public class FormTambahProduk extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     private void HanyaAngka(KeyEvent evt) {
         char c = evt.getKeyChar();
-        if(!Character.isDigit(c)){
+        if (!Character.isDigit(c)) {
             evt.consume();
         }
     }
+
+
 }
