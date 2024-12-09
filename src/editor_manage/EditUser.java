@@ -210,7 +210,7 @@ public class EditUser extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_cencelActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        String FULLNAME = txtFullname.getText();
+         String FULLNAME = txtFullname.getText();
         String USERNAME = txtUsername.getText();
         String PASSWORD = new String(txtPassword.getPassword());
         String LEVEL = ComboLevel.getSelectedItem().toString();

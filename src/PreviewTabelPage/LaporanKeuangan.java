@@ -4,37 +4,18 @@
  */
 package PreviewTabelPage;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.table.DefaultTableModel;
-import konektor.ProfileProduk;
-import konektor.connect;
-import java.sql.*;
-
-
 /**
  *
  * @author HUSAIN
  */
-public class ProdukView extends javax.swing.JDialog {
-    ProfileProduk pp;
-    static DefaultTableModel prd;
+public class LaporanKeuangan extends javax.swing.JDialog {
 
     /**
-     * Creates new form ProdukView
+     * Creates new form LaporanKeuangan
      */
-    public ProdukView(java.awt.Frame parent, boolean modal) {
+    public LaporanKeuangan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        settingTableProduk();
-        viewdataProduk("");
-    }
-    public ProdukView(ProfileProduk pp){
-        initComponents();
-        settingTableProduk();
-        viewdataProduk("");
     }
 
     /**
@@ -121,7 +102,7 @@ public class ProdukView extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 553, Short.MAX_VALUE))
+                .addGap(0, 1026, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,11 +128,11 @@ public class ProdukView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "No", "ID", "kode_produk", "nama_produk", "kategori", "harga_jual", "harga_beli", "stok"
+                "No", "ID_Transaksi", "TANGGAL TRANSAKSI", "NAMA BARANG", "HARGA SATUAN BARANG", "JUMLAH TERJUAL", "TOTAL PEMASUKAN"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -192,11 +173,11 @@ public class ProdukView extends javax.swing.JDialog {
     private void pencarianProdukKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyReleased
         String key = pencarianProduk.getText();
         String where = "WHERE "
-                + "kode_produk LIKE '%" + key + "%' OR "
-                + "nama_produk LIKE '%" + key + "%' OR "
-                + "kategori LIKE '%" + key + "%' OR "
-                + "harga_jual LIKE '%" + key + "%' OR "
-                + "";
+        + "kode_produk LIKE '%" + key + "%' OR "
+        + "nama_produk LIKE '%" + key + "%' OR "
+        + "kategori LIKE '%" + key + "%' OR "
+        + "harga_jual LIKE '%" + key + "%' OR "
+        + "";
     }//GEN-LAST:event_pencarianProdukKeyReleased
 
     private void pencarianProdukKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyTyped
@@ -210,10 +191,6 @@ public class ProdukView extends javax.swing.JDialog {
         + "harga_beli LIKE ? OR "
         + "stok LIKE ?";
 
-        
-        
-        
-        
     }//GEN-LAST:event_pencarianProdukKeyTyped
 
     /**
@@ -233,20 +210,20 @@ public class ProdukView extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProdukView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LaporanKeuangan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProdukView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LaporanKeuangan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProdukView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LaporanKeuangan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProdukView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LaporanKeuangan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ProdukView dialog = new ProdukView(new javax.swing.JFrame(), true);
+                LaporanKeuangan dialog = new LaporanKeuangan(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -267,60 +244,4 @@ public class ProdukView extends javax.swing.JDialog {
     private javax.swing.JTextField pencarianProduk;
     private javax.swing.JTable tbl_produk;
     // End of variables declaration//GEN-END:variables
-
-public static void viewdataProduk(String where) {
-        try {
-
-            for (int i = prd.getRowCount()-1; i >=0; i--) {
-                prd.removeRow(i);
-            }
-
-            Connection K = konektor.connect.Go();
-            Statement S = K.createStatement();
-            String Q = "SELECT * FROM products " + where;
-//            System.out.println(Q);
-            ResultSet R = S.executeQuery(Q);
-            int no = 1;
-            while (R.next()) {
-                int ID = R.getInt("ID_produk");
-                String kode_produk = R.getString("kode_produk");
-                String nama_produk = R.getString("nama_produk");
-                String kategori = R.getString("kategori");
-                String harga_jual = R.getString("harga_jual");
-                String harga_beli = R.getString("harga_beli");
-                String stok = R.getString("stok");
-
-                Object[] P = {no, ID, kode_produk, nama_produk, kategori, harga_jual, harga_beli, stok};
-                prd.addRow(P);
-
-                no++;
-            }
-        } catch (SQLException e) {
-
-        }
-    }
-    
-    
-    private void settingTableProduk() {
-        prd = (DefaultTableModel) tbl_produk.getModel();        
-        tbl_produk.getColumnModel().getColumn(0).setMinWidth(50);
-        tbl_produk.getColumnModel().getColumn(0).setMaxWidth(70);
-
-        tbl_produk.getColumnModel().getColumn(1).setMinWidth(0);
-        tbl_produk.getColumnModel().getColumn(1).setMaxWidth(0);
-
-        tbl_produk.getColumnModel().getColumn(2).setMinWidth(350);
-        tbl_produk.getColumnModel().getColumn(2).setMaxWidth(500);
-        
-        tbl_produk.getColumnModel().getColumn(3).setMinWidth(350);
-        tbl_produk.getColumnModel().getColumn(3).setMaxWidth(500);
-        
-        tbl_produk.getColumnModel().getColumn(4).setMinWidth(350);
-        tbl_produk.getColumnModel().getColumn(4).setMaxWidth(500);
-        
-        tbl_produk.getColumnModel().getColumn(5).setMinWidth(350);
-        tbl_produk.getColumnModel().getColumn(5).setMaxWidth(500);
-    }
-
-
 }
