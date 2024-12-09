@@ -398,9 +398,6 @@
                   </Border>
                 </Property>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="JUMLAH PEMBELIAN"/>
-              </AccessibilityProperties>
             </Component>
           </SubComponents>
         </Container>
@@ -699,7 +696,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="PRINT TRANSAKSI"/>
+                <Property name="text" type="java.lang.String" value="DATA TRANSAKSI"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>

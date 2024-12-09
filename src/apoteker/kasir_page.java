@@ -292,8 +292,6 @@ public class kasir_page extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txtJumlahPembelian.getAccessibleContext().setAccessibleName("JUMLAH PEMBELIAN");
-
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
@@ -397,7 +395,7 @@ public class kasir_page extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 204, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("PRINT TRANSAKSI");
+        jButton1.setText("DATA TRANSAKSI");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -559,6 +557,7 @@ public class kasir_page extends javax.swing.JFrame {
                     UangDiterima();
                 }
             });
+            
 
             String kode = txtKodeProduct.getText();
             Connection K = connect.Go();
