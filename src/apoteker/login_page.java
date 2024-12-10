@@ -4,6 +4,7 @@
  */
 package apoteker;
 
+import home.Dashboard;
 import home.home_page;
 import konektor.connect;
 import konektor.Profile;
@@ -301,7 +302,7 @@ public class login_page extends javax.swing.JFrame {
                         O.setVisible(true);
                     }
                     case "OWNER" -> {
-                        home_page O = new home_page(P);
+                        Dashboard O = new Dashboard(P);
                         O.setExtendedState(Frame.MAXIMIZED_BOTH);
                         this.setVisible(false);
                         O.setVisible(true);

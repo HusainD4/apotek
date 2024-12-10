@@ -21,21 +21,13 @@ public class History_Keranjang extends javax.swing.JDialog {
     /**
      * Creates new form History_Keranjang
      */
-    ProfileHistoryKeranjang ppp;
     static DefaultTableModel HK;
-
     public History_Keranjang(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         viewdataHK("");
         settingTableHistoryKeranjang();
 
-    }
-
-    public History_Keranjang(ProfileHistoryKeranjang ppp) {
-        initComponents();
-        settingTableHistoryKeranjang();
-        viewdataHK("");
     }
 
     /**
