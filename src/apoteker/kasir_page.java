@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package apoteker;
+
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,16 +20,10 @@ import javax.swing.table.DefaultTableModel;
 import konektor.connect;
 import static manage_table.manage_produk.viewdataProduk;
 
-
-
-
-
 /**
  *
  * @author HUSAIN
  */
-
-
 public class kasir_page extends javax.swing.JFrame {
 
     Profile p;
@@ -47,12 +42,6 @@ public class kasir_page extends javax.swing.JFrame {
         this.p = P;
         label_user.setText(p.getFullname().toUpperCase());
     }
-
-
- 
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,7 +77,7 @@ public class kasir_page extends javax.swing.JFrame {
         tblKasir = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         txtTotalBeli = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtPPN = new javax.swing.JTextField();
         txtUangBayar = new javax.swing.JTextField();
         txtUangKembali = new javax.swing.JTextField();
         txtJumlahSeluruh = new javax.swing.JTextField();
@@ -307,7 +296,7 @@ public class kasir_page extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NO", "ID KERANJANG", "KODE PRODUK", "NAMA PRODUK", "HARGA SATUAN", "BANYAK PRODUK", "TOTAL"
+                "NO", "KODE PRODUK", "NAMA PRODUK", "HARGA SATUAN", "BANYAK PRODUK", "TOTAL"
             }
         ));
         tblKasir.setRowHeight(40);
@@ -325,10 +314,10 @@ public class kasir_page extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder("PPN"));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtPPN.setBorder(javax.swing.BorderFactory.createTitledBorder("PPN"));
+        txtPPN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtPPNActionPerformed(evt);
             }
         });
 
@@ -336,6 +325,11 @@ public class kasir_page extends javax.swing.JFrame {
         txtUangBayar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUangBayarActionPerformed(evt);
+            }
+        });
+        txtUangBayar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUangBayarKeyReleased(evt);
             }
         });
 
@@ -357,6 +351,11 @@ public class kasir_page extends javax.swing.JFrame {
         btnCO.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnCO.setForeground(new java.awt.Color(255, 255, 255));
         btnCO.setText("CHECKOUT");
+        btnCO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCOActionPerformed(evt);
+            }
+        });
 
         jPanel5.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -402,7 +401,7 @@ public class kasir_page extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 204, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("DATA TRANSAKSI");
+        jButton1.setText("HISTORY CHART");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -422,7 +421,7 @@ public class kasir_page extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtUangBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPPN, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtUangKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -445,7 +444,7 @@ public class kasir_page extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtUangKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPPN, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtJumlahSeluruh, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
@@ -495,16 +494,18 @@ public class kasir_page extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exitMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        PreviewTabelPage.History_Keranjang HK = new PreviewTabelPage.History_Keranjang(this, true);
+        HK.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        HK.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtTotalBeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalBeliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalBeliActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtPPNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPPNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtPPNActionPerformed
 
     private void txtUangBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUangBayarActionPerformed
         // TODO add your handling code here:
@@ -519,138 +520,64 @@ public class kasir_page extends javax.swing.JFrame {
     }//GEN-LAST:event_txtJumlahSeluruhActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        PreviewTabelPage.ProdukView PV = new PreviewTabelPage.ProdukView(this,true);
+        PreviewTabelPage.ProdukView PV = new PreviewTabelPage.ProdukView(this, true);
         PV.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         PV.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void Delete_ProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete_ProductActionPerformed
-        int n = tblKasir.getSelectedRow();
-        if (n != -1) {
+        int n = tblKasir.getSelectedRow(); // Ambil indeks baris yang dipilih
+
+        if (n != -1) { // Periksa apakah ada baris yang dipilih
+            // Ambil nilai ID Produk dan Nama Produk dari tabel
             int id_produk = Integer.parseInt(tblKasir.getValueAt(n, 1).toString());
             String nama_produk = tblKasir.getValueAt(n, 2).toString();
 
+            // Konfirmasi penghapusan
             int opsi = JOptionPane.showConfirmDialog(this,
                     "Apakah Anda yakin ingin menghapus data produk " + nama_produk + "?",
                     "Hapus Data",
                     JOptionPane.YES_NO_OPTION);
-            if (opsi == 0) {
-                String Q = "DELETE FROM keranjang "
-                        + "WHERE ID_keranjang=" + id_produk;
+            if (opsi == JOptionPane.YES_OPTION) {
+                String Q = "DELETE FROM keranjang WHERE kode_produk = ?";
 
-                try {
-                    Connection K = konektor.connect.Go();
-                    Statement S = K.createStatement();
-                    S.executeUpdate(Q);
-                    viewdataProduk("");
-                    JOptionPane.showMessageDialog(this, "Data " + nama_produk + " telah terhapus");
+                try (Connection K = konektor.connect.Go(); // Koneksi database
+                         PreparedStatement ps = K.prepareStatement(Q)) {
+                    ps.setInt(1, id_produk); // Set parameter ID Produk
+                    ps.executeUpdate(); // Eksekusi query
+
+                    // Refresh tabel dan tampilkan pesan berhasil
+                    viewdataProduk(""); // Pastikan ini adalah metode untuk memuat ulang data tabel
+                    JOptionPane.showMessageDialog(this, "Data " + nama_produk + " telah terhapus.");
                 } catch (SQLException e) {
+                    // Tangani kesalahan SQL
+                    JOptionPane.showMessageDialog(this,
+                            "Gagal menghapus data: " + e.getMessage(),
+                            "Kesalahan",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
-
         } else {
-            JOptionPane.showMessageDialog(this, "Anda belum memilih data");
+            // Jika tidak ada baris yang dipilih
+            JOptionPane.showMessageDialog(this, "Anda belum memilih data.");
         }
     }//GEN-LAST:event_Delete_ProductActionPerformed
 
     private void txtAdd_productActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdd_productActionPerformed
         try {
-            DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
-
-            // Menambahkan listener untuk update otomatis total harga
-            model.addTableModelListener((TableModelEvent e) -> {
-                updateTotalHarga();
-                updateJumlahProduk();
-            });
-
-            String kode = txtKodeProduct.getText();
-            if (kode.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Kode produk tidak boleh kosong!", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+            // Cek apakah txtJumlahProdukBeli diisi
+            if (txtJumlahProdukBeli.getText().trim().isEmpty()) {
+                // Tampilkan pesan jika belum diisi
+                JOptionPane.showMessageDialog(null, "Maaf, isikan jumlah produk!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            } else {
+                // Jika sudah diisi, panggil AddPrd()
+                AddPrd();
             }
-
-            Connection K = connect.Go();
-            String Q = "SELECT * FROM products WHERE kode_produk = ?";
-            try (PreparedStatement P = K.prepareStatement(Q)) {
-                P.setString(1, kode);
-                try (ResultSet R = P.executeQuery()) {
-                    if (R.next()) {
-                        int id = R.getInt("ID_produk");
-                        int KodeProduk = R.getInt("kode_produk");
-                        String nama = R.getString("nama_produk");
-                        int harga = R.getInt("harga_jual");
-
-                        // Mengecek apakah produk sudah ada di keranjang
-                        int rowCount = tblKasir.getRowCount();
-                        boolean ada = false;
-                        int baris = -1;
-                        int qty = 1;
-
-                        for (int i = 0; i < rowCount; i++) {
-                            int id_produk = Integer.parseInt(tblKasir.getValueAt(i, 1).toString());
-                            if (id_produk == id) {
-                                ada = true;
-                                baris = i;
-                                qty = Integer.parseInt(tblKasir.getValueAt(i, 4).toString()) + 1; // Kolom qty
-                                break;
-                            }
-                        }
-
-                        if (ada) {
-                            tblKasir.setValueAt(qty, baris, 4); // Kolom qty
-                            tblKasir.setValueAt(harga, baris, 5);
-                            tblKasir.setValueAt(harga * qty, baris, 6); // Kolom total
-                        } else {
-                            Object[] data = {
-                                model.getRowCount() + 1, // Nomor
-                                id, // ID produk
-                                KodeProduk, // Kode produk
-                                nama, // Nama produk
-                                qty, // Jumlah produk (Qty)
-                                harga * qty // Total harga
-                            };
-                            model.addRow(data);
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Produk tidak ditemukan!", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            }
-
-            // Update total harga dan jumlah produk
-            updateTotalHarga();
-            updateJumlahProduk();
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Terjadi kesalahan database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Data tidak valid: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-//// Method untuk menghitung total harga dan menampilkannya di txtTotalBeli
-    private void updateTotalHarga() {
-        int rowCount = tblKasir.getRowCount();
-        int totalHarga = 0;
-
-        for (int i = 0; i < rowCount; i++) {
-            totalHarga += Integer.parseInt(tblKasir.getValueAt(i, 5).toString()); // Kolom total
+        } catch (Exception e) {
+            e.printStackTrace(); // Menampilkan log kesalahan (opsional)
         }
 
-        txtTotalBeli.setText(String.valueOf(totalHarga));
-    }
 
-// Method untuk menghitung jumlah produk yang dibeli dan menampilkannya di txtJumlahSeluruh
-    private void updateJumlahProduk() {
-        int rowCount = tblKasir.getRowCount();
-        int totalProduk = 0;
-
-        for (int i = 0; i < rowCount; i++) {
-            totalProduk += Integer.parseInt(tblKasir.getValueAt(i, 4).toString()); // Kolom qty
-        }
-
-        txtJumlahSeluruh.setText(String.valueOf(totalProduk));
-        txtJumlahProdukBeli.setText(String.valueOf(totalProduk)); // Mengisi jumlah produk di input field 
     }//GEN-LAST:event_txtAdd_productActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -666,7 +593,7 @@ public class kasir_page extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        PreviewTabelPage.LaporanKeuangan LK = new PreviewTabelPage.LaporanKeuangan(this,true);
+        PreviewTabelPage.LaporanKeuangan LK = new PreviewTabelPage.LaporanKeuangan(this, true);
         LK.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         LK.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -678,6 +605,64 @@ public class kasir_page extends javax.swing.JFrame {
     private void txtJumlahProdukBeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJumlahProdukBeliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtJumlahProdukBeliActionPerformed
+
+    private void txtUangBayarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUangBayarKeyReleased
+        double jumlahSeluruh = Double.parseDouble(txtJumlahSeluruh.getText());
+        double uangBayar = Double.parseDouble(txtUangBayar.getText().isEmpty() ? "0" : txtUangBayar.getText());
+
+        if (uangBayar >= jumlahSeluruh) {
+            btnCO.setEnabled(true);
+            double uangKembali = uangBayar - jumlahSeluruh;
+            txtUangKembali.setText(String.valueOf(uangKembali));
+        } else {
+            btnCO.setEnabled(false);
+            txtUangKembali.setText("0");
+        }
+    }//GEN-LAST:event_txtUangBayarKeyReleased
+
+    private void btnCOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCOActionPerformed
+        try (Connection conn = konektor.connect.Go()) {
+            DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
+
+            // Iterasi melalui setiap baris pada tabel
+            for (int i = 0; i < model.getRowCount(); i++) {
+                int kodeProduk = Integer.parseInt(model.getValueAt(i, 1).toString());
+                String namaProduk = model.getValueAt(i, 2).toString();
+                double hargaSatuan = Double.parseDouble(model.getValueAt(i, 3).toString());
+                int banyakProduk = Integer.parseInt(model.getValueAt(i, 4).toString());
+                double totalBelanja = Double.parseDouble(model.getValueAt(i, 5).toString());
+
+                // Query untuk menyimpan data ke tabel `chart`
+                String query = "INSERT INTO cart (kode_produk, nama_produk, harga_satuan, banyak_produk, total_belanja) "
+                        + "VALUES (?, ?, ?, ?, ?)";
+                try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                    stmt.setInt(1, kodeProduk);
+                    stmt.setString(2, namaProduk);
+                    stmt.setDouble(3, hargaSatuan);
+                    stmt.setInt(4, banyakProduk);
+                    stmt.setDouble(5, totalBelanja);
+                    stmt.executeUpdate();
+                }
+            }
+
+            // Tampilkan pesan sukses
+            JOptionPane.showMessageDialog(this, "Checkout berhasil!");
+
+            // Bersihkan tabel dan reset form
+            model.setRowCount(0);
+            txtTotalBeli.setText("");
+            txtPPN.setText("");
+            txtJumlahSeluruh.setText("");
+            txtUangBayar.setText("");
+            txtUangKembali.setText("");
+            btnCO.setEnabled(false);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Gagal menyimpan data ke database: " + e.getMessage(),
+                    "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnCOActionPerformed
 
     /**
      * @param args the command line arguments
@@ -739,7 +724,6 @@ public class kasir_page extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel label_halo;
     private javax.swing.JLabel label_user;
     private javax.swing.JLabel lblDate;
@@ -748,6 +732,7 @@ public class kasir_page extends javax.swing.JFrame {
     private javax.swing.JTextField txtJumlahProdukBeli;
     private javax.swing.JTextField txtJumlahSeluruh;
     private javax.swing.JTextField txtKodeProduct;
+    private javax.swing.JTextField txtPPN;
     private javax.swing.JTextField txtTotalBeli;
     private javax.swing.JTextField txtUangBayar;
     private javax.swing.JTextField txtUangKembali;
@@ -774,8 +759,42 @@ public class kasir_page extends javax.swing.JFrame {
         tblKasir.getColumnModel().getColumn(5).setMaxWidth(500);
     }
 
-    
-    
+    private void AddPrd() {
+        String kodeProduk = txtKodeProduct.getText();
+        int jumlahProduk = Integer.parseInt(txtJumlahProdukBeli.getText());
+
+        try (Connection conn = konektor.connect.Go()) {
+            String query = "SELECT * FROM products WHERE kode_produk = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, kodeProduk);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String namaProduk = rs.getString("nama_produk");
+                double hargaSatuan = rs.getDouble("harga_satuan");
+                double total = hargaSatuan * jumlahProduk;
+
+                // Tambahkan ke JTable tbKasir
+                DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
+                model.addRow(new Object[]{model.getRowCount() + 1, kodeProduk, namaProduk, hargaSatuan, jumlahProduk, total});
+
+                // Update Total
+                double totalBelanja = Double.parseDouble(txtTotalBeli.getText().isEmpty() ? "0" : txtTotalBeli.getText());
+                totalBelanja += total;
+                double ppn = totalBelanja * 0.05;
+                double jumlahSeluruh = totalBelanja + ppn;
+
+                txtTotalBeli.setText(String.valueOf(totalBelanja));
+                txtPPN.setText(String.valueOf(ppn));
+                txtJumlahSeluruh.setText(String.valueOf(jumlahSeluruh));
+            } else {
+                JOptionPane.showMessageDialog(this, "Produk tidak ditemukan!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 //   private void updateTotalHarga() {
 //    try {
 //        double total = 0;
@@ -794,47 +813,44 @@ public class kasir_page extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(this, "Kesalahan format angka: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 //    }
 //}
-
-private void DelItem() {
-    int selectedRow = tblKasir.getSelectedRow();
-    if (selectedRow != -1) {
-        DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
-        model.removeRow(selectedRow); // Menghapus baris yang dipilih
-
-        // Update total harga dan komponen lainnya setelah penghapusan
-        updateTotalHarga();
-        UangDiterima();
-    } else {
-        JOptionPane.showMessageDialog(this, "Anda belum memilih data untuk dihapus!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-    }
-}
-
-private void UangDiterima() {
-    try {
-        // Ambil total harga
-        String lbl = txtTotalBeli.getText().replace("Rp ", "").replace(",", "").trim(); // Menghapus format "Rp" dan koma
-        long totalHarga = Long.parseLong(lbl);
-
-        // Ambil jumlah uang yang dibayarkan
-        String bayar = txtUangBayar.getText().trim();
-        if (!bayar.isEmpty()) {
-            long uangBayar = Long.parseLong(bayar);
-            long uangKembali = uangBayar - totalHarga;
-
-            txtUangKembali.setText("Rp " + String.format("%,d", uangKembali)); // Format uang kembalian sebagai rupiah
-
-            // Atur tombol checkout
-            btnCO.setEnabled(uangBayar >= totalHarga);
-        } else {
-            txtUangKembali.setText("Rp 0");
-            btnCO.setEnabled(false); // Matikan tombol jika uang bayar kosong
-        }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Kesalahan format angka pada input pembayaran: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        txtUangKembali.setText("Rp 0");
-        btnCO.setEnabled(false);
-    }
-}
-
-
+//    private void DelItem() {
+//        int selectedRow = tblKasir.getSelectedRow();
+//        if (selectedRow != -1) {
+//            DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
+//            model.removeRow(selectedRow); // Menghapus baris yang dipilih
+//
+//            // Update total harga dan komponen lainnya setelah penghapusan
+//            updateTotalHarga();
+//            UangDiterima();
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Anda belum memilih data untuk dihapus!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+//        }
+//    }
+//
+//    private void UangDiterima() {
+//        try {
+//            // Ambil total harga
+//            String lbl = txtTotalBeli.getText().replace("Rp ", "").replace(",", "").trim(); // Menghapus format "Rp" dan koma
+//            long totalHarga = Long.parseLong(lbl);
+//
+//            // Ambil jumlah uang yang dibayarkan
+//            String bayar = txtUangBayar.getText().trim();
+//            if (!bayar.isEmpty()) {
+//                long uangBayar = Long.parseLong(bayar);
+//                long uangKembali = uangBayar - totalHarga;
+//
+//                txtUangKembali.setText("Rp " + String.format("%,d", uangKembali)); // Format uang kembalian sebagai rupiah
+//
+//                // Atur tombol checkout
+//                btnCO.setEnabled(uangBayar >= totalHarga);
+//            } else {
+//                txtUangKembali.setText("Rp 0");
+//                btnCO.setEnabled(false); // Matikan tombol jika uang bayar kosong
+//            }
+//        } catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog(this, "Kesalahan format angka pada input pembayaran: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//            txtUangKembali.setText("Rp 0");
+//            btnCO.setEnabled(false);
+//        }
+//    }
 }

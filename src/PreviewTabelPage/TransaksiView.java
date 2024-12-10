@@ -159,7 +159,7 @@ public class TransaksiView extends javax.swing.JDialog {
     private javax.swing.JLabel label_kembali;
     private javax.swing.JTable tbl_transaksi;
     // End of variables declaration//GEN-END:variables
-   public static void viewdataTransaksi(String where) {
+    public static void viewdataTransaksi(String where) {
         try {
 
             for (int i = trs.getRowCount() - 1; i >= 0; i--) {

@@ -425,9 +425,8 @@
                 <Component class="javax.swing.JTable" name="tblKasir">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="7" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
                         <Column editable="true" title="NO" type="java.lang.Object"/>
-                        <Column editable="true" title="ID KERANJANG" type="java.lang.Object"/>
                         <Column editable="true" title="KODE PRODUK" type="java.lang.Object"/>
                         <Column editable="true" title="NAMA PRODUK" type="java.lang.Object"/>
                         <Column editable="true" title="HARGA SATUAN" type="java.lang.Object"/>
@@ -502,7 +501,7 @@
                               <Component id="txtUangBayar" min="-2" pref="256" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jTextField5" min="-2" pref="256" max="-2" attributes="0"/>
+                              <Component id="txtPPN" min="-2" pref="256" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtUangKembali" min="-2" pref="256" max="-2" attributes="0"/>
                           </Group>
@@ -531,7 +530,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtUangKembali" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                                  <Component id="txtPPN" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -563,7 +562,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTotalBeliActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="txtPPN">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -572,7 +571,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPPNActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtUangBayar">
@@ -585,6 +584,7 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUangBayarActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUangBayarKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtUangKembali">
@@ -624,6 +624,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="CHECKOUT"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCOActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel5">
               <Properties>
@@ -699,7 +702,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="DATA TRANSAKSI"/>
+                <Property name="text" type="java.lang.String" value="HISTORY CHART"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
