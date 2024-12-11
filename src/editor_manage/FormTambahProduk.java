@@ -45,12 +45,12 @@ public class FormTambahProduk extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         txtKodeP = new javax.swing.JTextField();
         txtNamaP = new javax.swing.JTextField();
-        txtKategori = new javax.swing.JTextField();
         txtHargaSatuan = new javax.swing.JTextField();
         txtStok = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        ComboKategori = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -129,6 +129,8 @@ public class FormTambahProduk extends javax.swing.JDialog {
             }
         });
 
+        ComboKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Obat Khusus", "Obat Bebas", "Vitamin dan Suplemen", "Antibiotik", "Antiinflamasi", "Antipiretik", "Antihistamin", "Obat Maag dan Asam Lambung", "Obat Batuk dan Pilek", "Obat Herbal" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -152,9 +154,9 @@ public class FormTambahProduk extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtKodeP)
                             .addComponent(txtNamaP)
-                            .addComponent(txtKategori)
                             .addComponent(txtHargaSatuan)
-                            .addComponent(txtStok)))
+                            .addComponent(txtStok)
+                            .addComponent(ComboKategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 194, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,8 +181,8 @@ public class FormTambahProduk extends javax.swing.JDialog {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtKategori, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(ComboKategori))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtHargaSatuan, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
@@ -236,33 +238,47 @@ public class FormTambahProduk extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int kode_produk = Integer.parseInt(txtKodeP.getText());
         String nama_produk = txtNamaP.getText();
-        String kategori = txtKategori.getText();
+
+// Menggunakan getSelectedItem() untuk mendapatkan kategori yang dipilih
+        String kategori = ComboKategori.getSelectedItem().toString();
+
         double harga_satuan = Double.parseDouble(txtHargaSatuan.getText());
         int stok = Integer.parseInt(txtStok.getText());
+
+// Query untuk memasukkan data ke dalam tabel products
         String Q = "INSERT INTO products ("
-                + "kode_produk,"
-                + "nama_produk,"
-                + "kategori,"
-                + "harga_satuan,"
-                + "stok)VALUES(?,?,?,?,?)";
+                + "kode_produk, "
+                + "nama_produk, "
+                + "kategori, "
+                + "harga_satuan, "
+                + "stok) VALUES (?, ?, ?, ?, ?)";
+
         try {
+            // Membuka koneksi ke database
             Connection K = connect.Go();
             if (K == null) {
                 JOptionPane.showMessageDialog(this, "Koneksi database gagal!");
                 return;
             }
 
+            // Menyiapkan statement untuk query
             PreparedStatement PR = K.prepareStatement(Q);
             PR.setInt(1, kode_produk);
             PR.setString(2, nama_produk);
-            PR.setString(3, kategori);
+            PR.setString(3, kategori);  // Menyimpan kategori yang dipilih dari JComboBox
             PR.setDouble(4, harga_satuan);
             PR.setInt(5, stok);
+
+            // Menjalankan query untuk memasukkan data
             PR.executeUpdate();
 
+            // Memperbarui tampilan data produk
             manage_table.manage_produk.viewdataProduk("");
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+
+            // Mengatur fokus pada kolom Nama Produk setelah berhasil menyimpan
             txtNamaP.requestFocus();
+
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
@@ -333,6 +349,7 @@ public class FormTambahProduk extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboKategori;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -346,7 +363,6 @@ public class FormTambahProduk extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField txtHargaSatuan;
-    private javax.swing.JTextField txtKategori;
     private javax.swing.JTextField txtKodeP;
     private javax.swing.JTextField txtNamaP;
     private javax.swing.JTextField txtStok;
@@ -357,6 +373,5 @@ public class FormTambahProduk extends javax.swing.JDialog {
             evt.consume();
         }
     }
-
 
 }

@@ -95,9 +95,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtKodeP" max="32767" attributes="0"/>
                                   <Component id="txtNamaP" max="32767" attributes="0"/>
-                                  <Component id="txtKategori" max="32767" attributes="0"/>
                                   <Component id="txtHargaSatuan" max="32767" attributes="0"/>
                                   <Component id="txtStok" max="32767" attributes="0"/>
+                                  <Component id="ComboKategori" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -130,8 +130,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtKategori" pref="37" max="32767" attributes="0"/>
-                          <Component id="jLabel4" max="32767" attributes="0"/>
+                          <Component id="jLabel4" pref="37" max="32767" attributes="0"/>
+                          <Component id="ComboKategori" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -238,8 +238,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtNamaP">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtKategori">
-            </Component>
             <Component class="javax.swing.JTextField" name="txtHargaSatuan">
               <Events>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtHargaSatuanKeyTyped"/>
@@ -292,6 +290,27 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="ComboKategori">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="10">
+                    <StringItem index="0" value="Obat Khusus"/>
+                    <StringItem index="1" value="Obat Bebas"/>
+                    <StringItem index="2" value="Vitamin dan Suplemen"/>
+                    <StringItem index="3" value="Antibiotik"/>
+                    <StringItem index="4" value="Antiinflamasi"/>
+                    <StringItem index="5" value="Antipiretik"/>
+                    <StringItem index="6" value="Antihistamin"/>
+                    <StringItem index="7" value="Obat Maag dan Asam Lambung"/>
+                    <StringItem index="8" value="Obat Batuk dan Pilek"/>
+                    <StringItem index="9" value="Obat Herbal"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

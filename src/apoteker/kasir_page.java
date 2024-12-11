@@ -926,25 +926,25 @@ public class kasir_page extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAdd_productActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    // Format untuk tanggal
-    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-    String tanggalHariIni = sdf.format(new java.util.Date());
-    lblDate.setText(tanggalHariIni); // Set default tanggal
+        // Format untuk tanggal
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        String tanggalHariIni = sdf.format(new java.util.Date());
+        lblDate.setText(tanggalHariIni); // Set default tanggal
 
-    // Format untuk waktu
-    SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
-    
-    // Timer untuk update jam setiap detik
-    javax.swing.Timer timer = new javax.swing.Timer(1000, new java.awt.event.ActionListener() {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-            // Update waktu
-            String formattedTime = sdfTime.format(new java.util.Date());
-            labelJAM.setText(formattedTime); // Menampilkan jam di JLabel
-        }
-    });
-    
-    timer.start(); // Memulai timer untuk update setiap detik
+        // Format untuk waktu
+        SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
+
+        // Timer untuk update jam setiap detik
+        javax.swing.Timer timer = new javax.swing.Timer(1000, new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                // Update waktu
+                String formattedTime = sdfTime.format(new java.util.Date());
+                labelJAM.setText(formattedTime); // Menampilkan jam di JLabel
+            }
+        });
+
+        timer.start(); // Memulai timer untuk update setiap detik
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -973,25 +973,43 @@ public class kasir_page extends javax.swing.JFrame {
 
                 DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
 
-                // Insert each product into "cart" and update stock in "products"
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    String kodeProduk = model.getValueAt(i, 1).toString();
-                    int banyakProduk = Integer.parseInt(model.getValueAt(i, 4).toString());
-
-                }
+                // Insert each product into "cart"
+                String cartQuery = "INSERT INTO cart (kode_produk, nama_produk, harga_satuan, banyak_produk, total_belanja) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement cartPst = conn.prepareStatement(cartQuery);
 
                 // Insert transaction data into "transaksi"
                 String transaksiQuery = "INSERT INTO transaksi (tanggal_transaksi, kode_obat, jumlah_produk, harga_satuan, total_harga, uang_diterima, uang_kembali, nama_kasir) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement transaksiPst = conn.prepareStatement(transaksiQuery);
-                transaksiPst.setDate(1, new java.sql.Date(System.currentTimeMillis()));
-                transaksiPst.setString(2, model.getValueAt(0, 1).toString()); // Kode produk pertama
-                transaksiPst.setInt(3, Integer.parseInt(model.getValueAt(0, 4).toString()));
-                transaksiPst.setDouble(4, Double.parseDouble(model.getValueAt(0, 3).toString()));
-                transaksiPst.setDouble(5, jumlahSeluruh);
-                transaksiPst.setDouble(6, uangBayar);
-                transaksiPst.setDouble(7, uangKembali);
-                transaksiPst.setString(8, label_user.getText());
-                transaksiPst.executeUpdate();
+
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    String kodeProduk = model.getValueAt(i, 1).toString();
+                    String namaProduk = model.getValueAt(i, 2).toString();
+                    double hargaSatuan = Double.parseDouble(model.getValueAt(i, 3).toString());
+                    int banyakProduk = Integer.parseInt(model.getValueAt(i, 4).toString());
+                    double totalHarga = banyakProduk * hargaSatuan;
+
+                    // Insert data into "cart"
+                    cartPst.setString(1, kodeProduk);
+                    cartPst.setString(2, namaProduk);
+                    cartPst.setDouble(3, hargaSatuan);
+                    cartPst.setInt(4, banyakProduk);
+                    cartPst.setDouble(5, totalHarga);
+                    cartPst.addBatch();
+
+                    // Insert data into "transaksi"
+                    transaksiPst.setDate(1, new java.sql.Date(System.currentTimeMillis()));
+                    transaksiPst.setString(2, kodeProduk);
+                    transaksiPst.setInt(3, banyakProduk);
+                    transaksiPst.setDouble(4, hargaSatuan);
+                    transaksiPst.setDouble(5, totalHarga);
+                    transaksiPst.setDouble(6, uangBayar);
+                    transaksiPst.setDouble(7, uangKembali);
+                    transaksiPst.setString(8, label_user.getText());
+                    transaksiPst.addBatch(); // Add to batch for better performance
+                }
+
+                cartPst.executeBatch(); // Execute batch insert for "cart"
+                transaksiPst.executeBatch(); // Execute batch insert for "transaksi"
 
                 JOptionPane.showMessageDialog(this, "Transaction completed successfully!");
 

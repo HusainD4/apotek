@@ -10,11 +10,13 @@ import konektor.connect;
 import konektor.Profile;
 import java.awt.Frame;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class login_page extends javax.swing.JFrame {
 
@@ -33,6 +35,7 @@ public class login_page extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         icon_username = new javax.swing.JLabel();
         icon_password = new javax.swing.JLabel();
@@ -44,6 +47,8 @@ public class login_page extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         password = new javax.swing.JTextField();
         btn_login = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 500));
@@ -253,6 +258,7 @@ public class login_page extends javax.swing.JFrame {
     private javax.swing.JLabel icon_password;
     private javax.swing.JLabel icon_username;
     private javax.swing.JPanel image1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel login_apoteker;
@@ -302,7 +308,7 @@ public class login_page extends javax.swing.JFrame {
                         O.setVisible(true);
                     }
                     case "OWNER" -> {
-                        Dashboard O = new Dashboard(P);
+                        owner_page O = new owner_page(P);
                         O.setExtendedState(Frame.MAXIMIZED_BOTH);
                         this.setVisible(false);
                         O.setVisible(true);
