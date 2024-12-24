@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import konektor.ProfileHistoryKeranjang;
 import konektor.connect; // Pastikan ini sesuai dengan implementasi Anda
 
@@ -21,13 +22,20 @@ public class History_Keranjang extends javax.swing.JDialog {
     /**
      * Creates new form History_Keranjang
      */
-    static DefaultTableModel HK;
+    static DefaultTableModel HK = new DefaultTableModel();
+
     public History_Keranjang(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        viewdataHK("");
-        settingTableHistoryKeranjang();
 
+        // Initialize the table model if not already done in initComponents
+        if (HK == null) {
+            HK = new DefaultTableModel();
+        }
+
+        // Populate and configure the table
+        settingTableHistoryKeranjang();
+        viewdataHK("");
     }
 
     /**
@@ -48,6 +56,7 @@ public class History_Keranjang extends javax.swing.JDialog {
         tbl_HistoryKeranjang = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -113,7 +122,7 @@ public class History_Keranjang extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 977, Short.MAX_VALUE))
+                .addGap(0, 1290, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,6 +142,9 @@ public class History_Keranjang extends javax.swing.JDialog {
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tbl_HistoryKeranjang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,19 +268,23 @@ public class History_Keranjang extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     public static void viewdataHK(String where) {
         try {
-
+            // Clear the table before adding new data
             for (int i = HK.getRowCount() - 1; i >= 0; i--) {
                 HK.removeRow(i);
             }
 
+            // Establish database connection
             Connection K = konektor.connect.Go();
             Statement S = K.createStatement();
-            // Construct SQL query
 
+            // Construct SQL query (Using prepared statements to avoid SQL injection)
             String Q = "SELECT * FROM cart " + where;
-//            System.out.println(Q);
+
+            // Execute query
             ResultSet R = S.executeQuery(Q);
             int no = 1;
+
+            // Iterate over the result set and add rows to the table
             while (R.next()) {
                 int ID_K = R.getInt("ID_keranjang");
                 String KD = R.getString("kode_produk");
@@ -277,41 +293,45 @@ public class History_Keranjang extends javax.swing.JDialog {
                 String BP = R.getString("banyak_produk");
                 String TB = R.getString("total_belanja");
 
+                // Add a new row to the table model
                 Object[] HKR = {no, ID_K, KD, NP, HS, BP, TB};
                 HK.addRow(HKR);
                 no++;
             }
+
+            // Close resources
             R.close();
             S.close();
             K.close();
         } catch (SQLException e) {
+            // Handle SQL exceptions properly (show an error message instead of just printing stack trace)
+            JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
-
         }
     }
 
     private void settingTableHistoryKeranjang() {
         HK = (DefaultTableModel) tbl_HistoryKeranjang.getModel();
+
+        // Set column widths for a consistent table layout  
         tbl_HistoryKeranjang.getColumnModel().getColumn(0).setMinWidth(50);
         tbl_HistoryKeranjang.getColumnModel().getColumn(0).setMaxWidth(70);
 
         tbl_HistoryKeranjang.getColumnModel().getColumn(1).setMinWidth(0);
         tbl_HistoryKeranjang.getColumnModel().getColumn(1).setMaxWidth(0);
 
-        tbl_HistoryKeranjang.getColumnModel().getColumn(2).setMinWidth(140);
-        tbl_HistoryKeranjang.getColumnModel().getColumn(2).setMaxWidth(140);
-
-        tbl_HistoryKeranjang.getColumnModel().getColumn(3).setMinWidth(120);
-        tbl_HistoryKeranjang.getColumnModel().getColumn(3).setMaxWidth(120);
-
-        tbl_HistoryKeranjang.getColumnModel().getColumn(4).setMinWidth(120);
-        tbl_HistoryKeranjang.getColumnModel().getColumn(4).setMaxWidth(120);
-
-        tbl_HistoryKeranjang.getColumnModel().getColumn(5).setMinWidth(140);
-        tbl_HistoryKeranjang.getColumnModel().getColumn(5).setMaxWidth(140);
-
-        tbl_HistoryKeranjang.getColumnModel().getColumn(6).setMinWidth(140);
-        tbl_HistoryKeranjang.getColumnModel().getColumn(6).setMaxWidth(140);
+        tbl_HistoryKeranjang.getColumnModel().getColumn(2).setMinWidth(350);
+        tbl_HistoryKeranjang.getColumnModel().getColumn(2).setMaxWidth(500);
+        
+        tbl_HistoryKeranjang.getColumnModel().getColumn(3).setMinWidth(350);
+        tbl_HistoryKeranjang.getColumnModel().getColumn(3).setMaxWidth(500);
+        
+        tbl_HistoryKeranjang.getColumnModel().getColumn(4).setMinWidth(350);
+        tbl_HistoryKeranjang.getColumnModel().getColumn(4).setMaxWidth(500);
+        
+        tbl_HistoryKeranjang.getColumnModel().getColumn(5).setMinWidth(350);
+        tbl_HistoryKeranjang.getColumnModel().getColumn(5).setMaxWidth(500);
     }
+
 
 }

@@ -17,21 +17,21 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
-import konektor.ProfileTransaksi;
+import konektor.ProfileTransaksiDetail;
 
 /**
  *
  * @author HUSAIN
  */
-public class manage_transaksi extends javax.swing.JFrame {
+public class manage_transaksi_detail extends javax.swing.JFrame {
 
     /**
      * Creates new form manage_transaksi
      */
-    ProfileTransaksi TR;
+    ProfileTransaksiDetail TR;
     static DefaultTableModel trs;
 
-    public manage_transaksi() {
+    public manage_transaksi_detail() {
         initComponents();
         settingTableTransaksi();
         viewdataTransaksi("");
@@ -161,6 +161,9 @@ public class manage_transaksi extends javax.swing.JFrame {
         getContentPane().add(atas_transaksi, java.awt.BorderLayout.PAGE_START);
 
         tengah_transaksi.setBackground(new java.awt.Color(0, 102, 102));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tbl_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -327,19 +330,20 @@ public class manage_transaksi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(manage_transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(manage_transaksi_detail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(manage_transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(manage_transaksi_detail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(manage_transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(manage_transaksi_detail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(manage_transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(manage_transaksi_detail.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            manage_transaksi MT = new manage_transaksi();
+            manage_transaksi_detail MT = new manage_transaksi_detail();
             MT.setExtendedState(Frame.MAXIMIZED_BOTH);
             //L.setAlwaysOnTop(true); 
             MT.setVisible(true);

@@ -1,16 +1,11 @@
 package konektor;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.sql.*;
-
-public class ProfileTransaksi {
+public class ProfileTransaksiDetail {
 
     // Kelas Transaksi
     public static class Transaksi {
 
-        private int ID_transaksi;
-        private int ID_user;
+        private int ID_transaksi_detail;
         private String tanggal_pembelian;
         private double total_harga;
         private double uang_diterima;
@@ -18,20 +13,11 @@ public class ProfileTransaksi {
 
         // Getter dan Setter untuk ID_transaksi
         public int getIdTransaksi() {
-            return ID_transaksi;
+            return ID_transaksi_detail;
         }
 
         public void setIdTransaksi(int ID_Transaksi) {
-            this.ID_transaksi = ID_Transaksi;
-        }
-
-        // Getter dan Setter untuk ID_user
-        public int getIdUser() {
-            return ID_user;
-        }
-
-        public void setIdUser(int ID_user) {
-            this.ID_user = ID_user;
+            this.ID_transaksi_detail = ID_Transaksi;
         }
 
         // Getter dan Setter untuk Tanggal_Pembelian

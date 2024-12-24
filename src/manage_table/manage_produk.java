@@ -167,6 +167,9 @@ public class manage_produk extends javax.swing.JFrame {
 
         tengah_transaksi.setBackground(new java.awt.Color(0, 102, 102));
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         tbl_produk.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_produk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

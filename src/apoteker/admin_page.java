@@ -593,6 +593,9 @@ public class admin_page extends javax.swing.JFrame {
         setUndecorated(true);
 
         jScrollPane1.setBackground(new java.awt.Color(0, 153, 153));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setToolTipText("");
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -731,6 +734,10 @@ public class admin_page extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
+        jtb_U.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jtb_U.setToolTipText("");
+        jtb_U.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         jtb_user.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -795,6 +802,9 @@ public class admin_page extends javax.swing.JFrame {
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
+        PRO.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        PRO.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         jtb_produk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -858,7 +868,7 @@ public class admin_page extends javax.swing.JFrame {
         });
 
         jButton9.setBackground(new java.awt.Color(255, 204, 51));
-        jButton9.setText("PREVIEW");
+        jButton9.setText("CEK");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -866,6 +876,9 @@ public class admin_page extends javax.swing.JFrame {
         });
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tbl_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -914,7 +927,7 @@ public class admin_page extends javax.swing.JFrame {
         );
 
         jButton10.setBackground(new java.awt.Color(255, 153, 0));
-        jButton10.setText("EDIT");
+        jButton10.setText("VIEW DATA");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -990,7 +1003,7 @@ public class admin_page extends javax.swing.JFrame {
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1056, Short.MAX_VALUE))
+                .addContainerGap(1176, Short.MAX_VALUE))
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1041,7 +1054,7 @@ public class admin_page extends javax.swing.JFrame {
                 .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1144,7 +1157,7 @@ public class admin_page extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        manage_table.manage_transaksi mp = new manage_table.manage_transaksi();
+        manage_table.manage_transaksi_detail mp = new manage_table.manage_transaksi_detail();
         mp.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mp.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -1358,12 +1371,12 @@ public class admin_page extends javax.swing.JFrame {
             Statement S = K.createStatement();
             // Construct SQL query
 
-            String Q = "SELECT * FROM transaksi " + where;
+            String Q = "SELECT * FROM transaksi_detail " + where;
 //            System.out.println(Q);
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
-                int ID_Trans = R.getInt("ID_transaksi");
+                int ID_Trans = R.getInt("ID_transaksi_detail");
                 String Tanggal_Transaksi = R.getString("tanggal_transaksi");
                 String Kode_Obat = R.getString("kode_obat");
                 String Jumlah_Produk = R.getString("jumlah_produk");

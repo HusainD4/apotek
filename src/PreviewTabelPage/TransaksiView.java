@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
-import konektor.ProfileTransaksi;
+import konektor.ProfileTransaksiDetail;
 
 /**
  *
@@ -28,7 +28,7 @@ public class TransaksiView extends javax.swing.JDialog {
     /**
      * Creates new form TransaksiView
      */
-    ProfileTransaksi TR;
+    ProfileTransaksiDetail TR;
     static DefaultTableModel trs;
 
     public TransaksiView(java.awt.Frame parent, boolean modal) {
@@ -83,6 +83,9 @@ public class TransaksiView extends javax.swing.JDialog {
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tbl_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
