@@ -58,6 +58,13 @@ public class kasir_page extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel16 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         btn_exit = new javax.swing.JLabel();
         apoteker_kasir = new javax.swing.JLabel();
@@ -127,6 +134,87 @@ public class kasir_page extends javax.swing.JFrame {
         txtUangKembali = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+
+        jPanel16.setBackground(new java.awt.Color(0, 153, 153));
+
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_View_Details_20px.png"))); // NOI18N
+
+        jLabel23.setBackground(new java.awt.Color(0, 102, 102));
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel23.setText("STRUK BELANJA");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_hospital_30px.png"))); // NOI18N
+        jLabel24.setText("APOTEKER - SEHAT SELALU");
+
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -862,7 +950,7 @@ public class kasir_page extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE))
                 .addGap(6, 6, 6)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1068,6 +1156,7 @@ public class kasir_page extends javax.swing.JFrame {
             // Proses pembayaran dan transaksi selesai
             double jumlahSeluruh = Double.parseDouble(txtJumlahSeluruh.getText());
             double uangBayar = Double.parseDouble(txtUangBayar.getText().isEmpty() ? "0" : txtUangBayar.getText());
+
             if (uangBayar >= jumlahSeluruh) {
                 double uangKembali = uangBayar - jumlahSeluruh;
                 txtUangKembali.setText(String.format("%.2f", uangKembali));
@@ -1075,13 +1164,13 @@ public class kasir_page extends javax.swing.JFrame {
 
                 DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
 
-                // Insert each product into "cart"
-                String cartQuery = "INSERT INTO cart (kode_produk, nama_produk, harga_satuan, banyak_produk, total_belanja) VALUES (?, ?, ?, ?, ?)";
-                PreparedStatement cartPst = conn.prepareStatement(cartQuery);
-
-                // Insert transaction data into "transaksi"
-                String transaksiQuery = "INSERT INTO transaksi_detail (tanggal_transaksi, kode_obat, jumlah_produk, harga_satuan, total_harga, uang_diterima, uang_kembali, nama_kasir, ID_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                // Query untuk tabel "transaksi_detail"
+                String transaksiQuery = "INSERT INTO transaksi_detail (tanggal_transaksi, kode_obat, jumlah_produk, harga_satuan, total_harga, uang_diterima, uang_kembali, nama_kasir, ID_AKUN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement transaksiPst = conn.prepareStatement(transaksiQuery);
+
+                // Query untuk tabel "cart"
+                String cartQuery = "INSERT INTO cart (tanggal_transaksi, kode_produk, nama_produk, harga_satuan, banyak_produk, total_belanja) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement cartPst = conn.prepareStatement(cartQuery);
 
                 // Mendapatkan tanggal saat ini
                 java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
@@ -1093,25 +1182,37 @@ public class kasir_page extends javax.swing.JFrame {
                     int banyakProduk = Integer.parseInt(model.getValueAt(i, 4).toString());
                     double totalHarga = banyakProduk * hargaSatuan;
 
-                    // Insert data into "transaksi_detail"
-                    transaksiPst.setDate(1, currentDate); // Menggunakan java.sql.Date
-                    transaksiPst.setString(2, kodeProduk);
-                    transaksiPst.setInt(3, banyakProduk);
-                    transaksiPst.setDouble(4, hargaSatuan);
-                    transaksiPst.setDouble(5, totalHarga);
-                    transaksiPst.setDouble(6, uangBayar);
-                    transaksiPst.setDouble(7, uangKembali);
-                    transaksiPst.setString(8, label_user.getText());
-                    transaksiPst.setInt(9, Integer.parseInt(label_IDUSER.getText()));
-                    transaksiPst.addBatch(); // Add to batch
+                    // Tambahkan data ke batch "transaksi_detail"
+                    transaksiPst.setDate(1, currentDate); // Tanggal
+                    transaksiPst.setString(2, kodeProduk); // Kode produk
+                    transaksiPst.setInt(3, banyakProduk); // Banyak produk
+                    transaksiPst.setDouble(4, hargaSatuan); // Harga satuan
+                    transaksiPst.setDouble(5, totalHarga); // Total harga
+                    transaksiPst.setDouble(6, uangBayar); // Uang diterima
+                    transaksiPst.setDouble(7, uangKembali); // Uang kembali
+                    transaksiPst.setString(8, label_user.getText()); // Nama kasir
+                    transaksiPst.setInt(9, Integer.parseInt(label_IDUSER.getText())); // ID Akun
+                    transaksiPst.addBatch();
+
+                    // Tambahkan data ke batch "cart"
+                    cartPst.setDate(1, currentDate); // Tanggal
+                    cartPst.setString(2, kodeProduk); // Kode produk
+                    cartPst.setString(3, namaProduk); // Nama produk
+                    cartPst.setDouble(4, hargaSatuan); // Harga satuan
+                    cartPst.setInt(5, banyakProduk); // Banyak produk
+                    cartPst.setDouble(6, totalHarga); // Total belanja
+                    cartPst.addBatch();
                 }
 
-                cartPst.executeBatch(); // Execute batch insert for "cart"
-                transaksiPst.executeBatch(); // Execute batch insert for "transaksi"
+                // Eksekusi batch untuk "transaksi_detail" terlebih dahulu
+                transaksiPst.executeBatch();
+
+                // Kemudian eksekusi batch untuk "cart"
+                cartPst.executeBatch();
 
                 JOptionPane.showMessageDialog(this, "Transaction completed successfully!");
 
-                // Clear tblKasir and reset input fields
+                // Bersihkan tabel dan input
                 model.setRowCount(0);
                 txtTotalBeli.setText("");
                 txtPPN.setText("");
@@ -1125,6 +1226,7 @@ public class kasir_page extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
         }
     }//GEN-LAST:event_btnCOActionPerformed
 
@@ -1236,6 +1338,9 @@ public class kasir_page extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1250,7 +1355,10 @@ public class kasir_page extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1266,6 +1374,7 @@ public class kasir_page extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel labelFname;
     private javax.swing.JLabel labelJAM;
     private javax.swing.JLabel labelJabatan;

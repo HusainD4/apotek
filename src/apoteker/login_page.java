@@ -176,7 +176,7 @@ public class login_page extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exitMouseClicked
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-        LoginNow();
+        enterlogin();
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
@@ -186,7 +186,7 @@ public class login_page extends javax.swing.JFrame {
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         password.requestFocus();
-        LoginNow();
+        enterlogin();
     }//GEN-LAST:event_passwordActionPerformed
 
     private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
@@ -266,7 +266,7 @@ public class login_page extends javax.swing.JFrame {
     private javax.swing.JSeparator pembatas;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
-    private void LoginNow() {
+    private void enterlogin() {
 
         String user = username.getText();
         String pass = new String(password.getText());

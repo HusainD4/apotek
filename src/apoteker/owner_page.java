@@ -58,6 +58,9 @@ public class owner_page extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        jButton11 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         image2 = new javax.swing.JLabel();
         label_halo = new javax.swing.JLabel();
@@ -245,6 +248,40 @@ public class owner_page extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton11.setText("GRAFIK PENJUALAN");
+        jButton11.setBorder(null);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("DATA GRAFIK PENJUALAN");
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -253,7 +290,8 @@ public class owner_page extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -263,7 +301,9 @@ public class owner_page extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(499, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(365, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
@@ -1044,6 +1084,10 @@ public class owner_page extends javax.swing.JFrame {
         timer.start(); // Memulai timer untuk update setiap detik
     }//GEN-LAST:event_formWindowOpened
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1088,6 +1132,7 @@ public class owner_page extends javax.swing.JFrame {
     private javax.swing.JLabel image2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1102,6 +1147,7 @@ public class owner_page extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1123,6 +1169,7 @@ public class owner_page extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1172,19 +1219,19 @@ private void RingkasanHasil() {
 
                 // Query untuk transaksi, produk, pendapatan, dsb.
                 String Q = "SELECT COUNT(DISTINCT ID_transaksi) AS jumlah_transaksi "
-                        + "FROM transaksi WHERE tanggal_transaksi "
+                        + "FROM transaksi_detail WHERE tanggal_transaksi "
                         + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
                 String QQ = "SELECT SUM(jumlah_produk) AS total_produk "
-                        + "FROM transaksi WHERE tanggal_transaksi "
+                        + "FROM transaksi_detail WHERE tanggal_transaksi "
                         + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
                 String QQQ = "SELECT SUM(total_harga) AS total_pendapatan "
                         + "FROM transaksi WHERE tanggal_transaksi "
                         + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
                 String QQQQ = "SELECT SUM(jumlah_produk * harga_satuan) AS pendapatan_murni "
-                        + "FROM transaksi WHERE tanggal_transaksi "
+                        + "FROM transaksi_detail WHERE tanggal_transaksi "
                         + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
                 String QQQQQ = "SELECT (SUM(total_harga) - SUM(jumlah_produk * harga_satuan)) AS selisih_pendapatan "
-                        + "FROM transaksi WHERE tanggal_transaksi "
+                        + "FROM transaksi_detail WHERE tanggal_transaksi "
                         + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
 
                 Connection connection = konektor.connect.Go();
@@ -1261,7 +1308,7 @@ private void RingkasanHasil() {
 
     private void hitungPendapatanMurniHariIni() {
         String query = "SELECT SUM(jumlah_produk * harga_satuan) AS pendapatan_murni_hari_ini "
-                + "FROM transaksi WHERE tanggal_transaksi = CURDATE();";
+                + "FROM transaksi_detail WHERE tanggal_transaksi = CURDATE();";
 
         try (Connection connection = konektor.connect.Go(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
 
@@ -1299,7 +1346,7 @@ private void RingkasanHasil() {
 
     private void hitungJumlahTransaksiHariIni() {
         String query = "SELECT COUNT(DISTINCT ID_transaksi) AS jumlah_transaksi_hari_ini "
-                + "FROM transaksi WHERE tanggal_transaksi = CURDATE();";
+                + "FROM transaksi_detail WHERE tanggal_transaksi = CURDATE();";
 
         try (Connection connection = konektor.connect.Go(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
 
