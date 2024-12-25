@@ -14,10 +14,13 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
 import konektor.ProfileTransaksiDetail;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -31,6 +34,7 @@ public class TransaksiView extends javax.swing.JDialog {
     ProfileTransaksiDetail TR;
     static DefaultTableModel trs;
     static DefaultTableModel TperR;
+    static DefaultTableModel TpenrR;
 
     public TransaksiView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -38,7 +42,9 @@ public class TransaksiView extends javax.swing.JDialog {
         settingTableTransaksi();
         viewdataTransaksi("");
         settingTableTransaksiPerKasir();
+        settingTablePendapatanPerKasir();
         viewTotalTransaksiPerKasir("");
+        viewTotalPendapatanPerKasir("");
     }
 
     /**
@@ -59,6 +65,19 @@ public class TransaksiView extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_totalTransaksiPerKasir = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbl_totalPemdapatanPerKasir = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbl_caridata = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        dateDariTanggal = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        dateSampaiTanggal = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -81,7 +100,7 @@ public class TransaksiView extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1129, Short.MAX_VALUE))
+                .addGap(0, 1153, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +173,7 @@ public class TransaksiView extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -168,15 +187,183 @@ public class TransaksiView extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setBackground(new java.awt.Color(0, 153, 102));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("TOTAl PENDAPATAN PERKASIR");
+        jLabel2.setOpaque(true);
+
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        tbl_totalPemdapatanPerKasir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbl_totalPemdapatanPerKasir.setForeground(new java.awt.Color(0, 102, 102));
+        tbl_totalPemdapatanPerKasir.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NAMA KASIR", "TOTAL TRANSAKSI"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_totalPemdapatanPerKasir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbl_totalPemdapatanPerKasir.setRowHeight(40);
+        jScrollPane3.setViewportView(tbl_totalPemdapatanPerKasir);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setBackground(new java.awt.Color(0, 153, 102));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("CARI BEDASARKAN TANGGAL");
+        jLabel3.setOpaque(true);
+
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        tbl_caridata.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbl_caridata.setForeground(new java.awt.Color(0, 102, 102));
+        tbl_caridata.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NAMA KASIR", "TOTAL TRANSAKSI", "HASIL PEDAPATAN"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_caridata.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbl_caridata.setRowHeight(40);
+        jScrollPane4.setViewportView(tbl_caridata);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        dateDariTanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateDariTanggalPropertyChange(evt);
+            }
+        });
+
+        jLabel4.setText("DARI TANGGAL ");
+
+        jLabel5.setText("SAMPAI TANGGAL");
+
+        dateSampaiTanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dateSampaiTanggalPropertyChange(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateDariTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                    .addComponent(dateSampaiTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateDariTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateSampaiTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(557, 557, 557)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(557, 557, 557)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -186,8 +373,12 @@ public class TransaksiView extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 88, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
 
@@ -199,6 +390,14 @@ public class TransaksiView extends javax.swing.JDialog {
     private void label_kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_kembaliMouseClicked
         dispose();
     }//GEN-LAST:event_label_kembaliMouseClicked
+
+    private void dateDariTanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateDariTanggalPropertyChange
+        BedasarkanTanggal();
+    }//GEN-LAST:event_dateDariTanggalPropertyChange
+
+    private void dateSampaiTanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dateSampaiTanggalPropertyChange
+        BedasarkanTanggal();
+    }//GEN-LAST:event_dateSampaiTanggalPropertyChange
 
     /**
      * @param args the command line arguments
@@ -243,13 +442,26 @@ public class TransaksiView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser dateDariTanggal;
+    private com.toedter.calendar.JDateChooser dateSampaiTanggal;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel label_kembali;
+    private javax.swing.JTable tbl_caridata;
+    private javax.swing.JTable tbl_totalPemdapatanPerKasir;
     private javax.swing.JTable tbl_totalTransaksiPerKasir;
     private javax.swing.JTable tbl_transaksi;
     // End of variables declaration//GEN-END:variables
@@ -297,7 +509,7 @@ public class TransaksiView extends javax.swing.JDialog {
             e.printStackTrace();
         }
     }
-    
+
     // Inisialisasi Model Tabel
     private void settingTableTransaksiPerKasir() {
         TperR = new DefaultTableModel(new Object[]{"Nama Kasir", "Jumlah Transaksi"}, 0);
@@ -314,28 +526,26 @@ public class TransaksiView extends javax.swing.JDialog {
             Connection K = konektor.connect.Go();
             Statement S = K.createStatement();
 
-
-        // Query SQL
-        String Q = "SELECT " +
-                   "a.ID_AKUN AS id_akun, " +
-                   "a.FULLNAME AS nama_kasir, " +
-                   "COUNT(t.kode_transaksi) AS jumlah_transaksi " +
-                   "FROM transaksi t " +
-                   "LEFT JOIN user a ON t.ID_AKUN = a.ID_AKUN " +
-                   "GROUP BY a.ID_AKUN, a.FULLNAME " +
-                   "ORDER BY jumlah_transaksi DESC;";
+            // Query SQL
+            String Q = "SELECT "
+                    + "a.ID_AKUN AS id_akun, "
+                    + "a.FULLNAME AS nama_kasir, "
+                    + "COUNT(t.kode_transaksi) AS jumlah_transaksi "
+                    + "FROM transaksi t "
+                    + "LEFT JOIN user a ON t.ID_AKUN = a.ID_AKUN "
+                    + "GROUP BY a.ID_AKUN, a.FULLNAME "
+                    + "ORDER BY jumlah_transaksi DESC;";
 
             ResultSet R = S.executeQuery(Q);
 
-     
-        // Iterasi hasil query dan menambahkan ke tabel
-        while (R.next()) {
-            Object[] rowData = {
-                R.getString("nama_kasir"),      // Nama Kasir
-                R.getInt("jumlah_transaksi")   // Jumlah Transaksi
-            };
-            TperR.addRow(rowData);
-        }
+            // Iterasi hasil query dan menambahkan ke tabel
+            while (R.next()) {
+                Object[] rowData = {
+                    R.getString("nama_kasir"), // Nama Kasir
+                    R.getInt("jumlah_transaksi") // Jumlah Transaksi
+                };
+                TperR.addRow(rowData);
+            }
             // Menutup koneksi
             R.close();
             S.close();
@@ -346,6 +556,54 @@ public class TransaksiView extends javax.swing.JDialog {
         }
     }
 
+    public static void viewTotalPendapatanPerKasir(String string) {
+        try {
+            // Menghapus data lama pada tabel
+            TpenrR.setRowCount(0);
+
+            // Koneksi ke database
+            Connection K = konektor.connect.Go();
+            Statement S = K.createStatement();
+
+            // Query SQL
+            String Q = "SELECT a.ID_AKUN AS id_akun, a.FULLNAME AS nama_kasir, "
+                    + "SUM(t.total_harga) AS total_pendapatan "
+                    + "FROM transaksi_detail t "
+                    + "LEFT JOIN user a "
+                    + "ON t.ID_AKUN = a.ID_AKUN "
+                    + "GROUP BY a.ID_AKUN, a.FULLNAME "
+                    + "ORDER BY total_pendapatan "
+                    + "DESC LIMIT 0, 25;";
+
+            ResultSet R = S.executeQuery(Q);
+
+            // Iterasi hasil query dan menambahkan ke tabel
+            while (R.next()) {
+                // Memformat total pendapatan dengan menambahkan simbol "Rp."
+                String totalPendapatanFormatted = "Rp. " + String.format("%,d", R.getInt("total_pendapatan"));
+
+                Object[] rowData = {
+                    R.getString("nama_kasir"), // Nama Kasir
+                    totalPendapatanFormatted // Total Pendapatan dengan format "Rp."
+                };
+                TpenrR.addRow(rowData);
+            }
+
+            // Menutup koneksi
+            R.close();
+            S.close();
+            K.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Inisialisasi Model Tabel
+    private void settingTablePendapatanPerKasir() {
+        TpenrR = new DefaultTableModel(new Object[]{"Nama Kasir", "Total Pendapatan"}, 0);
+        tbl_totalPemdapatanPerKasir.setModel(TpenrR);
+    }
 
     private void settingTableTransaksi() {
         // Inisialisasi model tabel dari JTable
@@ -365,4 +623,84 @@ public class TransaksiView extends javax.swing.JDialog {
             tbl_transaksi.getColumnModel().getColumn(i).setMaxWidth(columnSizes[i][1]);
         }
     }
+
+    private void BedasarkanTanggal() {
+        try {
+            // Mengambil tanggal mulai dan selesai dari komponen date picker
+            Date mulai = dateDariTanggal.getDate();
+            Date sampai = dateSampaiTanggal.getDate();
+
+            // Memeriksa apakah tanggal mulai dan selesai valid
+            if (mulai != null && sampai != null) {
+                // Format tanggal ke bentuk "yyyy-MM-dd"
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String tgl_mulai = sdf.format(mulai);
+                String tgl_sampai = sdf.format(sampai);
+
+                // Query untuk menghitung nama kasir, total transaksi, dan total pendapatan
+                String query = "SELECT a.FULLNAME AS nama_kasir, COUNT(t.kode_transaksi) AS total_transaksi, "
+                        + "SUM(t.total_harga) AS total_pendapatan "
+                        + "FROM transaksi_detail t "
+                        + "LEFT JOIN user a ON t.ID_AKUN = a.ID_AKUN "
+                        + "WHERE t.tanggal_transaksi BETWEEN ? AND ? "
+                        + "GROUP BY a.ID_AKUN, a.FULLNAME "
+                        + "ORDER BY total_pendapatan DESC;";
+
+                // Koneksi ke database
+                Connection connection = konektor.connect.Go();
+                if (connection == null) {
+                    System.out.println("Koneksi database gagal!");
+                    return;
+                }
+
+                // Menjalankan query untuk mendapatkan hasil
+                try (PreparedStatement statement = connection.prepareStatement(query)) {
+                    // Set parameter untuk prepared statement
+                    statement.setString(1, tgl_mulai);
+                    statement.setString(2, tgl_sampai);
+
+                    ResultSet resultSet = statement.executeQuery();
+
+                    // Membuat model untuk JTable
+                    DefaultTableModel tableModel = new DefaultTableModel();
+                    tableModel.addColumn("Nama Kasir");
+                    tableModel.addColumn("Total Transaksi");
+                    tableModel.addColumn("Total Pendapatan");
+
+                    // Mengambil data dan memasukkan ke dalam model tabel
+                    while (resultSet.next()) {
+                        String namaKasir = resultSet.getString("nama_kasir");
+                        int totalTransaksi = resultSet.getInt("total_transaksi");
+                        double totalPendapatan = resultSet.getDouble("total_pendapatan");
+
+                        // Menambahkan debug untuk melihat hasil yang didapatkan
+                        System.out.println("Nama Kasir: " + namaKasir);
+                        System.out.println("Total Transaksi: " + totalTransaksi);
+                        System.out.println("Total Pendapatan: " + totalPendapatan);
+
+                        // Menambahkan baris data ke dalam model tabel
+                        tableModel.addRow(new Object[]{namaKasir, totalTransaksi, totalPendapatan});
+                    }
+
+                    // Menampilkan data pada JTable (tbl_caridata)
+                    tbl_caridata.setModel(tableModel);
+                } catch (SQLException e) {
+                    System.err.println("Error menjalankan query: " + e.getMessage());
+                } finally {
+                    // Pastikan koneksi ditutup setelah selesai
+                    try {
+                        if (connection != null) {
+                            connection.close();
+                        }
+                    } catch (SQLException e) {
+                        System.err.println("Error saat menutup koneksi: " + e.getMessage());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 }
