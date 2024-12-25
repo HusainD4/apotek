@@ -134,7 +134,6 @@ public class admin_page extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
-        jButton9 = new javax.swing.JButton();
         jSeparator12 = new javax.swing.JSeparator();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -687,9 +686,9 @@ public class admin_page extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel18)
@@ -704,9 +703,8 @@ public class admin_page extends javax.swing.JFrame {
                                     .addComponent(jLabel17)
                                     .addComponent(auto_set_jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -787,7 +785,7 @@ public class admin_page extends javax.swing.JFrame {
         );
 
         jButton1.setBackground(new java.awt.Color(255, 204, 51));
-        jButton1.setText("PREVIEW");
+        jButton1.setText("LIHAT TABEL");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -862,18 +860,10 @@ public class admin_page extends javax.swing.JFrame {
         });
 
         jButton8.setBackground(new java.awt.Color(255, 204, 51));
-        jButton8.setText("PREVIEW");
+        jButton8.setText("LIHAT TABEL");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
-            }
-        });
-
-        jButton9.setBackground(new java.awt.Color(255, 204, 51));
-        jButton9.setText("CEK");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
             }
         });
 
@@ -887,7 +877,7 @@ public class admin_page extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "ID_Transaksi", "Tanggal_Pembelian", "Kode Obat", "Jumlah Produk", "Harga Satuan", "Total Harga", "Uang Diterima", "Uang Kembali", "Nama Kasir"
+                "NO", "ID_Transaksi", "TANGGAL PEMBELIAN", "KODE OBAT", "JUMLAH PRODUK", "HARGA SATUAN", "TOTAL HARGA", "UANG DITERIMA", "UANG KEMBALI", "KASIR"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -929,7 +919,7 @@ public class admin_page extends javax.swing.JFrame {
         );
 
         jButton10.setBackground(new java.awt.Color(255, 153, 0));
-        jButton10.setText("VIEW DATA");
+        jButton10.setText("LIHAT TABEL");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -939,7 +929,7 @@ public class admin_page extends javax.swing.JFrame {
         exit_btn.setBackground(new java.awt.Color(255, 0, 0));
         exit_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         exit_btn.setForeground(new java.awt.Color(255, 255, 255));
-        exit_btn.setText("LOG OUT ->");
+        exit_btn.setText("KELUAR ->");
         exit_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exit_btnMouseClicked(evt);
@@ -1000,8 +990,6 @@ public class admin_page extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1044,9 +1032,7 @@ public class admin_page extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9))
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(234, 234, 234)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1153,14 +1139,6 @@ public class admin_page extends javax.swing.JFrame {
         PV.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        PreviewTabelPage.TransaksiView TV = new PreviewTabelPage.TransaksiView(this, true);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        TV.setSize(screenSize.width, screenSize.height);
-        TV.setVisible(true);
-
-    }//GEN-LAST:event_jButton9ActionPerformed
-
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         manage_table.manage_transaksi_detail mp = new manage_table.manage_transaksi_detail();
         mp.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -1237,7 +1215,6 @@ public class admin_page extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

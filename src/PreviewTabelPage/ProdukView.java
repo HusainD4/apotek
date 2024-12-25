@@ -13,12 +13,12 @@ import konektor.ProfileProduk;
 import konektor.connect;
 import java.sql.*;
 
-
 /**
  *
  * @author HUSAIN
  */
 public class ProdukView extends javax.swing.JDialog {
+
     ProfileProduk pp;
     static DefaultTableModel prd;
 
@@ -31,7 +31,8 @@ public class ProdukView extends javax.swing.JDialog {
         settingTableProduk();
         viewdataProduk("");
     }
-    public ProdukView(ProfileProduk pp){
+
+    public ProdukView(ProfileProduk pp) {
         initComponents();
         settingTableProduk();
         viewdataProduk("");
@@ -51,6 +52,8 @@ public class ProdukView extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         pencarianProduk = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_produk = new javax.swing.JTable();
 
@@ -115,15 +118,25 @@ public class ProdukView extends javax.swing.JDialog {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_search_20px_1.png"))); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("DATA PRODUK");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_Product_30px.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 553, Short.MAX_VALUE))
+                .addGap(0, 1003, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,7 +149,9 @@ public class ProdukView extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -176,7 +191,7 @@ public class ProdukView extends javax.swing.JDialog {
 
     private void pencarianProdukFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianProdukFocusGained
         String Cari = pencarianProduk.getText();
-        if (Cari.equals("Pencarian")){
+        if (Cari.equals("Pencarian")) {
             pencarianProduk.setText("");
         }
     }//GEN-LAST:event_pencarianProdukFocusGained
@@ -250,7 +265,9 @@ public class ProdukView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -259,10 +276,10 @@ public class ProdukView extends javax.swing.JDialog {
     private javax.swing.JTable tbl_produk;
     // End of variables declaration//GEN-END:variables
 
-public static void viewdataProduk(String where) {
+    public static void viewdataProduk(String where) {
         try {
 
-            for (int i = prd.getRowCount()-1; i >=0; i--) {
+            for (int i = prd.getRowCount() - 1; i >= 0; i--) {
                 prd.removeRow(i);
             }
 
@@ -289,10 +306,9 @@ public static void viewdataProduk(String where) {
             e.printStackTrace();
         }
     }
-    
-    
+
     private void settingTableProduk() {
-        prd = (DefaultTableModel) tbl_produk.getModel();        
+        prd = (DefaultTableModel) tbl_produk.getModel();
         tbl_produk.getColumnModel().getColumn(0).setMinWidth(50);
         tbl_produk.getColumnModel().getColumn(0).setMaxWidth(70);
 
@@ -301,16 +317,15 @@ public static void viewdataProduk(String where) {
 
         tbl_produk.getColumnModel().getColumn(2).setMinWidth(350);
         tbl_produk.getColumnModel().getColumn(2).setMaxWidth(500);
-        
+
         tbl_produk.getColumnModel().getColumn(3).setMinWidth(350);
         tbl_produk.getColumnModel().getColumn(3).setMaxWidth(500);
-        
+
         tbl_produk.getColumnModel().getColumn(4).setMinWidth(350);
         tbl_produk.getColumnModel().getColumn(4).setMaxWidth(500);
-        
+
         tbl_produk.getColumnModel().getColumn(5).setMinWidth(350);
         tbl_produk.getColumnModel().getColumn(5).setMaxWidth(500);
     }
-
 
 }

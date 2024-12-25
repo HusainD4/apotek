@@ -909,9 +909,9 @@
                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
@@ -932,9 +932,8 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel14" min="-2" pref="59" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1110,8 +1109,6 @@
                                   <Component id="jButton11" min="-2" pref="126" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButton9" min="-2" pref="126" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButton10" min="-2" pref="126" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButton12" min="-2" pref="126" max="-2" attributes="0"/>
@@ -1168,8 +1165,6 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="234" pref="234" max="-2" attributes="0"/>
@@ -1304,7 +1299,7 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="cc" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="PREVIEW"/>
+                    <Property name="text" type="java.lang.String" value="LIHAT TABEL"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -1459,24 +1454,13 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="cc" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="PREVIEW"/>
+                    <Property name="text" type="java.lang.String" value="LIHAT TABEL"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator6">
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton9">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="cc" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="CEK"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator12">
                 </Component>
@@ -1526,16 +1510,16 @@
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="10" rowCount="0">
-                                <Column editable="false" title="No" type="java.lang.Object"/>
+                                <Column editable="false" title="NO" type="java.lang.Object"/>
                                 <Column editable="false" title="ID_Transaksi" type="java.lang.Object"/>
-                                <Column editable="false" title="Tanggal_Pembelian" type="java.lang.Object"/>
-                                <Column editable="false" title="Kode Obat" type="java.lang.Object"/>
-                                <Column editable="false" title="Jumlah Produk" type="java.lang.Object"/>
-                                <Column editable="false" title="Harga Satuan" type="java.lang.Object"/>
-                                <Column editable="false" title="Total Harga" type="java.lang.Object"/>
-                                <Column editable="false" title="Uang Diterima" type="java.lang.Object"/>
-                                <Column editable="false" title="Uang Kembali" type="java.lang.Object"/>
-                                <Column editable="false" title="Nama Kasir" type="java.lang.Object"/>
+                                <Column editable="false" title="TANGGAL PEMBELIAN" type="java.lang.Object"/>
+                                <Column editable="false" title="KODE OBAT" type="java.lang.Object"/>
+                                <Column editable="false" title="JUMLAH PRODUK" type="java.lang.Object"/>
+                                <Column editable="false" title="HARGA SATUAN" type="java.lang.Object"/>
+                                <Column editable="false" title="TOTAL HARGA" type="java.lang.Object"/>
+                                <Column editable="false" title="UANG DITERIMA" type="java.lang.Object"/>
+                                <Column editable="false" title="UANG KEMBALI" type="java.lang.Object"/>
+                                <Column editable="false" title="KASIR" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="rowHeight" type="int" value="35"/>
@@ -1561,7 +1545,7 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="99" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="VIEW DATA"/>
+                    <Property name="text" type="java.lang.String" value="LIHAT TABEL"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
@@ -1578,7 +1562,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="LOG OUT -&gt;"/>
+                    <Property name="text" type="java.lang.String" value="KELUAR -&gt;"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exit_btnMouseClicked"/>

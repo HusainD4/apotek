@@ -17,11 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
 
-
-
-
-
-
 /**
  *
  * @author HUSAIN
@@ -40,7 +35,6 @@ public class manage_user extends javax.swing.JFrame {
         viewData("");
 
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -306,7 +300,7 @@ public class manage_user extends javax.swing.JFrame {
     private void btn_EditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditUserActionPerformed
 
         int n = tbl_user.getSelectedRow();
-        if(n != -1){
+        if (n != -1) {
             int ID_AKUN = Integer.parseInt(tbl_user.getValueAt(n, 1).toString());
             String FULLNAME = tbl_user.getValueAt(n, 2).toString();
             String USERNAME = tbl_user.getValueAt(n, 3).toString();
@@ -316,13 +310,11 @@ public class manage_user extends javax.swing.JFrame {
             EU.setId(ID_AKUN);
             EU.setFullname(FULLNAME);
             EU.setUsername(USERNAME);
-            EU.setPassword(PASSWORD); 
-            EU.setLevel(LEVEL); 
-            EU.setVisible(true); 
-            
+            EU.setPassword(PASSWORD);
+            EU.setLevel(LEVEL);
+            EU.setVisible(true);
 
-            
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Anda belum memilih data");
         }
     }//GEN-LAST:event_btn_EditUserActionPerformed
@@ -334,32 +326,31 @@ public class manage_user extends javax.swing.JFrame {
 
     private void btn_HapusUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HapusUserActionPerformed
         int n = tbl_user.getSelectedRow();
-        if(n != -1){
+        if (n != -1) {
             int id = Integer.parseInt(tbl_user.getValueAt(n, 1).toString());
             String FULLNAME = tbl_user.getValueAt(n, 2).toString();
-            
-            
-            int opsi = JOptionPane.showConfirmDialog(this, 
-                    "Apakah Anda yakin ingin menghapus data "+FULLNAME+"?", 
-                    "Hapus Data", 
+
+            int opsi = JOptionPane.showConfirmDialog(this,
+                    "Apakah Anda yakin ingin menghapus data " + FULLNAME + "?",
+                    "Hapus Data",
                     JOptionPane.YES_NO_OPTION);
-            if(opsi == 0){
+            if (opsi == 0) {
                 String Q = "DELETE FROM user "
-                        + "WHERE ID_AKUN="+id;
-                
+                        + "WHERE ID_AKUN=" + id;
+
                 try {
                     Connection K = konektor.connect.Go();
                     Statement S = K.createStatement();
                     S.executeUpdate(Q);
-                    viewData(""); 
-                    JOptionPane.showMessageDialog(this, "Data "+FULLNAME+" telah terhapus");
+                    viewData("");
+                    JOptionPane.showMessageDialog(this, "Data " + FULLNAME + " telah terhapus");
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(this, "gagal di hapus!!");
-                            
+
                 }
             }
-            
-        }else {
+
+        } else {
             JOptionPane.showMessageDialog(this, "Anda belum memilih data");
         }
     }//GEN-LAST:event_btn_HapusUserActionPerformed
@@ -390,16 +381,16 @@ public class manage_user extends javax.swing.JFrame {
     }//GEN-LAST:event_pencarianUserActionPerformed
 
     private void pencarianUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianUserFocusLost
-        String Cari = pencarianUser.getText(); 
-        if (Cari.equals("") || Cari.equals("Pencarian")) { 
-            pencarianUser.setText("Pencarian"); 
+        String Cari = pencarianUser.getText();
+        if (Cari.equals("") || Cari.equals("Pencarian")) {
+            pencarianUser.setText("Pencarian");
         }
 
     }//GEN-LAST:event_pencarianUserFocusLost
 
     private void pencarianUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianUserFocusGained
         String Cari = pencarianUser.getText();
-        if (Cari.equals("Pencarian")){
+        if (Cari.equals("Pencarian")) {
             pencarianUser.setText("");
         }
     }//GEN-LAST:event_pencarianUserFocusGained
@@ -460,8 +451,8 @@ public class manage_user extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     public static void viewData(String where) {
         try {
-           
-            for (int i = u.getRowCount()-1; i >=0; i--) {
+
+            for (int i = u.getRowCount() - 1; i >= 0; i--) {
                 u.removeRow(i);
             }
 
@@ -490,10 +481,9 @@ public class manage_user extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
-    
+
     private void settingTable() {
-        u = (DefaultTableModel) tbl_user.getModel();        
+        u = (DefaultTableModel) tbl_user.getModel();
         tbl_user.getColumnModel().getColumn(0).setMinWidth(50);
         tbl_user.getColumnModel().getColumn(0).setMaxWidth(70);
 
@@ -503,8 +493,5 @@ public class manage_user extends javax.swing.JFrame {
         tbl_user.getColumnModel().getColumn(2).setMinWidth(350);
         tbl_user.getColumnModel().getColumn(2).setMaxWidth(500);
     }
-    
-    
-    
 
 }

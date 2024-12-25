@@ -327,7 +327,6 @@ public class login_page extends javax.swing.JFrame {
         }
     }
 
-
     private void MencatatAktifitasLogin() {
 
     }

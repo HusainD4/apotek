@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package editor_manage;
+
 import konektor.connect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -186,7 +187,7 @@ public class FormTambahUser extends javax.swing.JDialog {
     }//GEN-LAST:event_txtFullnameActionPerformed
 
     private void btn_cencelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cencelActionPerformed
-        this.setVisible(false); 
+        this.setVisible(false);
     }//GEN-LAST:event_btn_cencelActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
@@ -194,7 +195,7 @@ public class FormTambahUser extends javax.swing.JDialog {
         String username = txtUsername.getText();
         String password = new String(txtPassword.getPassword());
         String level = ComboLevel.getSelectedItem().toString();
-        
+
         String Q = "INSERT INTO user "
                 + "(fullname,username,password,level) "
                 + "VALUES "
@@ -207,14 +208,14 @@ public class FormTambahUser extends javax.swing.JDialog {
             P.setString(3, password);
             P.setString(4, level);
             P.executeUpdate();
-            
+
             manage_table.manage_user.viewData("");
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
             txtFullname.requestFocus();
         } catch (Exception e) {
             //
         }
-        
+
     }//GEN-LAST:event_btn_saveActionPerformed
 
     /**

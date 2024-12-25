@@ -27,7 +27,7 @@ public class LaporanKeuangan extends javax.swing.JDialog {
     public LaporanKeuangan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         if (TU == null) {
             TU = new DefaultTableModel();
         }

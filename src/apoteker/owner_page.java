@@ -138,7 +138,7 @@ public class owner_page extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 422));
 
-        jButton2.setText("PRODUCT");
+        jButton2.setText("DATA PRODUK");
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +146,7 @@ public class owner_page extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("USER");
+        jButton3.setText("DATA KARYAWAN");
         jButton3.setBorder(null);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +154,7 @@ public class owner_page extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("TRANSAKSI");
+        jButton4.setText("DATA TRANSAKSI");
         jButton4.setBorder(null);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +165,7 @@ public class owner_page extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 102));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("VIEW DATA MANAGEMENT");
+        jLabel6.setText("MANAGEMENT DATA");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -194,7 +194,7 @@ public class owner_page extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        DataProdukCetak.setText("DATA PRODUCT");
+        DataProdukCetak.setText("DATA PRODUK");
         DataProdukCetak.setBorder(null);
         DataProdukCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +329,7 @@ public class owner_page extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("exit");
+        jLabel4.setText("KELUAR");
 
         btn_exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_logout_20px.png"))); // NOI18N
         btn_exit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -435,7 +435,7 @@ public class owner_page extends javax.swing.JFrame {
                             .addComponent(label_halo)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(label_user, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 897, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 870, Short.MAX_VALUE)
                     .addComponent(jLabel4)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(btn_exit)
@@ -655,18 +655,33 @@ public class owner_page extends javax.swing.JFrame {
             .addGap(0, 46, Short.MAX_VALUE)
         );
 
-        jButton1.setText("TABEL TRANSAKSI");
+        jButton1.setText("MASUK SEBAGAI KASIR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("TABEL PRODUK");
+        jButton5.setText("MUAT ULANG APLIKASI");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("TABEL KERANJANG");
+        jButton6.setText("MASUK SEBAGAI ADMIN");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("TABEL USER");
+        jButton7.setText("PENGATURAN");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1050,7 +1065,10 @@ public class owner_page extends javax.swing.JFrame {
     }//GEN-LAST:event_SelesaiTGLPropertyChange
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        kasir_page K = new kasir_page();
+        K.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        K.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void DataProdukCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataProdukCetakActionPerformed
@@ -1113,6 +1131,25 @@ public class owner_page extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.setVisible(false);
+        admin_page A = new admin_page();
+        A.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        A.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        reload();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        this.setVisible(false);
+        pengaturan p = new pengaturan();
+        p.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        p.setVisible(true);
+
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1404,6 +1441,14 @@ private void RingkasanHasil() {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void reload() {
+        this.setVisible(false);
+        this.dispose();
+        owner_page newPage = new owner_page();
+        newPage.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        newPage.setVisible(true);
     }
 
 }

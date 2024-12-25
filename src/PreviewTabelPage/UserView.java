@@ -18,6 +18,7 @@ import java.sql.*;
  * @author HUSAIN
  */
 public class UserView extends javax.swing.JDialog {
+
     Profile p;
     static DefaultTableModel us;
 
@@ -30,11 +31,13 @@ public class UserView extends javax.swing.JDialog {
         settingTable();
         viewData("");
     }
-    public UserView(Profile p){
+
+    public UserView(Profile p) {
         initComponents();
         settingTable();
         viewData("");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +49,8 @@ public class UserView extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         label_kembali = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_user = new javax.swing.JTable();
 
@@ -64,6 +69,12 @@ public class UserView extends javax.swing.JDialog {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("DATA KARYAWAN");
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_workers_30px.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -71,12 +82,22 @@ public class UserView extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 776, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 58, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -155,6 +176,8 @@ public class UserView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_kembali;
@@ -163,7 +186,7 @@ public class UserView extends javax.swing.JDialog {
     public static void viewData(String where) {
         try {
             //kode kita
-            for (int i = us.getRowCount()-1; i >=0; i--) {
+            for (int i = us.getRowCount() - 1; i >= 0; i--) {
                 us.removeRow(i);
             }
 
@@ -192,9 +215,9 @@ public class UserView extends javax.swing.JDialog {
             e.printStackTrace();
         }
     }
-    
-        private void settingTable() {
-        us = (DefaultTableModel) tbl_user.getModel();        
+
+    private void settingTable() {
+        us = (DefaultTableModel) tbl_user.getModel();
         tbl_user.getColumnModel().getColumn(0).setMinWidth(50);
         tbl_user.getColumnModel().getColumn(0).setMaxWidth(70);
 
@@ -204,8 +227,5 @@ public class UserView extends javax.swing.JDialog {
         tbl_user.getColumnModel().getColumn(2).setMinWidth(350);
         tbl_user.getColumnModel().getColumn(2).setMaxWidth(500);
     }
-
-
-
 
 }

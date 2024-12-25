@@ -48,9 +48,7 @@ public class History_Keranjang extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         label_kembali = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        pencarianHistoryKeranjang = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_HistoryKeranjang = new javax.swing.JTable();
 
@@ -69,51 +67,10 @@ public class History_Keranjang extends javax.swing.JDialog {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        pencarianHistoryKeranjang.setFont(new java.awt.Font("Rockwell Nova Light", 0, 14)); // NOI18N
-        pencarianHistoryKeranjang.setForeground(new java.awt.Color(0, 102, 102));
-        pencarianHistoryKeranjang.setText("Pencarian");
-        pencarianHistoryKeranjang.setBorder(null);
-        pencarianHistoryKeranjang.setSelectionColor(new java.awt.Color(0, 153, 153));
-        pencarianHistoryKeranjang.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                pencarianHistoryKeranjangFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                pencarianHistoryKeranjangFocusLost(evt);
-            }
-        });
-        pencarianHistoryKeranjang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pencarianHistoryKeranjangActionPerformed(evt);
-            }
-        });
-        pencarianHistoryKeranjang.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                pencarianHistoryKeranjangKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                pencarianHistoryKeranjangKeyTyped(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pencarianHistoryKeranjang, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pencarianHistoryKeranjang, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_search_20px_1.png"))); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("HISTORY KERANJANG");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,22 +78,15 @@ public class History_Keranjang extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1290, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(1290, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -173,46 +123,6 @@ public class History_Keranjang extends javax.swing.JDialog {
     private void label_kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_kembaliMouseClicked
         dispose();
     }//GEN-LAST:event_label_kembaliMouseClicked
-
-    private void pencarianHistoryKeranjangFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianHistoryKeranjangFocusGained
-        String Cari = pencarianHistoryKeranjang.getText();
-        if (Cari.equals("Pencarian")) {
-            pencarianHistoryKeranjang.setText("");
-        }
-    }//GEN-LAST:event_pencarianHistoryKeranjangFocusGained
-
-    private void pencarianHistoryKeranjangFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianHistoryKeranjangFocusLost
-        String Cari = pencarianHistoryKeranjang.getText();
-        if (Cari.equals("") || Cari.equals("Pencarian")) {
-            pencarianHistoryKeranjang.setText("Pencarian");
-        }
-    }//GEN-LAST:event_pencarianHistoryKeranjangFocusLost
-
-    private void pencarianHistoryKeranjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pencarianHistoryKeranjangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pencarianHistoryKeranjangActionPerformed
-
-    private void pencarianHistoryKeranjangKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianHistoryKeranjangKeyReleased
-//        String key = pencarianHistoryKeranjang.getText();
-//        String where = "WHERE "
-//        + "kode_produk LIKE '%" + key + "%' OR "
-//        + "nama_produk LIKE '%" + key + "%' OR "
-//        + "kategori LIKE '%" + key + "%' OR "
-//        + "harga_jual LIKE '%" + key + "%' OR "
-//        + "";
-    }//GEN-LAST:event_pencarianHistoryKeranjangKeyReleased
-
-    private void pencarianHistoryKeranjangKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianHistoryKeranjangKeyTyped
-//
-//        String key = pencarianHistoryKeranjang.getText();
-//        String query = "SELECT * FROM products WHERE "
-//        + "kode_produk LIKE ? OR "
-//        + "nama_produk LIKE ? OR "
-//        + "kategori LIKE ? OR "
-//        + "harga_jual LIKE ? OR "
-//        + "harga_beli LIKE ? OR "
-//        + "stok LIKE ?";
-    }//GEN-LAST:event_pencarianHistoryKeranjangKeyTyped
 
     /**
      * @param args the command line arguments
@@ -257,12 +167,10 @@ public class History_Keranjang extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_kembali;
-    private javax.swing.JTextField pencarianHistoryKeranjang;
     private javax.swing.JTable tbl_HistoryKeranjang;
     // End of variables declaration//GEN-END:variables
     public static void viewdataHK(String where) {
@@ -321,16 +229,15 @@ public class History_Keranjang extends javax.swing.JDialog {
 
         tbl_HistoryKeranjang.getColumnModel().getColumn(2).setMinWidth(350);
         tbl_HistoryKeranjang.getColumnModel().getColumn(2).setMaxWidth(500);
-        
+
         tbl_HistoryKeranjang.getColumnModel().getColumn(3).setMinWidth(350);
         tbl_HistoryKeranjang.getColumnModel().getColumn(3).setMaxWidth(500);
-        
+
         tbl_HistoryKeranjang.getColumnModel().getColumn(4).setMinWidth(350);
         tbl_HistoryKeranjang.getColumnModel().getColumn(4).setMaxWidth(500);
-        
+
         tbl_HistoryKeranjang.getColumnModel().getColumn(5).setMinWidth(350);
         tbl_HistoryKeranjang.getColumnModel().getColumn(5).setMaxWidth(500);
     }
-
 
 }
