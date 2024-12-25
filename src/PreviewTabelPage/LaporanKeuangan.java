@@ -4,6 +4,15 @@
  */
 package PreviewTabelPage;
 
+import com.sun.jdi.connect.spi.Connection;
+import java.beans.Statement;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import konektor.connect;
+// Pastikan ini sesuai dengan implementasi Anda
+
 /**
  *
  * @author HUSAIN
@@ -13,9 +22,19 @@ public class LaporanKeuangan extends javax.swing.JDialog {
     /**
      * Creates new form LaporanKeuangan
      */
+    static DefaultTableModel TU = new DefaultTableModel();
+
     public LaporanKeuangan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        if (TU == null) {
+            TU = new DefaultTableModel();
+        }
+
+        // Populate and configure the table
+        settingTableKeuangan();
+        viewdataKeuangan("");
     }
 
     /**
@@ -33,7 +52,7 @@ public class LaporanKeuangan extends javax.swing.JDialog {
         pencarianProduk = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_produk = new javax.swing.JTable();
+        tbl_uang = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -126,12 +145,12 @@ public class LaporanKeuangan extends javax.swing.JDialog {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        tbl_produk.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_uang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "No", "ID_Transaksi", "TANGGAL TRANSAKSI", "NAMA BARANG", "HARGA SATUAN BARANG", "JUMLAH TERJUAL", "TOTAL PEMASUKAN"
+                "No", "ID_Transaksi", "ID_AKUN", "TANGGAL TRANSAKSI", "KODE BARANG", "JUMLAH PRODUK", "TOTAL HARGA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -142,9 +161,9 @@ public class LaporanKeuangan extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tbl_produk.setRowHeight(40);
-        tbl_produk.setSelectionBackground(new java.awt.Color(0, 255, 204));
-        jScrollPane1.setViewportView(tbl_produk);
+        tbl_uang.setRowHeight(40);
+        tbl_uang.setSelectionBackground(new java.awt.Color(0, 255, 204));
+        jScrollPane1.setViewportView(tbl_uang);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -157,7 +176,7 @@ public class LaporanKeuangan extends javax.swing.JDialog {
 
     private void pencarianProdukFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pencarianProdukFocusGained
         String Cari = pencarianProduk.getText();
-        if (Cari.equals("Pencarian")){
+        if (Cari.equals("Pencarian")) {
             pencarianProduk.setText("");
         }
     }//GEN-LAST:event_pencarianProdukFocusGained
@@ -176,23 +195,23 @@ public class LaporanKeuangan extends javax.swing.JDialog {
     private void pencarianProdukKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyReleased
         String key = pencarianProduk.getText();
         String where = "WHERE "
-        + "kode_produk LIKE '%" + key + "%' OR "
-        + "nama_produk LIKE '%" + key + "%' OR "
-        + "kategori LIKE '%" + key + "%' OR "
-        + "harga_jual LIKE '%" + key + "%' OR "
-        + "";
+                + "kode_produk LIKE '%" + key + "%' OR "
+                + "nama_produk LIKE '%" + key + "%' OR "
+                + "kategori LIKE '%" + key + "%' OR "
+                + "harga_jual LIKE '%" + key + "%' OR "
+                + "";
     }//GEN-LAST:event_pencarianProdukKeyReleased
 
     private void pencarianProdukKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianProdukKeyTyped
 
         String key = pencarianProduk.getText();
         String query = "SELECT * FROM products WHERE "
-        + "kode_produk LIKE ? OR "
-        + "nama_produk LIKE ? OR "
-        + "kategori LIKE ? OR "
-        + "harga_jual LIKE ? OR "
-        + "harga_beli LIKE ? OR "
-        + "stok LIKE ?";
+                + "kode_produk LIKE ? OR "
+                + "nama_produk LIKE ? OR "
+                + "kategori LIKE ? OR "
+                + "harga_jual LIKE ? OR "
+                + "harga_beli LIKE ? OR "
+                + "stok LIKE ?";
 
     }//GEN-LAST:event_pencarianProdukKeyTyped
 
@@ -245,6 +264,69 @@ public class LaporanKeuangan extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_kembali;
     private javax.swing.JTextField pencarianProduk;
-    private javax.swing.JTable tbl_produk;
+    private javax.swing.JTable tbl_uang;
     // End of variables declaration//GEN-END:variables
+
+    public static void viewdataKeuangan(String where) {
+        try {
+            for (int i = TU.getRowCount() - 1; i >= 0; i--) {
+                TU.removeRow(i);
+            }
+            java.sql.Connection K = konektor.connect.Go();
+            java.sql.Statement S = K.createStatement();
+
+            // Construct SQL query (Using prepared statements to avoid SQL injection)
+            String Q = "SELECT * FROM transaksi " + where;
+
+            // Execute query
+            ResultSet R = S.executeQuery(Q);
+            int no = 1;
+
+            // Iterate over the result set and add rows to the table
+            while (R.next()) {
+                int ID_T = R.getInt("ID_transaksi");
+                String ID_A = R.getString("ID_AKUN");
+                String TGL = R.getString("tanggal_transaksi");
+                String KP = R.getString("kode_produk");
+                String JP = R.getString("jumlah_produk");
+                String TH = R.getString("total_harga");
+
+                // Add a new row to the table model
+                Object[] HKR = {no, ID_T, ID_A, TGL, KP, JP, TH};
+                TU.addRow(HKR);
+                no++;
+            }
+
+            // Close resources
+            R.close();
+            S.close();
+            K.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+
+    private void settingTableKeuangan() {
+        TU = (DefaultTableModel) tbl_uang.getModel();
+
+        tbl_uang.getColumnModel().getColumn(0).setMinWidth(50);
+        tbl_uang.getColumnModel().getColumn(0).setMaxWidth(70);
+
+        tbl_uang.getColumnModel().getColumn(1).setMinWidth(0);
+        tbl_uang.getColumnModel().getColumn(1).setMaxWidth(0);
+
+        tbl_uang.getColumnModel().getColumn(2).setMinWidth(350);
+        tbl_uang.getColumnModel().getColumn(2).setMaxWidth(500);
+
+        tbl_uang.getColumnModel().getColumn(3).setMinWidth(350);
+        tbl_uang.getColumnModel().getColumn(3).setMaxWidth(500);
+
+        tbl_uang.getColumnModel().getColumn(4).setMinWidth(350);
+        tbl_uang.getColumnModel().getColumn(4).setMaxWidth(500);
+
+        tbl_uang.getColumnModel().getColumn(5).setMinWidth(350);
+        tbl_uang.getColumnModel().getColumn(5).setMaxWidth(500);
+    }
+
 }

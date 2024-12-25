@@ -4,6 +4,7 @@
  */
 package apoteker;
 
+import java.awt.Dimension;
 import konektor.connect;
 import konektor.Profile;
 
@@ -13,6 +14,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -1153,7 +1155,10 @@ public class admin_page extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         PreviewTabelPage.TransaksiView TV = new PreviewTabelPage.TransaksiView(this, true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        TV.setSize(screenSize.width, screenSize.height);
         TV.setVisible(true);
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

@@ -28,7 +28,6 @@ public class History_Keranjang extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        // Initialize the table model if not already done in initComponents
         if (HK == null) {
             HK = new DefaultTableModel();
         }

@@ -121,6 +121,7 @@ public class login_page extends javax.swing.JFrame {
         });
         jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 179, 206, 34));
 
+        password.setForeground(new java.awt.Color(204, 204, 204));
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password.setText("Password");
         password.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -269,8 +270,7 @@ public class login_page extends javax.swing.JFrame {
     private void enterlogin() {
 
         String user = username.getText();
-        String pass = new String(password.getText());
-
+        String pass = password.getText(); // Mengambil nilai dari JTextField
         try {
 
             Connection K = connect.Go();
@@ -288,7 +288,6 @@ public class login_page extends javax.swing.JFrame {
                 P.setPassword(R.getString("PASSWORD"));
                 P.setLevel(R.getString("LEVEL"));
                 count++;
-
             }
 
             if (count > 0) {
@@ -328,4 +327,8 @@ public class login_page extends javax.swing.JFrame {
         }
     }
 
+
+    private void MencatatAktifitasLogin() {
+
+    }
 }

@@ -303,6 +303,9 @@
             <Property name="text" type="java.lang.String" value="CETAK TRANSAKSI"/>
             <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CetakTransaksiActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_MuatUlang">
           <Properties>
@@ -322,7 +325,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_Hapus1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="VIEW TABEL TRANSAKSI"/>
+            <Property name="text" type="java.lang.String" value="LIHAT RINGKASAN"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Hapus1ActionPerformed"/>

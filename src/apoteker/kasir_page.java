@@ -14,9 +14,13 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import javax.swing.GroupLayout;
+import javax.swing.JComboBox;
 import konektor.Profile;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.LayoutStyle;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import konektor.connect;
@@ -1152,73 +1156,102 @@ public class kasir_page extends javax.swing.JFrame {
     }//GEN-LAST:event_txtJumlahProdukBeliActionPerformed
 
     private void btnCOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCOActionPerformed
+
         try (Connection conn = konektor.connect.Go()) {
-            // Proses pembayaran dan transaksi selesai
+            conn.setAutoCommit(false); // Mulai transaksi untuk menjaga konsistensi data
+
+            // Menghasilkan kode transaksi unik (INT) berdasarkan waktu dan ID pengguna
+            int kodeTransaksi = (int) (System.currentTimeMillis() % 1_000_000_000) + Integer.parseInt(label_IDUSER.getText());
+
+            // Mengambil jumlah total transaksi dari input
             double jumlahSeluruh = Double.parseDouble(txtJumlahSeluruh.getText());
-            double uangBayar = Double.parseDouble(txtUangBayar.getText().isEmpty() ? "0" : txtUangBayar.getText());
+            double uangBayar = Double.parseDouble(txtUangBayar.getText());
 
             if (uangBayar >= jumlahSeluruh) {
+                // Menghitung kembalian
                 double uangKembali = uangBayar - jumlahSeluruh;
                 txtUangKembali.setText(String.format("%.2f", uangKembali));
                 btnCO.setEnabled(true);
 
                 DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
 
+                // Query untuk tabel "transaksi"
+                String transaksiQuery = "INSERT INTO transaksi (Kode_transaksi, ID_AKUN, kode_produk, jumlah_produk) VALUES (?, ?, ?, ?)";
+
                 // Query untuk tabel "transaksi_detail"
-                String transaksiQuery = "INSERT INTO transaksi_detail (tanggal_transaksi, kode_obat, jumlah_produk, harga_satuan, total_harga, uang_diterima, uang_kembali, nama_kasir, ID_AKUN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                PreparedStatement transaksiPst = conn.prepareStatement(transaksiQuery);
+                String transaksiDetailQuery = "INSERT INTO transaksi_detail (kode_transaksi, tanggal_transaksi, kode_obat, jumlah_produk, harga_satuan, total_harga, uang_diterima, uang_kembali, nama_kasir, ID_AKUN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 // Query untuk tabel "cart"
                 String cartQuery = "INSERT INTO cart (tanggal_transaksi, kode_produk, nama_produk, harga_satuan, banyak_produk, total_belanja) VALUES (?, ?, ?, ?, ?, ?)";
-                PreparedStatement cartPst = conn.prepareStatement(cartQuery);
 
-                // Mendapatkan tanggal saat ini
-                java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
+                try (PreparedStatement transaksiPst = conn.prepareStatement(transaksiQuery); PreparedStatement transaksiDetailPst = conn.prepareStatement(transaksiDetailQuery); PreparedStatement cartPst = conn.prepareStatement(cartQuery)) {
 
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    String kodeProduk = model.getValueAt(i, 1).toString();
-                    String namaProduk = model.getValueAt(i, 2).toString();
-                    double hargaSatuan = Double.parseDouble(model.getValueAt(i, 3).toString());
-                    int banyakProduk = Integer.parseInt(model.getValueAt(i, 4).toString());
-                    double totalHarga = banyakProduk * hargaSatuan;
+                    java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
 
-                    // Tambahkan data ke batch "transaksi_detail"
-                    transaksiPst.setDate(1, currentDate); // Tanggal
-                    transaksiPst.setString(2, kodeProduk); // Kode produk
-                    transaksiPst.setInt(3, banyakProduk); // Banyak produk
-                    transaksiPst.setDouble(4, hargaSatuan); // Harga satuan
-                    transaksiPst.setDouble(5, totalHarga); // Total harga
-                    transaksiPst.setDouble(6, uangBayar); // Uang diterima
-                    transaksiPst.setDouble(7, uangKembali); // Uang kembali
-                    transaksiPst.setString(8, label_user.getText()); // Nama kasir
-                    transaksiPst.setInt(9, Integer.parseInt(label_IDUSER.getText())); // ID Akun
-                    transaksiPst.addBatch();
+                    double totalTransaksi = 0;
 
-                    // Tambahkan data ke batch "cart"
-                    cartPst.setDate(1, currentDate); // Tanggal
-                    cartPst.setString(2, kodeProduk); // Kode produk
-                    cartPst.setString(3, namaProduk); // Nama produk
-                    cartPst.setDouble(4, hargaSatuan); // Harga satuan
-                    cartPst.setInt(5, banyakProduk); // Banyak produk
-                    cartPst.setDouble(6, totalHarga); // Total belanja
-                    cartPst.addBatch();
+                    // Iterasi melalui baris tabel kasir
+                    for (int i = 0; i < model.getRowCount(); i++) {
+                        String kodeProduk = model.getValueAt(i, 1).toString();
+                        String namaProduk = model.getValueAt(i, 2).toString();
+                        double hargaSatuan = Double.parseDouble(model.getValueAt(i, 3).toString());
+                        int banyakProduk = Integer.parseInt(model.getValueAt(i, 4).toString());
+                        double totalHarga = banyakProduk * hargaSatuan;
+
+                        // Menambahkan data ke tabel "transaksi"
+                        transaksiPst.setInt(1, kodeTransaksi); // Kode transaksi
+                        transaksiPst.setInt(2, Integer.parseInt(label_IDUSER.getText())); // ID_AKUN
+                        transaksiPst.setString(3, kodeProduk); // kode_produk
+                        transaksiPst.setInt(4, banyakProduk); // jumlah_produk
+                        transaksiPst.addBatch();
+
+                        // Menambahkan data ke tabel "transaksi_detail"
+                        transaksiDetailPst.setInt(1, kodeTransaksi); // kode_transaksi
+                        transaksiDetailPst.setDate(2, currentDate); // Tanggal
+                        transaksiDetailPst.setString(3, kodeProduk); // Kode obat
+                        transaksiDetailPst.setInt(4, banyakProduk); // Banyak produk
+                        transaksiDetailPst.setDouble(5, hargaSatuan); // Harga satuan
+                        transaksiDetailPst.setDouble(6, totalHarga + (totalHarga * 0.01)); // Total harga dengan PPN
+                        transaksiDetailPst.setDouble(7, uangBayar); // Uang diterima
+                        transaksiDetailPst.setDouble(8, uangKembali); // Uang kembali
+                        transaksiDetailPst.setString(9, label_user.getText()); // Nama kasir
+                        transaksiDetailPst.setInt(10, Integer.parseInt(label_IDUSER.getText())); // ID Akun
+                        transaksiDetailPst.addBatch();
+
+                        // Menambahkan data ke tabel "cart"
+                        cartPst.setDate(1, currentDate); // Tanggal
+                        cartPst.setString(2, kodeProduk); // Kode produk
+                        cartPst.setString(3, namaProduk); // Nama produk
+                        cartPst.setDouble(4, hargaSatuan); // Harga satuan
+                        cartPst.setInt(5, banyakProduk); // Banyak produk
+                        cartPst.setDouble(6, totalHarga + (totalHarga * 0.01)); // Total belanja dengan PPN
+                        cartPst.addBatch();
+
+                        totalTransaksi += totalHarga;
+                    }
+
+                    // Eksekusi batch untuk semua tabel
+                    transaksiPst.executeBatch();
+                    transaksiDetailPst.executeBatch();
+                    cartPst.executeBatch();
+
+                    // Commit transaksi
+                    conn.commit();
+
+                    JOptionPane.showMessageDialog(this, "Transaction completed successfully!");
+
+                    // Bersihkan tabel dan input
+                    model.setRowCount(0);
+                    txtTotalBeli.setText("");
+                    txtPPN.setText("");
+                    txtJumlahSeluruh.setText("");
+                    txtUangBayar.setText("");
+                    txtUangKembali.setText("");
+                } catch (Exception e) {
+                    conn.rollback(); // Batalkan transaksi jika terjadi kesalahan
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
                 }
-
-                // Eksekusi batch untuk "transaksi_detail" terlebih dahulu
-                transaksiPst.executeBatch();
-
-                // Kemudian eksekusi batch untuk "cart"
-                cartPst.executeBatch();
-
-                JOptionPane.showMessageDialog(this, "Transaction completed successfully!");
-
-                // Bersihkan tabel dan input
-                model.setRowCount(0);
-                txtTotalBeli.setText("");
-                txtPPN.setText("");
-                txtJumlahSeluruh.setText("");
-                txtUangBayar.setText("");
-                txtUangKembali.setText("");
             } else {
                 JOptionPane.showMessageDialog(this, "Insufficient payment!");
                 btnCO.setEnabled(false);
@@ -1228,10 +1261,12 @@ public class kasir_page extends javax.swing.JFrame {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
         }
+
+
     }//GEN-LAST:event_btnCOActionPerformed
 
     private void txtUangBayarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUangBayarKeyReleased
-        try {
+         try {
             // Ambil nilai total belanja
             double jumlahSeluruh = Double.parseDouble(txtJumlahSeluruh.getText().isEmpty() ? "0" : txtJumlahSeluruh.getText());
 
@@ -1415,7 +1450,7 @@ public class kasir_page extends javax.swing.JFrame {
         tblKasir.getColumnModel().getColumn(5).setMaxWidth(500);
     }
 
-    private void calculateTotal() {
+   private void calculateTotal() {
         try {
             DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
             double totalBelanja = 0;
@@ -1425,7 +1460,7 @@ public class kasir_page extends javax.swing.JFrame {
                 totalBelanja += Double.parseDouble(model.getValueAt(i, 5).toString());
             }
 
-            double ppn = totalBelanja * 0.05;
+            double ppn = totalBelanja * 0.01;
             double jumlahSeluruh = totalBelanja + ppn;
 
             // Set nilai ke field
@@ -1438,5 +1473,4 @@ public class kasir_page extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
 }

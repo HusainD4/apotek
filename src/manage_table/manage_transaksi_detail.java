@@ -8,8 +8,10 @@ import java.awt.Frame;
 
 import konektor.Profile;
 import apoteker.admin_page;
+import java.awt.Dimension;
 //import konektor.connect;
 import java.awt.Frame;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -207,6 +209,11 @@ public class manage_transaksi_detail extends javax.swing.JFrame {
 
         btn_CetakTransaksi.setText("CETAK TRANSAKSI");
         btn_CetakTransaksi.setBorderPainted(false);
+        btn_CetakTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CetakTransaksiActionPerformed(evt);
+            }
+        });
 
         btn_MuatUlang.setText("MUAT ULANG");
         btn_MuatUlang.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +229,7 @@ public class manage_transaksi_detail extends javax.swing.JFrame {
             }
         });
 
-        btn_Hapus1.setText("VIEW TABEL TRANSAKSI");
+        btn_Hapus1.setText("LIHAT RINGKASAN");
         btn_Hapus1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_Hapus1ActionPerformed(evt);
@@ -273,7 +280,11 @@ public class manage_transaksi_detail extends javax.swing.JFrame {
     }//GEN-LAST:event_label_kembaliMouseClicked
 
     private void btn_Hapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Hapus1ActionPerformed
-        // TODO add your handling code here:
+        PreviewTabelPage.TransaksiView TV = new PreviewTabelPage.TransaksiView(this, true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        TV.setSize(screenSize.width, screenSize.height);
+        TV.setVisible(true);
+
     }//GEN-LAST:event_btn_Hapus1ActionPerformed
 
     private void btn_MuatUlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MuatUlangActionPerformed
@@ -312,6 +323,16 @@ public class manage_transaksi_detail extends javax.swing.JFrame {
             pencarianTrans.setText("");
         }
     }//GEN-LAST:event_pencarianTransFocusGained
+
+    private void btn_CetakTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CetakTransaksiActionPerformed
+        // Menampilkan notifikasi
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Aplikasi dalam maintenance",
+                "Informasi",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }//GEN-LAST:event_btn_CetakTransaksiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,12 +400,12 @@ public class manage_transaksi_detail extends javax.swing.JFrame {
             Statement S = K.createStatement();
             // Construct SQL query
 
-            String Q = "SELECT * FROM transaksi " + where;
+            String Q = "SELECT * FROM transaksi_detail " + where;
 //            System.out.println(Q);
             ResultSet R = S.executeQuery(Q);
             int no = 1;
             while (R.next()) {
-                int ID_Trans = R.getInt("ID_transaksi");
+                int ID_Trans = R.getInt("ID_transaksi_detail");
                 String Tanggal_Transaksi = R.getString("tanggal_transaksi");
                 String Kode_Obat = R.getString("kode_obat");
                 String Jumlah_Produk = R.getString("jumlah_produk");

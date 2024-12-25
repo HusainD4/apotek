@@ -30,13 +30,15 @@ public class TransaksiView extends javax.swing.JDialog {
      */
     ProfileTransaksiDetail TR;
     static DefaultTableModel trs;
+    static DefaultTableModel TperR;
 
     public TransaksiView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        initComponents();
         settingTableTransaksi();
         viewdataTransaksi("");
+        settingTableTransaksiPerKasir();
+        viewTotalTransaksiPerKasir("");
     }
 
     /**
@@ -50,10 +52,16 @@ public class TransaksiView extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         label_kembali = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_transaksi = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_totalTransaksiPerKasir = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -73,16 +81,18 @@ public class TransaksiView extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1204, Short.MAX_VALUE))
+                .addGap(0, 1129, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(label_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 58, Short.MAX_VALUE))
+                .addGap(0, 42, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -92,20 +102,96 @@ public class TransaksiView extends javax.swing.JDialog {
 
             },
             new String [] {
-                "No", "Tanggal Transaksi", "Nama Kasir", "Nama Produk", "Jumlah Produk", "Total Pembelian", "Uang Diterima", "Uang Kembali", "Metode Pembayaran"
+                "No", "KODE TRANSAKSI", "JUMLAH TRANSAKSI", "NAMA KASIR"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tbl_transaksi.setRowHeight(40);
         jScrollPane1.setViewportView(tbl_transaksi);
 
-        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(0, 153, 102));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("TOTAL TRANSAKSI PERKASIR");
+        jLabel1.setOpaque(true);
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        tbl_totalTransaksiPerKasir.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NAMA KASIR", "TOTAL TRANSAKSI"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_totalTransaksiPerKasir.setRowHeight(40);
+        jScrollPane2.setViewportView(tbl_totalTransaksiPerKasir);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,69 +243,126 @@ public class TransaksiView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label_kembali;
+    private javax.swing.JTable tbl_totalTransaksiPerKasir;
     private javax.swing.JTable tbl_transaksi;
     // End of variables declaration//GEN-END:variables
     public static void viewdataTransaksi(String where) {
         try {
-
+            // Menghapus baris pada tabel jika ada data sebelumnya
             for (int i = trs.getRowCount() - 1; i >= 0; i--) {
                 trs.removeRow(i);
             }
 
+            // Koneksi ke database
             Connection K = konektor.connect.Go();
             Statement S = K.createStatement();
-            // Construct SQL query
 
-            String Q = "SELECT * FROM transaksi " + where;
-//            System.out.println(Q);
+            // Query SQL
+            String Q = "SELECT t.kode_transaksi, COUNT(*) AS jumlah_transaksi, a.FULLNAME AS nama_kasir "
+                    + "FROM transaksi t "
+                    + "LEFT JOIN `user` a ON t.ID_AKUN = a.ID_AKUN "
+                    + "GROUP BY t.kode_transaksi, a.FULLNAME "
+                    + "ORDER BY jumlah_transaksi DESC "
+                    + "LIMIT 0, 25;";
+
             ResultSet R = S.executeQuery(Q);
             int no = 1;
-            while (R.next()) {
-                int ID_Trans = R.getInt("ID_transaksi");
-                String Tanggal_Transaksi = R.getString("tanggal_transaksi");
-                String Kode_Obat = R.getString("kode_obat");
-                String Jumlah_Produk = R.getString("jumlah_produk");
-                String Harga_Satuan = R.getString("harga_satuan");
-                String Total_harga = R.getString("total_harga");
-                String Uang_Diterima = R.getString("Uang_Diterima");
-                String Uang_Kembali = R.getString("Uang_Kembali");
-                String Nama_Kasir = R.getString("nama_kasir");
 
-                Object[] transs = {no, ID_Trans, Tanggal_Transaksi, Kode_Obat, Jumlah_Produk, Harga_Satuan, Total_harga, Uang_Diterima, Uang_Kembali, Nama_Kasir};
-                trs.addRow(transs);
+            // Iterasi hasil query
+            while (R.next()) {
+                Object[] transs = {
+                    no, // Nomor Urut
+                    R.getString("kode_transaksi"), // KODE TRANSAKSI
+                    R.getInt("jumlah_transaksi"), // JUMLAH TRANSAKSI
+                    R.getString("nama_kasir") // NAMA KASIR
+                };
+
+                trs.addRow(transs); // Menambahkan baris ke tabel
                 no++;
             }
+
+            // Menutup koneksi
+            R.close();
+            S.close();
+            K.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    
+    // Inisialisasi Model Tabel
+    private void settingTableTransaksiPerKasir() {
+        TperR = new DefaultTableModel(new Object[]{"Nama Kasir", "Jumlah Transaksi"}, 0);
+        tbl_totalTransaksiPerKasir.setModel(TperR);
+    }
 
+// Mengisi Tabel
+    public static void viewTotalTransaksiPerKasir(String string) {
+        try {
+            // Menghapus data lama pada tabel
+            TperR.setRowCount(0);
+
+            // Koneksi ke database
+            Connection K = konektor.connect.Go();
+            Statement S = K.createStatement();
+
+
+        // Query SQL
+        String Q = "SELECT " +
+                   "a.ID_AKUN AS id_akun, " +
+                   "a.FULLNAME AS nama_kasir, " +
+                   "COUNT(t.kode_transaksi) AS jumlah_transaksi " +
+                   "FROM transaksi t " +
+                   "LEFT JOIN user a ON t.ID_AKUN = a.ID_AKUN " +
+                   "GROUP BY a.ID_AKUN, a.FULLNAME " +
+                   "ORDER BY jumlah_transaksi DESC;";
+
+            ResultSet R = S.executeQuery(Q);
+
+     
+        // Iterasi hasil query dan menambahkan ke tabel
+        while (R.next()) {
+            Object[] rowData = {
+                R.getString("nama_kasir"),      // Nama Kasir
+                R.getInt("jumlah_transaksi")   // Jumlah Transaksi
+            };
+            TperR.addRow(rowData);
+        }
+            // Menutup koneksi
+            R.close();
+            S.close();
+            K.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
+
     private void settingTableTransaksi() {
+        // Inisialisasi model tabel dari JTable
         trs = (DefaultTableModel) tbl_transaksi.getModel();
-        tbl_transaksi.getColumnModel().getColumn(0).setMinWidth(50);
-        tbl_transaksi.getColumnModel().getColumn(0).setMaxWidth(70);
 
-        tbl_transaksi.getColumnModel().getColumn(1).setMinWidth(0);
-        tbl_transaksi.getColumnModel().getColumn(1).setMaxWidth(0);
+        // Mengatur lebar kolom pada tabel
+        int[][] columnSizes = {
+            {30, 30}, // Kolom 0: Minimum 50, Maksimum 50 (No)
+            {140, 140}, // Kolom 1: Minimum 140, Maksimum 140 (Kode Transaksi)
+            {140, 140}, // Kolom 2: Minimum 140, Maksimum 140 (Jumlah Transaksi)
+            {140, 400} // Kolom 3: Minimum 140, Maksimum 140 (Nama Kasir)
+        };
 
-        tbl_transaksi.getColumnModel().getColumn(2).setMinWidth(140);
-        tbl_transaksi.getColumnModel().getColumn(2).setMaxWidth(140);
-
-        tbl_transaksi.getColumnModel().getColumn(3).setMinWidth(120);
-        tbl_transaksi.getColumnModel().getColumn(3).setMaxWidth(120);
-
-        tbl_transaksi.getColumnModel().getColumn(4).setMinWidth(120);
-        tbl_transaksi.getColumnModel().getColumn(4).setMaxWidth(120);
-
-        tbl_transaksi.getColumnModel().getColumn(5).setMinWidth(140);
-        tbl_transaksi.getColumnModel().getColumn(5).setMaxWidth(140);
-
-        tbl_transaksi.getColumnModel().getColumn(6).setMinWidth(140);
-        tbl_transaksi.getColumnModel().getColumn(6).setMaxWidth(140);
+        // Iterasi pengaturan ukuran setiap kolom
+        for (int i = 0; i < columnSizes.length; i++) {
+            tbl_transaksi.getColumnModel().getColumn(i).setMinWidth(columnSizes[i][0]);
+            tbl_transaksi.getColumnModel().getColumn(i).setMaxWidth(columnSizes[i][1]);
+        }
     }
-
 }

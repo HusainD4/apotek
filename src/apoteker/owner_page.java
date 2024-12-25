@@ -5,6 +5,7 @@
 package apoteker;
 
 import java.awt.Frame;
+import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 import konektor.Profile;
 
 /**
@@ -54,9 +56,9 @@ public class owner_page extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        DataProdukCetak = new javax.swing.JButton();
+        DataPenjualanCetak = new javax.swing.JButton();
+        DataTransaksiCetak = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
@@ -192,27 +194,27 @@ public class owner_page extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton8.setText("DATA PRODUCT");
-        jButton8.setBorder(null);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        DataProdukCetak.setText("DATA PRODUCT");
+        DataProdukCetak.setBorder(null);
+        DataProdukCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                DataProdukCetakActionPerformed(evt);
             }
         });
 
-        jButton9.setText("DATA PENJUALAN");
-        jButton9.setBorder(null);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        DataPenjualanCetak.setText("DATA PENJUALAN");
+        DataPenjualanCetak.setBorder(null);
+        DataPenjualanCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                DataPenjualanCetakActionPerformed(evt);
             }
         });
 
-        jButton10.setText("DATA TRANSAKSI");
-        jButton10.setBorder(null);
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        DataTransaksiCetak.setText("DATA TRANSAKSI");
+        DataTransaksiCetak.setBorder(null);
+        DataTransaksiCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                DataTransaksiCetakActionPerformed(evt);
             }
         });
 
@@ -229,9 +231,9 @@ public class owner_page extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DataProdukCetak, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DataPenjualanCetak, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DataTransaksiCetak, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -240,11 +242,11 @@ public class owner_page extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DataProdukCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DataPenjualanCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DataTransaksiCetak, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -611,7 +613,7 @@ public class owner_page extends javax.swing.JFrame {
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(255, 255, 255));
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField5.setText("PENDAPATAN (PPN 5%)");
+        jTextField5.setText("PENDAPATAN (PPN 1%)");
 
         labelP.setBackground(new java.awt.Color(255, 255, 255));
         labelP.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
@@ -677,7 +679,7 @@ public class owner_page extends javax.swing.JFrame {
 
         jLabel10.setText("Note :");
 
-        jLabel11.setText("RUMUS PERHITUNGAN --> ( PENDAPATAN (PPN 5%) - PEMASUKAN )");
+        jLabel11.setText("RUMUS PERHITUNGAN --> ( PENDAPATAN (PPN 1%) - PEMASUKAN )");
 
         jPanel12.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -888,7 +890,7 @@ public class owner_page extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("HASIL RINGKASAN PENDAPATAN + PPN 5%");
+        jLabel18.setText("HASIL RINGKASAN PENDAPATAN + PPN 1%");
         jLabel18.setOpaque(true);
 
         jPanel17.setBackground(new java.awt.Color(204, 204, 204));
@@ -1022,15 +1024,21 @@ public class owner_page extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exitMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        PreviewTabelPage.ProdukView P = new PreviewTabelPage.ProdukView(this, true);
+        P.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        P.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        PreviewTabelPage.UserView U = new PreviewTabelPage.UserView(this, true);
+        U.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        U.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        PreviewTabelPage.TransaksiView TRANSAKSI = new PreviewTabelPage.TransaksiView(this, true);
+        TRANSAKSI.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        TRANSAKSI.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void MulaiTGLPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_MulaiTGLPropertyChange
@@ -1045,17 +1053,35 @@ public class owner_page extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void DataProdukCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataProdukCetakActionPerformed
+        // Menampilkan notifikasi
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Aplikasi dalam maintenance",
+                "Informasi",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }//GEN-LAST:event_DataProdukCetakActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void DataPenjualanCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataPenjualanCetakActionPerformed
+        // Menampilkan notifikasi
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Aplikasi dalam maintenance",
+                "Informasi",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }//GEN-LAST:event_DataPenjualanCetakActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void DataTransaksiCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataTransaksiCetakActionPerformed
+        // Menampilkan notifikasi
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Aplikasi dalam maintenance",
+                "Informasi",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }//GEN-LAST:event_DataTransaksiCetakActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
@@ -1063,10 +1089,10 @@ public class owner_page extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-    // Format untuk tanggal
-    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-    String tanggalHariIni = sdf.format(new java.util.Date());
-    lblDate.setText(tanggalHariIni); // Set default tanggal
+        // Format untuk tanggal
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        String tanggalHariIni = sdf.format(new java.util.Date());
+        lblDate.setText(tanggalHariIni); // Set default tanggal
 
         // Format untuk waktu
         SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm:ss");
@@ -1125,13 +1151,15 @@ public class owner_page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DataPenjualanCetak;
+    private javax.swing.JButton DataProdukCetak;
+    private javax.swing.JButton DataTransaksiCetak;
     private com.toedter.calendar.JDateChooser MulaiTGL;
     private com.toedter.calendar.JDateChooser SelesaiTGL;
     private javax.swing.JLabel apoteker_kasir;
     private javax.swing.JLabel btn_exit;
     private javax.swing.JLabel image2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1139,8 +1167,6 @@ public class owner_page extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1217,20 +1243,28 @@ private void RingkasanHasil() {
                 String tgl_mulai = sdf.format(mulai);
                 String tgl_sampai = sdf.format(sampai);
 
-                // Query untuk transaksi, produk, pendapatan, dsb.
-                String Q = "SELECT COUNT(DISTINCT ID_transaksi) AS jumlah_transaksi "
+                // Query untuk menghitung jumlah transaksi dalam rentang tanggal
+                String jumlahTransaksiQuery = "SELECT COUNT(DISTINCT ID_transaksi_detail) AS jumlah_transaksi "
                         + "FROM transaksi_detail WHERE tanggal_transaksi "
                         + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
-                String QQ = "SELECT SUM(jumlah_produk) AS total_produk "
+
+                // Query untuk menghitung total jumlah produk yang terjual dalam rentang tanggal
+                String totalProdukQuery = "SELECT SUM(jumlah_produk) AS total_produk "
                         + "FROM transaksi_detail WHERE tanggal_transaksi "
                         + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
-                String QQQ = "SELECT SUM(total_harga) AS total_pendapatan "
-                        + "FROM transaksi WHERE tanggal_transaksi "
-                        + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
-                String QQQQ = "SELECT SUM(jumlah_produk * harga_satuan) AS pendapatan_murni "
+
+                // Query untuk menghitung total pendapatan dari transaksi dalam rentang tanggal
+                String totalPendapatanQuery = "SELECT SUM(total_harga) AS total_pendapatan "
                         + "FROM transaksi_detail WHERE tanggal_transaksi "
                         + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
-                String QQQQQ = "SELECT (SUM(total_harga) - SUM(jumlah_produk * harga_satuan)) AS selisih_pendapatan "
+
+                // Query untuk menghitung pendapatan murni (jumlah produk * harga satuan) dalam rentang tanggal
+                String pendapatanMurniQuery = "SELECT SUM(jumlah_produk * harga_satuan) AS pendapatan_murni "
+                        + "FROM transaksi_detail WHERE tanggal_transaksi "
+                        + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
+
+                // Query untuk menghitung selisih pendapatan (total harga - pendapatan murni) dalam rentang tanggal
+                String selisihPendapatanQuery = "SELECT (SUM(total_harga) - SUM(jumlah_produk * harga_satuan)) AS selisih_pendapatan "
                         + "FROM transaksi_detail WHERE tanggal_transaksi "
                         + "BETWEEN '" + tgl_mulai + "' AND '" + tgl_sampai + "';";
 
@@ -1242,7 +1276,7 @@ private void RingkasanHasil() {
 
                 try (Statement statement = connection.createStatement()) {
                     // Query pertama: Jumlah transaksi
-                    try (ResultSet resultSetQ = statement.executeQuery(Q)) {
+                    try (ResultSet resultSetQ = statement.executeQuery(jumlahTransaksiQuery)) {
                         if (resultSetQ.next()) {
                             int jumlahTransaksi = resultSetQ.getInt("jumlah_transaksi");
                             labelJT.setText(String.valueOf(jumlahTransaksi));
@@ -1252,7 +1286,7 @@ private void RingkasanHasil() {
                     }
 
                     // Query kedua: Total produk
-                    try (ResultSet resultSetQQ = statement.executeQuery(QQ)) {
+                    try (ResultSet resultSetQQ = statement.executeQuery(totalProdukQuery)) {
                         if (resultSetQQ.next()) {
                             int totalProduk = resultSetQQ.getInt("total_produk");
                             labelPT.setText(String.valueOf(totalProduk));
@@ -1262,7 +1296,7 @@ private void RingkasanHasil() {
                     }
 
                     // Query ketiga: Total pendapatan
-                    try (ResultSet resultSetQQQ = statement.executeQuery(QQQ)) {
+                    try (ResultSet resultSetQQQ = statement.executeQuery(totalPendapatanQuery)) {
                         if (resultSetQQQ.next()) {
                             int totalPendapatan = resultSetQQQ.getInt("total_pendapatan");
                             NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
@@ -1274,7 +1308,7 @@ private void RingkasanHasil() {
                     }
 
                     // Query keempat: Pendapatan murni
-                    try (ResultSet resultSetQQQQ = statement.executeQuery(QQQQ)) {
+                    try (ResultSet resultSetQQQQ = statement.executeQuery(pendapatanMurniQuery)) {
                         if (resultSetQQQQ.next()) {
                             int pendapatanMurni = resultSetQQQQ.getInt("pendapatan_murni");
                             NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
@@ -1286,7 +1320,7 @@ private void RingkasanHasil() {
                     }
 
                     // Query kelima: Selisih pendapatan
-                    try (ResultSet resultSetQQQQQ = statement.executeQuery(QQQQQ)) {
+                    try (ResultSet resultSetQQQQQ = statement.executeQuery(selisihPendapatanQuery)) {
                         if (resultSetQQQQQ.next()) {
                             int selisihPendapatan = resultSetQQQQQ.getInt("selisih_pendapatan");
                             NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
@@ -1326,26 +1360,37 @@ private void RingkasanHasil() {
     }
 
     private void hitungPendapatanPPNHariIni() {
-        String query = "SELECT SUM(total_harga * 1.05) AS pendapatan_ppn_hari_ini "
-                + "FROM transaksi WHERE tanggal_transaksi = CURDATE();";
+        // Query untuk menghitung total pendapatan hari ini dari tabel transaksi_detail
+        String query = """
+        SELECT SUM(total_harga) AS pendapatan_ppn_hari_ini
+        FROM transaksi_detail
+        WHERE DATE(tanggal_transaksi) = CURDATE()
+    """;
 
         try (Connection connection = konektor.connect.Go(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
 
             if (resultSet.next()) {
-                int pendapatanPPNHariIni = resultSet.getInt("pendapatan_ppn_hari_ini");
+                // Mengambil hasil pendapatan dengan alias "pendapatan_ppn_hari_ini"
+                double pendapatanPPNHariIni = resultSet.getDouble("pendapatan_ppn_hari_ini");
+
+                // Format ke dalam mata uang Indonesia
                 NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
                 String formattedPendapatanPPNHariIni = currencyFormatter.format(pendapatanPPNHariIni);
+
+                // Menampilkan hasil pada label
                 labelPendapatanPPNHariIni.setText(formattedPendapatanPPNHariIni);
             } else {
+                // Jika tidak ada transaksi hari ini
                 labelPendapatanPPNHariIni.setText("Rp. 0");
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
         }
     }
 
     private void hitungJumlahTransaksiHariIni() {
-        String query = "SELECT COUNT(DISTINCT ID_transaksi) AS jumlah_transaksi_hari_ini "
+        String query = "SELECT COUNT(DISTINCT ID_transaksi_detail) AS jumlah_transaksi_hari_ini "
                 + "FROM transaksi_detail WHERE tanggal_transaksi = CURDATE();";
 
         try (Connection connection = konektor.connect.Go(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
