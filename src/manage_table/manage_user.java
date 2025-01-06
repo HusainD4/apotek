@@ -296,7 +296,7 @@ public class manage_user extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ 
     private void btn_EditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditUserActionPerformed
 
         int n = tbl_user.getSelectedRow();

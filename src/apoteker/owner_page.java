@@ -1140,7 +1140,13 @@ public class owner_page extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        reload();
+        // Menampilkan notifikasi
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "MUAT ULANG APLIKASI",
+                "NOTIFIKASI",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1401,8 +1407,7 @@ private void RingkasanHasil() {
         String query = """
         SELECT SUM(total_harga) AS pendapatan_ppn_hari_ini
         FROM transaksi_detail
-        WHERE DATE(tanggal_transaksi) = CURDATE()
-    """;
+        WHERE DATE(tanggal_transaksi) = CURDATE()""";
 
         try (Connection connection = konektor.connect.Go(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
 
@@ -1443,12 +1448,5 @@ private void RingkasanHasil() {
         }
     }
 
-    public void reload() {
-        this.setVisible(false);
-        this.dispose();
-        owner_page newPage = new owner_page();
-        newPage.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
-        newPage.setVisible(true);
-    }
 
 }

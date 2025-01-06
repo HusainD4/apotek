@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import konektor.ProfileHistoryKeranjang;
-import konektor.connect; // Pastikan ini sesuai dengan implementasi Anda
+import konektor.connect; 
 
 /**
  *

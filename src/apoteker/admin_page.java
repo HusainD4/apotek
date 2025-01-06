@@ -1351,7 +1351,6 @@ public class admin_page extends javax.swing.JFrame {
 
             Connection K = konektor.connect.Go();
             Statement S = K.createStatement();
-            // Construct SQL query
 
             String Q = "SELECT * FROM transaksi_detail " + where;
 //            System.out.println(Q);

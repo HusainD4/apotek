@@ -8,7 +8,6 @@ import java.awt.Frame;
 
 import konektor.Profile;
 import apoteker.admin_page;
-//import konektor.connect;
 import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.Statement;
