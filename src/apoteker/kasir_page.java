@@ -122,11 +122,6 @@ public class kasir_page extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtTotalBeli = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        txtPPN = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -588,7 +583,7 @@ public class kasir_page extends javax.swing.JFrame {
                                     .addComponent(label_IDUSER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabel25)
                             .addComponent(jSeparator9))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 349, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelUname, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -693,60 +688,6 @@ public class kasir_page extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel10.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("PPN (5%)");
-
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Rp.");
-
-        txtPPN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPPN, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtPPN, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -885,7 +826,7 @@ public class kasir_page extends javax.swing.JFrame {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtUangKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -900,19 +841,18 @@ public class kasir_page extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator5)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnCO, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -925,13 +865,11 @@ public class kasir_page extends javax.swing.JFrame {
                             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnCO, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1156,113 +1094,111 @@ public class kasir_page extends javax.swing.JFrame {
     }//GEN-LAST:event_txtJumlahProdukBeliActionPerformed
 
     private void btnCOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCOActionPerformed
+try (Connection conn = konektor.connect.Go()) {
+        conn.setAutoCommit(false); // Mulai transaksi untuk menjaga konsistensi data
 
-        try (Connection conn = konektor.connect.Go()) {
-            conn.setAutoCommit(false); // Mulai transaksi untuk menjaga konsistensi data
+        // Menghasilkan kode transaksi unik (INT) berdasarkan waktu dan ID pengguna
+        int kodeTransaksi = (int) (System.currentTimeMillis() % 1_000_000_000) + Integer.parseInt(label_IDUSER.getText());
 
-            // Menghasilkan kode transaksi unik (INT) berdasarkan waktu dan ID pengguna
-            int kodeTransaksi = (int) (System.currentTimeMillis() % 1_000_000_000) + Integer.parseInt(label_IDUSER.getText());
+        // Mengambil jumlah total transaksi dari input
+        double jumlahSeluruh = Double.parseDouble(txtJumlahSeluruh.getText());
+        double uangBayar = Double.parseDouble(txtUangBayar.getText());
 
-            // Mengambil jumlah total transaksi dari input
-            double jumlahSeluruh = Double.parseDouble(txtJumlahSeluruh.getText());
-            double uangBayar = Double.parseDouble(txtUangBayar.getText());
+        if (uangBayar >= jumlahSeluruh) {
+            // Menghitung kembalian
+            double uangKembali = uangBayar - jumlahSeluruh;
+            txtUangKembali.setText(String.format("%.2f", uangKembali));
+            btnCO.setEnabled(true);
 
-            if (uangBayar >= jumlahSeluruh) {
-                // Menghitung kembalian
-                double uangKembali = uangBayar - jumlahSeluruh;
-                txtUangKembali.setText(String.format("%.2f", uangKembali));
-                btnCO.setEnabled(true);
+            DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
 
-                DefaultTableModel model = (DefaultTableModel) tblKasir.getModel();
+            // Query untuk tabel "transaksi"
+            String transaksiQuery = "INSERT INTO transaksi (Kode_transaksi, ID_AKUN, kode_produk, jumlah_produk) VALUES (?, ?, ?, ?)";
 
-                // Query untuk tabel "transaksi"
-                String transaksiQuery = "INSERT INTO transaksi (Kode_transaksi, ID_AKUN, kode_produk, jumlah_produk) VALUES (?, ?, ?, ?)";
+            // Query untuk tabel "transaksi_detail"
+            String transaksiDetailQuery = "INSERT INTO transaksi_detail (kode_transaksi, tanggal_transaksi, kode_obat, jumlah_produk, harga_satuan, total_harga, uang_diterima, uang_kembali, nama_kasir, ID_AKUN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                // Query untuk tabel "transaksi_detail"
-                String transaksiDetailQuery = "INSERT INTO transaksi_detail (kode_transaksi, tanggal_transaksi, kode_obat, jumlah_produk, harga_satuan, total_harga, uang_diterima, uang_kembali, nama_kasir, ID_AKUN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            // Query untuk tabel "cart"
+            String cartQuery = "INSERT INTO cart (tanggal_transaksi, kode_produk, nama_produk, harga_satuan, banyak_produk, total_belanja) VALUES (?, ?, ?, ?, ?, ?)";
 
-                // Query untuk tabel "cart"
-                String cartQuery = "INSERT INTO cart (tanggal_transaksi, kode_produk, nama_produk, harga_satuan, banyak_produk, total_belanja) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement transaksiPst = conn.prepareStatement(transaksiQuery); 
+                 PreparedStatement transaksiDetailPst = conn.prepareStatement(transaksiDetailQuery); 
+                 PreparedStatement cartPst = conn.prepareStatement(cartQuery)) {
 
-                try (PreparedStatement transaksiPst = conn.prepareStatement(transaksiQuery); PreparedStatement transaksiDetailPst = conn.prepareStatement(transaksiDetailQuery); PreparedStatement cartPst = conn.prepareStatement(cartQuery)) {
+                java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
 
-                    java.sql.Date currentDate = new java.sql.Date(System.currentTimeMillis());
+                double totalTransaksi = 0;
 
-                    double totalTransaksi = 0;
+                // Iterasi melalui baris tabel kasir
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    String kodeProduk = model.getValueAt(i, 1).toString();
+                    String namaProduk = model.getValueAt(i, 2).toString();
+                    double hargaSatuan = Double.parseDouble(model.getValueAt(i, 3).toString());
+                    int banyakProduk = Integer.parseInt(model.getValueAt(i, 4).toString());
+                    double totalHarga = banyakProduk * hargaSatuan;
 
-                    // Iterasi melalui baris tabel kasir
-                    for (int i = 0; i < model.getRowCount(); i++) {
-                        String kodeProduk = model.getValueAt(i, 1).toString();
-                        String namaProduk = model.getValueAt(i, 2).toString();
-                        double hargaSatuan = Double.parseDouble(model.getValueAt(i, 3).toString());
-                        int banyakProduk = Integer.parseInt(model.getValueAt(i, 4).toString());
-                        double totalHarga = banyakProduk * hargaSatuan;
+                    // Menambahkan data ke tabel "transaksi"
+                    transaksiPst.setInt(1, kodeTransaksi); // Kode transaksi
+                    transaksiPst.setInt(2, Integer.parseInt(label_IDUSER.getText())); // ID_AKUN
+                    transaksiPst.setString(3, kodeProduk); // kode_produk
+                    transaksiPst.setInt(4, banyakProduk); // jumlah_produk
+                    transaksiPst.addBatch();
 
-                        // Menambahkan data ke tabel "transaksi"
-                        transaksiPst.setInt(1, kodeTransaksi); // Kode transaksi
-                        transaksiPst.setInt(2, Integer.parseInt(label_IDUSER.getText())); // ID_AKUN
-                        transaksiPst.setString(3, kodeProduk); // kode_produk
-                        transaksiPst.setInt(4, banyakProduk); // jumlah_produk
-                        transaksiPst.addBatch();
+                    // Menambahkan data ke tabel "transaksi_detail"
+                    transaksiDetailPst.setInt(1, kodeTransaksi); // kode_transaksi
+                    transaksiDetailPst.setDate(2, currentDate); // Tanggal
+                    transaksiDetailPst.setString(3, kodeProduk); // Kode obat
+                    transaksiDetailPst.setInt(4, banyakProduk); // Banyak produk
+                    transaksiDetailPst.setDouble(5, hargaSatuan); // Harga satuan
+                    transaksiDetailPst.setDouble(6, totalHarga); // Total harga tanpa PPN
+                    transaksiDetailPst.setDouble(7, uangBayar); // Uang diterima
+                    transaksiDetailPst.setDouble(8, uangKembali); // Uang kembali
+                    transaksiDetailPst.setString(9, label_user.getText()); // Nama kasir
+                    transaksiDetailPst.setInt(10, Integer.parseInt(label_IDUSER.getText())); // ID Akun
+                    transaksiDetailPst.addBatch();
 
-                        // Menambahkan data ke tabel "transaksi_detail"
-                        transaksiDetailPst.setInt(1, kodeTransaksi); // kode_transaksi
-                        transaksiDetailPst.setDate(2, currentDate); // Tanggal
-                        transaksiDetailPst.setString(3, kodeProduk); // Kode obat
-                        transaksiDetailPst.setInt(4, banyakProduk); // Banyak produk
-                        transaksiDetailPst.setDouble(5, hargaSatuan); // Harga satuan
-                        transaksiDetailPst.setDouble(6, totalHarga + (totalHarga * 0.01)); // Total harga dengan PPN
-                        transaksiDetailPst.setDouble(7, uangBayar); // Uang diterima
-                        transaksiDetailPst.setDouble(8, uangKembali); // Uang kembali
-                        transaksiDetailPst.setString(9, label_user.getText()); // Nama kasir
-                        transaksiDetailPst.setInt(10, Integer.parseInt(label_IDUSER.getText())); // ID Akun
-                        transaksiDetailPst.addBatch();
+                    // Menambahkan data ke tabel "cart"
+                    cartPst.setDate(1, currentDate); // Tanggal
+                    cartPst.setString(2, kodeProduk); // Kode produk
+                    cartPst.setString(3, namaProduk); // Nama produk
+                    cartPst.setDouble(4, hargaSatuan); // Harga satuan
+                    cartPst.setInt(5, banyakProduk); // Banyak produk
+                    cartPst.setDouble(6, totalHarga); // Total belanja tanpa PPN
+                    cartPst.addBatch();
 
-                        // Menambahkan data ke tabel "cart"
-                        cartPst.setDate(1, currentDate); // Tanggal
-                        cartPst.setString(2, kodeProduk); // Kode produk
-                        cartPst.setString(3, namaProduk); // Nama produk
-                        cartPst.setDouble(4, hargaSatuan); // Harga satuan
-                        cartPst.setInt(5, banyakProduk); // Banyak produk
-                        cartPst.setDouble(6, totalHarga + (totalHarga * 0.01)); // Total belanja dengan PPN
-                        cartPst.addBatch();
-
-                        totalTransaksi += totalHarga;
-                    }
-
-                    // Eksekusi batch untuk semua tabel
-                    transaksiPst.executeBatch();
-                    transaksiDetailPst.executeBatch();
-                    cartPst.executeBatch();
-
-                    // Commit transaksi
-                    conn.commit();
-
-                    JOptionPane.showMessageDialog(this, "Transaction completed successfully!");
-
-                    // Bersihkan tabel dan input
-                    model.setRowCount(0);
-                    txtTotalBeli.setText("");
-                    txtPPN.setText("");
-                    txtJumlahSeluruh.setText("");
-                    txtUangBayar.setText("");
-                    txtUangKembali.setText("");
-                } catch (Exception e) {
-                    conn.rollback(); // Batalkan transaksi jika terjadi kesalahan
-                    e.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
+                    totalTransaksi += totalHarga;
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Insufficient payment!");
-                btnCO.setEnabled(false);
-                txtUangKembali.setText("0");
+
+                // Eksekusi batch untuk semua tabel
+                transaksiPst.executeBatch();
+                transaksiDetailPst.executeBatch();
+                cartPst.executeBatch();
+
+                // Commit transaksi
+                conn.commit();
+
+                JOptionPane.showMessageDialog(this, "Transaction completed successfully!");
+
+                // Bersihkan tabel dan input
+                model.setRowCount(0);
+                txtTotalBeli.setText("");
+                txtJumlahSeluruh.setText("");
+                txtUangBayar.setText("");
+                txtUangKembali.setText("");
+            } catch (Exception e) {
+                conn.rollback(); // Batalkan transaksi jika terjadi kesalahan
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(this, "Insufficient payment!");
+            btnCO.setEnabled(false);
+            txtUangKembali.setText("0");
         }
-
-
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
+    }
     }//GEN-LAST:event_btnCOActionPerformed
 
     private void txtUangBayarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUangBayarKeyReleased
@@ -1378,14 +1314,10 @@ public class kasir_page extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -1425,7 +1357,6 @@ public class kasir_page extends javax.swing.JFrame {
     private javax.swing.JTextField txtJumlahProdukBeli;
     private javax.swing.JLabel txtJumlahSeluruh;
     private javax.swing.JTextField txtKodeProduct;
-    private javax.swing.JLabel txtPPN;
     private javax.swing.JLabel txtTotalBeli;
     private javax.swing.JTextField txtUangBayar;
     private javax.swing.JTextField txtUangKembali;
@@ -1462,12 +1393,10 @@ public class kasir_page extends javax.swing.JFrame {
                 totalBelanja += Double.parseDouble(model.getValueAt(i, 5).toString());
             }
 
-            double ppn = totalBelanja * 0.01;
-            double jumlahSeluruh = totalBelanja + ppn;
+            double jumlahSeluruh = totalBelanja;
 
             // Set nilai ke field
             txtTotalBeli.setText(String.valueOf(totalBelanja));
-            txtPPN.setText(String.valueOf(ppn));
             txtJumlahSeluruh.setText(String.valueOf(jumlahSeluruh));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat menghitung total: " + e.getMessage(),

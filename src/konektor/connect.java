@@ -13,7 +13,7 @@ public class connect {
             m.setDatabaseName("db_apoteker_project"); 
             m.setUser("root"); 
             m.setPassword(""); 
-            m.setPortNumber(3306); 
+            m.setPortNumber(3307); 
             m.setServerTimezone("Asia/Jakarta"); 
             
             Connection C = m.getConnection();

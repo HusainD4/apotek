@@ -5,7 +5,6 @@
 package manage_table;
 
 import editor_manage.EditUser;
-//import konektor.Profile;
 import apoteker.admin_page;
 import konektor.connect;
 import java.awt.Frame;
@@ -16,6 +15,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -296,7 +296,7 @@ public class manage_user extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- 
+
     private void btn_EditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditUserActionPerformed
 
         int n = tbl_user.getSelectedRow();
@@ -335,21 +335,26 @@ public class manage_user extends javax.swing.JFrame {
                     "Hapus Data",
                     JOptionPane.YES_NO_OPTION);
             if (opsi == 0) {
-                String Q = "DELETE FROM user "
-                        + "WHERE ID_AKUN=" + id;
-
+                // Hapus data yang terkait di transaksi_detail terlebih dahulu
+                String deleteTransaksiDetailQuery = "DELETE FROM transaksi_detail WHERE ID_AKUN = ?";
                 try {
                     Connection K = konektor.connect.Go();
-                    Statement S = K.createStatement();
-                    S.executeUpdate(Q);
-                    viewData("");
+                    PreparedStatement psTransaksi = K.prepareStatement(deleteTransaksiDetailQuery);
+                    psTransaksi.setInt(1, id);
+                    psTransaksi.executeUpdate();
+
+                    // Sekarang hapus data dari tabel user
+                    String deleteUserQuery = "DELETE FROM user WHERE ID_AKUN = ?";
+                    PreparedStatement psUser = K.prepareStatement(deleteUserQuery);
+                    psUser.setInt(1, id);
+                    psUser.executeUpdate();
+
+                    viewData(""); // Refresh data di table
                     JOptionPane.showMessageDialog(this, "Data " + FULLNAME + " telah terhapus");
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(this, "gagal di hapus!!");
-
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus data! " + e.getMessage());
                 }
             }
-
         } else {
             JOptionPane.showMessageDialog(this, "Anda belum memilih data");
         }

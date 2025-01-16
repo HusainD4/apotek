@@ -97,21 +97,10 @@ public class owner_page extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jumlah_transaksi4 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
-        labelP = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        labelKeuntungan = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -119,9 +108,6 @@ public class owner_page extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         labelPendapatanMurniHariIni = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jPanel16 = new javax.swing.JPanel();
-        labelPendapatanPPNHariIni = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         labelJumlahTransaksihariIni = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -305,7 +291,7 @@ public class owner_page extends javax.swing.JFrame {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addContainerGap(392, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
@@ -586,7 +572,7 @@ public class owner_page extends javax.swing.JFrame {
         jumlah_transaksi5.setLayout(jumlah_transaksi5Layout);
         jumlah_transaksi5Layout.setHorizontalGroup(
             jumlah_transaksi5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+            .addComponent(jTextField6)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jumlah_transaksi5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelPM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -606,39 +592,6 @@ public class owner_page extends javax.swing.JFrame {
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText(" SAMPAI TANGGAL");
-
-        jumlah_transaksi4.setBackground(new java.awt.Color(153, 153, 153));
-
-        jTextField5.setBackground(new java.awt.Color(0, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField5.setText("PENDAPATAN (PPN 1%)");
-
-        labelP.setBackground(new java.awt.Color(255, 255, 255));
-        labelP.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
-        labelP.setForeground(new java.awt.Color(255, 255, 255));
-        labelP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelP.setText("Rp.");
-
-        javax.swing.GroupLayout jumlah_transaksi4Layout = new javax.swing.GroupLayout(jumlah_transaksi4);
-        jumlah_transaksi4.setLayout(jumlah_transaksi4Layout);
-        jumlah_transaksi4Layout.setHorizontalGroup(
-            jumlah_transaksi4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField5)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jumlah_transaksi4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jumlah_transaksi4Layout.setVerticalGroup(
-            jumlah_transaksi4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jumlah_transaksi4Layout.createSequentialGroup()
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
 
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -662,91 +615,12 @@ public class owner_page extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("MUAT ULANG APLIKASI");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         jButton6.setText("MASUK SEBAGAI ADMIN");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-
-        jButton7.setText("PENGATURAN");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel9.setBackground(new java.awt.Color(255, 153, 51));
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("RINGKASAN HASIL KEUNTUNGAN PER-TANGGAL YG SUDAH DI TENTUKAN");
-        jLabel9.setOpaque(true);
-
-        jLabel10.setText("Note :");
-
-        jLabel11.setText("RUMUS PERHITUNGAN --> ( PENDAPATAN (PPN 1%) - PEMASUKAN )");
-
-        jPanel12.setBackground(new java.awt.Color(204, 204, 204));
-
-        labelKeuntungan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelKeuntungan.setText("Rp.");
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelKeuntungan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelKeuntungan, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10))
-                .addContainerGap())
-        );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -755,36 +629,20 @@ public class owner_page extends javax.swing.JFrame {
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -808,9 +666,7 @@ public class owner_page extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jumlah_transaksi3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jumlah_transaksi5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jumlah_transaksi4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jumlah_transaksi5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -832,8 +688,7 @@ public class owner_page extends javax.swing.JFrame {
                         .addComponent(SelesaiTGL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jumlah_transaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jumlah_transaksi3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jumlah_transaksi5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jumlah_transaksi4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jumlah_transaksi5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -880,34 +735,6 @@ public class owner_page extends javax.swing.JFrame {
         jLabel17.setText("JUMLAH TRANSAKSI");
         jLabel17.setOpaque(true);
 
-        jPanel16.setBackground(new java.awt.Color(204, 204, 204));
-
-        labelPendapatanPPNHariIni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelPendapatanPPNHariIni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelPendapatanPPNHariIni, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jLabel18.setBackground(new java.awt.Color(255, 153, 51));
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("HASIL RINGKASAN PENDAPATAN + PPN 1%");
-        jLabel18.setOpaque(true);
-
         jPanel17.setBackground(new java.awt.Color(204, 204, 204));
 
         labelJumlahTransaksihariIni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -941,8 +768,6 @@ public class owner_page extends javax.swing.JFrame {
                         .addComponent(jLabel14)
                         .addGap(0, 1252, Short.MAX_VALUE))
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -954,11 +779,7 @@ public class owner_page extends javax.swing.JFrame {
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(88, 88, 88)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1007,9 +828,9 @@ public class owner_page extends javax.swing.JFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1021,7 +842,7 @@ public class owner_page extends javax.swing.JFrame {
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addContainerGap())
         );
 
         jScrollPane1.setViewportView(jPanel9);
@@ -1082,13 +903,9 @@ public class owner_page extends javax.swing.JFrame {
     }//GEN-LAST:event_DataProdukCetakActionPerformed
 
     private void DataPenjualanCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataPenjualanCetakActionPerformed
-        // Menampilkan notifikasi
-        javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Aplikasi dalam maintenance",
-                "Informasi",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE
-        );
+
+        DataCetak.CetakDataPenjualan K = new DataCetak.CetakDataPenjualan();
+        K.setVisible(true);
     }//GEN-LAST:event_DataPenjualanCetakActionPerformed
 
     private void DataTransaksiCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataTransaksiCetakActionPerformed
@@ -1129,7 +946,9 @@ public class owner_page extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        // Membuka grafik
+        konektor.grafik.main(new String[0]);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1138,24 +957,6 @@ public class owner_page extends javax.swing.JFrame {
         A.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         A.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // Menampilkan notifikasi
-        javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "MUAT ULANG APLIKASI",
-                "NOTIFIKASI",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE
-        );
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        this.setVisible(false);
-        pengaturan p = new pengaturan();
-        p.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
-        p.setVisible(true);
-
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1207,18 +1008,13 @@ public class owner_page extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -1227,15 +1023,11 @@ public class owner_page extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
@@ -1253,21 +1045,16 @@ public class owner_page extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JPanel jumlah_transaksi;
     private javax.swing.JPanel jumlah_transaksi3;
-    private javax.swing.JPanel jumlah_transaksi4;
     private javax.swing.JPanel jumlah_transaksi5;
     private javax.swing.JLabel labelJAM;
     private javax.swing.JLabel labelJT;
     private javax.swing.JLabel labelJumlahTransaksihariIni;
-    private javax.swing.JLabel labelKeuntungan;
-    private javax.swing.JLabel labelP;
     private javax.swing.JLabel labelPM;
     private javax.swing.JLabel labelPT;
     private javax.swing.JLabel labelPendapatanMurniHariIni;
-    private javax.swing.JLabel labelPendapatanPPNHariIni;
     private javax.swing.JLabel label_halo;
     private javax.swing.JLabel label_user;
     private javax.swing.JLabel lblDate;
@@ -1276,7 +1063,6 @@ private void RingkasanHasil() {
         try {
 
             hitungPendapatanMurniHariIni();
-            hitungPendapatanPPNHariIni();
             hitungJumlahTransaksiHariIni();
 
             Date mulai = MulaiTGL.getDate();
@@ -1338,18 +1124,6 @@ private void RingkasanHasil() {
                         }
                     }
 
-                    // Query ketiga: Total pendapatan
-                    try (ResultSet resultSetQQQ = statement.executeQuery(totalPendapatanQuery)) {
-                        if (resultSetQQQ.next()) {
-                            int totalPendapatan = resultSetQQQ.getInt("total_pendapatan");
-                            NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
-                            String formattedPendapatan = currencyFormatter.format(totalPendapatan);
-                            labelP.setText(formattedPendapatan);
-                        } else {
-                            labelP.setText("Rp. 0");
-                        }
-                    }
-
                     // Query keempat: Pendapatan murni
                     try (ResultSet resultSetQQQQ = statement.executeQuery(pendapatanMurniQuery)) {
                         if (resultSetQQQQ.next()) {
@@ -1359,18 +1133,6 @@ private void RingkasanHasil() {
                             labelPM.setText(formattedPendapatanMurni);
                         } else {
                             labelPM.setText("Rp. 0");
-                        }
-                    }
-
-                    // Query kelima: Selisih pendapatan
-                    try (ResultSet resultSetQQQQQ = statement.executeQuery(selisihPendapatanQuery)) {
-                        if (resultSetQQQQQ.next()) {
-                            int selisihPendapatan = resultSetQQQQQ.getInt("selisih_pendapatan");
-                            NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
-                            String formattedSelisihPendapatan = currencyFormatter.format(selisihPendapatan);
-                            labelKeuntungan.setText(formattedSelisihPendapatan);
-                        } else {
-                            labelKeuntungan.setText("Rp. 0");
                         }
                     }
                 } finally {
@@ -1402,35 +1164,6 @@ private void RingkasanHasil() {
         }
     }
 
-    private void hitungPendapatanPPNHariIni() {
-        // Query untuk menghitung total pendapatan hari ini dari tabel transaksi_detail
-        String query = """
-        SELECT SUM(total_harga) AS pendapatan_ppn_hari_ini
-        FROM transaksi_detail
-        WHERE DATE(tanggal_transaksi) = CURDATE()""";
-
-        try (Connection connection = konektor.connect.Go(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
-
-            if (resultSet.next()) {
-                // Mengambil hasil pendapatan dengan alias "pendapatan_ppn_hari_ini"
-                double pendapatanPPNHariIni = resultSet.getDouble("pendapatan_ppn_hari_ini");
-
-                // Format ke dalam mata uang Indonesia
-                NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
-                String formattedPendapatanPPNHariIni = currencyFormatter.format(pendapatanPPNHariIni);
-
-                // Menampilkan hasil pada label
-                labelPendapatanPPNHariIni.setText(formattedPendapatanPPNHariIni);
-            } else {
-                // Jika tidak ada transaksi hari ini
-                labelPendapatanPPNHariIni.setText("Rp. 0");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
-        }
-    }
-
     private void hitungJumlahTransaksiHariIni() {
         String query = "SELECT COUNT(DISTINCT ID_transaksi_detail) AS jumlah_transaksi_hari_ini "
                 + "FROM transaksi_detail WHERE tanggal_transaksi = CURDATE();";
@@ -1447,6 +1180,5 @@ private void RingkasanHasil() {
             e.printStackTrace();
         }
     }
-
 
 }
