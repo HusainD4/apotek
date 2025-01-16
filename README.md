@@ -4,7 +4,7 @@ Sistem manajemen kasir modern yang dirancang khusus untuk apotek.
 ---
 
 ## 🚀 **Download Aplikasi**
-📥 **[Klik di sini untuk mengunduh database]([https://drive.google.com/drive/folders/1kvyWsKfCHISdkOg9GJkwJ15zNl3DeCwj?usp=sharing](https://drive.google.com/drive/folders/1QsTgiFc-EH7oqtjKUp66uYxt4hGrDwj5?usp=sharing))**
+📥 **[Klik di sini untuk mengunduh aplikasi](https://drive.google.com/drive/folders/1QsTgiFc-EH7oqtjKUp66uYxt4hGrDwj5?usp=sharing)**
 
 ---
 
@@ -50,7 +50,7 @@ Sistem manajemen kasir modern yang dirancang khusus untuk apotek.
 ## ✨ **Informasi Proyek**
 - **Tugas Project:** Matakuliah Pemrograman Komputer  
 - **Dosen Pengampu:** M. Nishom, M.Kom.  
-- **Kampus:** Politeknik Harapan Bersama Tegal  
+- **Kampus:** Politeknik Harapan Bersama Tegal
 
----
+
 
