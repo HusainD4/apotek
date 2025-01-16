@@ -27,23 +27,23 @@ import java.sql.PreparedStatement;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
-
-
 /**
  *
  * @author HUSAIN
  */
+public class CetakDataProduk extends javax.swing.JFrame {
 
-public class CetakDataPenjualan extends javax.swing.JFrame {
-    static DefaultTableModel cp;
+    static DefaultTableModel CPR;
+
     /**
-     * Creates new form CetakTransaksi
+     * Creates new form CetakProduk
      */
-    public CetakDataPenjualan() {
+    public CetakDataProduk() {
         initComponents();
         settingTable();
-        viewDataJ("");
+        viewDataP("");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +56,7 @@ public class CetakDataPenjualan extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        LAPORAN_PENJUALAN = new javax.swing.JTable();
+        LAPORAN_PRODUK = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         CETAK = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -71,7 +71,7 @@ public class CetakDataPenjualan extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LAPORAN PENJUALAN");
+        jLabel1.setText("LAPORAN PRODUK");
         jLabel1.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -80,7 +80,7 @@ public class CetakDataPenjualan extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -93,28 +93,26 @@ public class CetakDataPenjualan extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        LAPORAN_PENJUALAN.setModel(new javax.swing.table.DefaultTableModel(
+        LAPORAN_PRODUK.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NO", "TANGGAL", "NAMA PRODUK", "PRODUK TERJUAL"
+                "NO", "KODE PRODUK", "PRODUK", "STOK", "HARGA "
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(LAPORAN_PENJUALAN);
-        if (LAPORAN_PENJUALAN.getColumnModel().getColumnCount() > 0) {
-            LAPORAN_PENJUALAN.getColumnModel().getColumn(0).setResizable(false);
-            LAPORAN_PENJUALAN.getColumnModel().getColumn(1).setResizable(false);
-            LAPORAN_PENJUALAN.getColumnModel().getColumn(2).setResizable(false);
-            LAPORAN_PENJUALAN.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(LAPORAN_PRODUK);
+        if (LAPORAN_PRODUK.getColumnModel().getColumnCount() > 0) {
+            LAPORAN_PRODUK.getColumnModel().getColumn(3).setResizable(false);
+            LAPORAN_PRODUK.getColumnModel().getColumn(4).setResizable(false);
         }
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -140,7 +138,7 @@ public class CetakDataPenjualan extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(508, Short.MAX_VALUE)
+                .addContainerGap(433, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CETAK)
@@ -163,76 +161,76 @@ public class CetakDataPenjualan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CETAKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAKActionPerformed
-    // Membuat PrinterJob untuk menangani pencetakan
-    PrinterJob printerJob = PrinterJob.getPrinterJob();
-    
-    // Menentukan PageFormat untuk kertas A4
-    PageFormat pageFormat = printerJob.defaultPage();
-    Paper paper = new Paper();
-    double width = 595;  // Lebar A4 dalam point
-    double height = 842; // Tinggi A4 dalam point
-    paper.setSize(width, height);
-    paper.setImageableArea(50, 50, width - 100, height - 100); // Area yang bisa dicetak (memberi margin)
-    pageFormat.setPaper(paper);
-    
-    // Membuat objek Printable untuk mendefinisikan cara mencetak
-    Printable printable = new Printable() {
-        public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-            if (pageIndex > 0) {
-                return NO_SUCH_PAGE; // Jika lebih dari satu halaman
-            }
+        // Membuat PrinterJob untuk menangani pencetakan
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
 
-            Graphics2D g2d = (Graphics2D) graphics;
-            g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+        // Menentukan PageFormat untuk kertas A4
+        PageFormat pageFormat = printerJob.defaultPage();
+        Paper paper = new Paper();
+        double width = 595;  // Lebar A4 dalam point
+        double height = 842; // Tinggi A4 dalam point
+        paper.setSize(width, height);
+        paper.setImageableArea(50, 50, width - 100, height - 100); // Area yang bisa dicetak (memberi margin)
+        pageFormat.setPaper(paper);
 
-            // Mengatur font dan ukuran tulisan
-            g2d.setFont(new Font("Serif", Font.PLAIN, 10));
+        // Membuat objek Printable untuk mendefinisikan cara mencetak
+        Printable printable = new Printable() {
+            public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+                if (pageIndex > 0) {
+                    return NO_SUCH_PAGE; // Jika lebih dari satu halaman
+                }
 
-            // Mengambil data dari JTable
-            JTable table = LAPORAN_PENJUALAN; // Pastikan LAPORAN_PENJUALAN adalah objek JTable
-            TableModel model = table.getModel();
-            
-            // Menulis header tabel
-            int y = 20; // Posisi awal vertikal
-            int x = 50; // Posisi awal horizontal
-            int rowHeight = 20; // Tinggi baris
-            int columnWidth = 100; // Lebar kolom
+                Graphics2D g2d = (Graphics2D) graphics;
+                g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
 
-            // Menulis header tabel
-            for (int col = 0; col < model.getColumnCount(); col++) {
-                g2d.drawString(model.getColumnName(col), x + col * columnWidth, y);
-            }
+                // Mengatur font dan ukuran tulisan
+                g2d.setFont(new Font("Serif", Font.PLAIN, 10));
 
-            y += rowHeight; // Pindah ke baris berikutnya
+                // Mengambil data dari JTable
+                JTable table = LAPORAN_PRODUK; // Pastikan LAPORAN_PENJUALAN adalah objek JTable
+                TableModel model = table.getModel();
 
-            // Menulis data tabel
-            for (int row = 0; row < model.getRowCount(); row++) {
+                // Menulis header tabel
+                int y = 20; // Posisi awal vertikal
+                int x = 50; // Posisi awal horizontal
+                int rowHeight = 20; // Tinggi baris
+                int columnWidth = 100; // Lebar kolom
+
+                // Menulis header tabel
                 for (int col = 0; col < model.getColumnCount(); col++) {
-                    g2d.drawString(model.getValueAt(row, col).toString(), x + col * columnWidth, y);
+                    g2d.drawString(model.getColumnName(col), x + col * columnWidth, y);
                 }
-                y += rowHeight;
 
-                // Cek jika baris melebihi batas halaman, jika iya, lanjutkan ke halaman berikutnya
-                if (y > height - 50) { // Jika melebihi batas halaman, lanjut ke halaman baru
-                    return PAGE_EXISTS; // Halaman berikutnya
+                y += rowHeight; // Pindah ke baris berikutnya
+
+                // Menulis data tabel
+                for (int row = 0; row < model.getRowCount(); row++) {
+                    for (int col = 0; col < model.getColumnCount(); col++) {
+                        g2d.drawString(model.getValueAt(row, col).toString(), x + col * columnWidth, y);
+                    }
+                    y += rowHeight;
+
+                    // Cek jika baris melebihi batas halaman, jika iya, lanjutkan ke halaman berikutnya
+                    if (y > height - 50) { // Jika melebihi batas halaman, lanjut ke halaman baru
+                        return PAGE_EXISTS; // Halaman berikutnya
+                    }
                 }
+
+                return PAGE_EXISTS; // Menyelesaikan pencetakan untuk halaman ini
             }
+        };
 
-            return PAGE_EXISTS; // Menyelesaikan pencetakan untuk halaman ini
+        // Menentukan pencetak yang digunakan untuk mencetak dokumen
+        printerJob.setPrintable(printable, pageFormat);
+
+        // Menampilkan dialog untuk mencetak
+        if (printerJob.printDialog()) {
+            try {
+                printerJob.print(); // Mencetak dokumen
+            } catch (PrinterException e) {
+                e.printStackTrace();
+            }
         }
-    };
-
-    // Menentukan pencetak yang digunakan untuk mencetak dokumen
-    printerJob.setPrintable(printable, pageFormat);
-
-    // Menampilkan dialog untuk mencetak
-    if (printerJob.printDialog()) {
-        try {
-            printerJob.print(); // Mencetak dokumen
-        } catch (PrinterException e) {
-            e.printStackTrace();
-        }
-    }
     }//GEN-LAST:event_CETAKActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -256,13 +254,13 @@ public class CetakDataPenjualan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CetakDataPenjualan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CetakDataProduk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CetakDataPenjualan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CetakDataProduk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CetakDataPenjualan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CetakDataProduk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CetakDataPenjualan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CetakDataProduk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -270,50 +268,49 @@ public class CetakDataPenjualan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CetakDataPenjualan().setVisible(true);
+                new CetakDataProduk().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CETAK;
-    private javax.swing.JTable LAPORAN_PENJUALAN;
+    private javax.swing.JTable LAPORAN_PRODUK;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-public void viewDataJ(String where) {
+public void viewDataP(String where) {
         try {
             // Clear existing rows
-            for (int i = cp.getRowCount() - 1; i >= 0; i--) {
-                cp.removeRow(i);
+            for (int i = CPR.getRowCount() - 1; i >= 0; i--) {
+                CPR.removeRow(i);
             }
 
             // Koneksi ke database
             Connection K = connect.Go();
             Statement S = K.createStatement();
-            
+
             // Query untuk mengambil data dari tabel cart
-            String Q = "SELECT tanggal_transaksi, nama_produk, SUM(banyak_produk) AS banyak_produk "
-                     + "FROM cart " + where
-                     + " GROUP BY tanggal_transaksi, nama_produk "
-                     + "ORDER BY tanggal_transaksi, nama_produk";
-            
+            String Q = "SELECT kode_produk, nama_produk, stok, harga_satuan "
+                    + "FROM products " + where;
+
             // Eksekusi query
             ResultSet R = S.executeQuery(Q);
             int no = 1;
-            
+
             // Loop untuk mengambil data dari ResultSet
             while (R.next()) {
-                String tanggalTransaksi = R.getString("tanggal_transaksi");
+                String kode_produk = R.getString("kode_produk");
                 String namaProduk = R.getString("nama_produk");
-                int banyakProduk = R.getInt("banyak_produk");
+                int stok = R.getInt("stok");
+                Double harga_satuan = R.getDouble("harga_satuan");
 
                 // Menambahkan data ke tabel
-                Object[] U = {no, tanggalTransaksi, namaProduk, banyakProduk};
-                cp.addRow(U);
+                Object[] U = {no, kode_produk, namaProduk, stok, harga_satuan};
+                CPR.addRow(U);
 
                 no++;
             }
@@ -327,23 +324,21 @@ public void viewDataJ(String where) {
         }
     }
 
+    private void settingTable() {
+        CPR = (DefaultTableModel) LAPORAN_PRODUK.getModel();
 
-private void settingTable() {
-    cp = (DefaultTableModel) LAPORAN_PENJUALAN.getModel();
-    
-    // Mengatur ukuran kolom tabel
-    LAPORAN_PENJUALAN.getColumnModel().getColumn(0).setMinWidth(50);
-    LAPORAN_PENJUALAN.getColumnModel().getColumn(0).setMaxWidth(70);  // Kolom nomor (no)
+        // Mengatur ukuran kolom tabel
+        LAPORAN_PRODUK.getColumnModel().getColumn(0).setMinWidth(50);
+        LAPORAN_PRODUK.getColumnModel().getColumn(0).setMaxWidth(70);  // Kolom nomor (no)
 
-    LAPORAN_PENJUALAN.getColumnModel().getColumn(1).setMinWidth(150);
-    LAPORAN_PENJUALAN.getColumnModel().getColumn(1).setMaxWidth(150);  // Kolom tanggal_transaksi
+        LAPORAN_PRODUK.getColumnModel().getColumn(1).setMinWidth(150);
+        LAPORAN_PRODUK.getColumnModel().getColumn(1).setMaxWidth(150);  // Kolom tanggal_transaksi
 
-    LAPORAN_PENJUALAN.getColumnModel().getColumn(2).setMinWidth(150);
-    LAPORAN_PENJUALAN.getColumnModel().getColumn(2).setMaxWidth(150);  // Kolom nama_produk
+        LAPORAN_PRODUK.getColumnModel().getColumn(2).setMinWidth(150);
+        LAPORAN_PRODUK.getColumnModel().getColumn(2).setMaxWidth(150);  // Kolom nama_produk
 
-    LAPORAN_PENJUALAN.getColumnModel().getColumn(3).setMinWidth(100);
-    LAPORAN_PENJUALAN.getColumnModel().getColumn(3).setMaxWidth(200);  // Kolom banyak_produk
-}
-
+        LAPORAN_PRODUK.getColumnModel().getColumn(3).setMinWidth(100);
+        LAPORAN_PRODUK.getColumnModel().getColumn(3).setMaxWidth(200);  // Kolom banyak_produk
+    }
 
 }

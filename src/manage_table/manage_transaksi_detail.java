@@ -9,9 +9,19 @@ import java.awt.Frame;
 import konektor.Profile;
 import apoteker.admin_page;
 import java.awt.Dimension;
+import java.awt.Font;
 //import konektor.connect;
 import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.Printable;
+import static java.awt.print.Printable.NO_SUCH_PAGE;
+import static java.awt.print.Printable.PAGE_EXISTS;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -19,6 +29,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 import konektor.ProfileTransaksiDetail;
 
 /**
@@ -65,7 +77,6 @@ public class manage_transaksi_detail extends javax.swing.JFrame {
         btn_Hapus1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setUndecorated(true);
 
         atas_transaksi.setBackground(new java.awt.Color(0, 102, 102));
@@ -325,13 +336,81 @@ public class manage_transaksi_detail extends javax.swing.JFrame {
     }//GEN-LAST:event_pencarianTransFocusGained
 
     private void btn_CetakTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CetakTransaksiActionPerformed
-        // Menampilkan notifikasi
-        javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Aplikasi dalam maintenance",
-                "Informasi",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE
-        );
+        // Membuat PrinterJob untuk menangani pencetakan
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
+
+// Menentukan PageFormat untuk kertas A4 dengan orientasi landscape
+        PageFormat pageFormat = printerJob.defaultPage();
+
+// Set orientasi ke landscape
+        pageFormat.setOrientation(PageFormat.LANDSCAPE); // Menetapkan orientasi menjadi landscape
+
+        Paper paper = new Paper();
+        double width =  595;  // Lebar A4 dalam point untuk landscape
+        double height = 842; // Tinggi A4 dalam point untuk landscape
+        paper.setSize(width, height);
+        paper.setImageableArea(50, 50, width - 100, height - 100); // Area yang bisa dicetak (memberi margin)
+        pageFormat.setPaper(paper);
+
+// Membuat objek Printable untuk mendefinisikan cara mencetak
+        Printable printable = new Printable() {
+            public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+                if (pageIndex > 0) {
+                    return NO_SUCH_PAGE; // Jika lebih dari satu halaman
+                }
+
+                Graphics2D g2d = (Graphics2D) graphics;
+                g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+
+                // Mengatur font dan ukuran tulisan
+                g2d.setFont(new Font("Serif", Font.PLAIN, 10));
+
+                // Mengambil data dari JTable
+                JTable table = tbl_transaksi; // Pastikan LAPORAN_PENJUALAN adalah objek JTable
+                TableModel model = table.getModel();
+
+                // Menulis header tabel
+                int y = 20; // Posisi awal vertikal
+                int x = 50; // Posisi awal horizontal
+                int rowHeight = 20; // Tinggi baris
+                int columnWidth = 100; // Lebar kolom
+
+                // Menulis header tabel
+                for (int col = 0; col < model.getColumnCount(); col++) {
+                    g2d.drawString(model.getColumnName(col), x + col * columnWidth, y);
+                }
+
+                y += rowHeight; // Pindah ke baris berikutnya
+
+                // Menulis data tabel
+                for (int row = 0; row < model.getRowCount(); row++) {
+                    for (int col = 0; col < model.getColumnCount(); col++) {
+                        g2d.drawString(model.getValueAt(row, col).toString(), x + col * columnWidth, y);
+                    }
+                    y += rowHeight;
+
+                    // Cek jika baris melebihi batas halaman, jika iya, lanjutkan ke halaman berikutnya
+                    if (y > height - 50) { // Jika melebihi batas halaman, lanjut ke halaman baru
+                        return PAGE_EXISTS; // Halaman berikutnya
+                    }
+                }
+
+                return PAGE_EXISTS; // Menyelesaikan pencetakan untuk halaman ini
+            }
+        };
+
+// Menentukan pencetak yang digunakan untuk mencetak dokumen
+        printerJob.setPrintable(printable, pageFormat);
+
+// Menampilkan dialog untuk mencetak
+        if (printerJob.printDialog()) {
+            try {
+                printerJob.print(); // Mencetak dokumen
+            } catch (PrinterException e) {
+                e.printStackTrace();
+            }
+        }
+
     }//GEN-LAST:event_btn_CetakTransaksiActionPerformed
 
     /**

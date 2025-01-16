@@ -23,14 +23,15 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.sql.*;
+import javax.swing.SwingUtilities;
 
 public class grafik {
 
     // Method untuk membuat dataset dari database
-    private static CategoryDataset createDataset(int selectedMonth) {
+    private static CategoryDataset createDataset(int selectedMonth, int selectedYear) {
         final String income = "Income"; // dalam juta
-        final String QTY = "Item Terjual";
-        final String TRS = "Jumlah Transaksi";
+        final String QTY = "Item Terjual"; // Jumlah Produk yang Terjual
+        final String TRS = "Jumlah Transaksi"; // Bisa digunakan jika Anda ingin menampilkan transaksi
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
@@ -40,24 +41,26 @@ public class grafik {
         ResultSet rs = null;
 
         try {
-            // Query untuk mengambil data berdasarkan bulan yang dipilih
+            // Query untuk mengambil data berdasarkan bulan dan tahun yang dipilih
             String sql = "SELECT SUM(total_harga) AS total_income, "
-                    + "       COUNT(ID_transaksi_detail) AS total_qty, "
-                    + "       MONTH(tanggal_transaksi) AS month "
+                    + "       SUM(jumlah_produk) AS total_qty, "
+                    + "       MONTH(tanggal_transaksi) AS month, "
+                    + "       YEAR(tanggal_transaksi) AS year "
                     + "FROM transaksi_detail "
                     + "WHERE MONTH(tanggal_transaksi) = ? "
-                    + // Menggunakan parameter untuk bulan
-                    "GROUP BY MONTH(tanggal_transaksi)";
+                    + "AND YEAR(tanggal_transaksi) = ? "
+                    + "GROUP BY YEAR(tanggal_transaksi), MONTH(tanggal_transaksi)";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, selectedMonth);  // Menetapkan nilai bulan ke parameter query
+            stmt.setInt(2, selectedYear);   // Menetapkan nilai tahun ke parameter query
             rs = stmt.executeQuery();
 
             // Mengisi dataset dengan data dari query
             while (rs.next()) {
-                String month = getMonthName(rs.getInt("month"));
-                dataset.addValue(rs.getDouble("total_income"), month, income);
-                dataset.addValue(rs.getInt("total_qty"), month, QTY);
-                dataset.addValue(rs.getDouble("total_income"), month, TRS);
+                String month = getMonthName(rs.getInt("month")); // Mendapatkan nama bulan
+                dataset.addValue(rs.getDouble("total_income"), month, income);  // Menambahkan pendapatan
+                dataset.addValue(rs.getInt("total_qty"), month, QTY);  // Menambahkan jumlah item terjual
+                dataset.addValue(rs.getDouble("total_income"), month, TRS);  // Menambahkan jumlah transaksi
             }
 
         } catch (SQLException se) {
@@ -91,14 +94,22 @@ public class grafik {
     }
 
     public static void main(String[] args) {
-        // Membuat array yang berisi nama bulan
+        // Membuat array yang berisi nama bulan dan tahun
         String[] months = {
             "JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI",
             "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"
         };
 
-        // Membuat JComboBox untuk memilih bulan
+        // Daftar tahun yang ingin ditampilkan (misalnya dari 2020 hingga 2025)
+// Membuat array tahun dari 2020 hingga 2090
+        String[] years = new String[2090 - 2020 + 1]; // 2090 - 2020 + 1 untuk memasukkan kedua tahun
+        for (int i = 0; i < years.length; i++) {
+            years[i] = String.valueOf(2020 + i); // Menambahkan tahun ke dalam array
+        }
+
+        // Membuat JComboBox untuk memilih bulan dan tahun
         JComboBox<String> monthComboBox = new JComboBox<>(months);
+        JComboBox<String> yearComboBox = new JComboBox<>(years);
 
         JButton showButton = new JButton("Tampilkan Grafik");
         JButton backButton = new JButton("Kembali");
@@ -107,14 +118,17 @@ public class grafik {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedMonthString = (String) monthComboBox.getSelectedItem(); // Mendapatkan bulan yang dipilih
-                int selectedMonth = getMonthNumber(selectedMonthString);  // Mengonversi bulan ke angka (1 - 12)
+                String selectedYearString = (String) yearComboBox.getSelectedItem();  // Mendapatkan tahun yang dipilih
 
-                // Membuat grafik berdasarkan bulan yang dipilih
+                int selectedMonth = getMonthNumber(selectedMonthString);  // Mengonversi bulan ke angka (1 - 12)
+                int selectedYear = Integer.parseInt(selectedYearString);  // Mengonversi tahun menjadi angka
+
+                // Membuat grafik berdasarkan bulan dan tahun yang dipilih
                 JFreeChart chart = ChartFactory.createBarChart(
                         "Grafik Pendapatan dan Penjualan Bulanan", // Chart title
                         "Bulan", // X-axis Label
                         "Nilai", // Y-axis Label
-                        createDataset(selectedMonth),
+                        createDataset(selectedMonth, selectedYear),
                         PlotOrientation.VERTICAL, // Orientation (vertical)
                         true, // Include legend
                         true, // Tooltips
@@ -143,19 +157,31 @@ public class grafik {
                 frame.pack();
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
+
+                // Menambahkan aksi untuk tombol "Kembali"
+                backButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // Menutup jendela grafik yang sedang tampil
+                        JFrame chartFrame = (JFrame) SwingUtilities.getWindowAncestor(backButton);
+                        chartFrame.dispose(); // Dispose jendela grafik yang dibuka
+                    }
+                });
             }
         });
 
-        // Menambahkan aksi untuk tombol Kembali
+// Menambahkan aksi untuk tombol Kembali
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0); // Menutup aplikasi atau bisa dikembangkan untuk kembali ke tampilan sebelumnya
+                // Menutup jendela grafik yang sedang tampil
+                JFrame chartFrame = (JFrame) SwingUtilities.getWindowAncestor(backButton);
+                chartFrame.dispose(); // Menutup jendela grafik yang dibuka
             }
         });
 
         // Membuat JFrame dan menambahkan ComboBox dan Button
-        JFrame frame = new JFrame("Pilih Bulan");
+        JFrame frame = new JFrame("Pilih Bulan dan Tahun");
 
         // Panel untuk tombol "Kembali" di pojok kanan atas
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -166,6 +192,7 @@ public class grafik {
 
         JPanel mainPanel = new JPanel();
         mainPanel.add(monthComboBox);
+        mainPanel.add(yearComboBox);
         mainPanel.add(showButton);
 
         // Set JFrame menjadi undecorated dan fullscreen

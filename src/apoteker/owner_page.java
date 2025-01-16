@@ -893,13 +893,8 @@ public class owner_page extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void DataProdukCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataProdukCetakActionPerformed
-        // Menampilkan notifikasi
-        javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Aplikasi dalam maintenance",
-                "Informasi",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE
-        );
+        DataCetak.CetakDataProduk K = new DataCetak.CetakDataProduk();
+        K.setVisible(true);
     }//GEN-LAST:event_DataProdukCetakActionPerformed
 
     private void DataPenjualanCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataPenjualanCetakActionPerformed
@@ -909,13 +904,8 @@ public class owner_page extends javax.swing.JFrame {
     }//GEN-LAST:event_DataPenjualanCetakActionPerformed
 
     private void DataTransaksiCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataTransaksiCetakActionPerformed
-        // Menampilkan notifikasi
-        javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Aplikasi dalam maintenance",
-                "Informasi",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE
-        );
+        DataCetak.CetakDataTransaksi K = new DataCetak.CetakDataTransaksi();
+        K.setVisible(true);
     }//GEN-LAST:event_DataTransaksiCetakActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -946,7 +936,7 @@ public class owner_page extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        this.setVisible(false);
+
         // Membuka grafik
         konektor.grafik.main(new String[0]);
     }//GEN-LAST:event_jButton11ActionPerformed
