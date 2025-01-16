@@ -52,5 +52,6 @@ Sistem manajemen kasir modern yang dirancang khusus untuk apotek.
 - **Dosen Pengampu:** M. Nishom, M.Kom.  
 - **Kampus:** Politeknik Harapan Bersama Tegal
 
-
+HAK CIPTA KAMI
+PROGRAM INI DI BUAT DENGAN DESAIN YG DIRANCANG DENGAN TAMPILAN TANPA MENIRU ORANG LAIN MURNI DARI KAMI
 
