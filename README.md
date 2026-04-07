@@ -1,6 +1,8 @@
 # 💊 **KASIR APOTEKER**
 Sistem manajemen kasir modern yang dirancang khusus untuk apotek.
 
+jangan asal claim hak cipta! kalo mau pake tinggal pake asal jagan hilangkan hak cipta
+
 ---
 
 ## 🚀 **Download Aplikasi**
